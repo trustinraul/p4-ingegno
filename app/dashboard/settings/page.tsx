@@ -1,0 +1,66 @@
+import { createClient } from '@/lib/supabase/server'
+import { redirect } from 'next/navigation'
+import GitHubConnect from '@/components/dashboard/GitHubConnect'
+import { signOut } from '@/app/actions/auth'
+
+export default async function SettingsPage() {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) redirect('/login')
+
+  // Select only safe fields — NOT access_token
+  const { data: connection } = await supabase
+    .from('github_connections')
+    .select('github_username, repos_to_show, last_synced_at')
+    .eq('user_id', user.id)
+    .single()
+
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('plan, username')
+    .eq('id', user.id)
+    .single()
+
+  return (
+    <div className="max-w-2xl space-y-12">
+      <h1 className="font-heading italic text-white text-3xl">Settings</h1>
+
+      {/* GitHub section */}
+      <section>
+        <h2 className="text-sm font-body text-white/40 tracking-widest uppercase mb-6">
+          // GitHub
+        </h2>
+        <GitHubConnect connection={connection} />
+      </section>
+
+      {/* Account section */}
+      <section>
+        <h2 className="text-sm font-body text-white/40 tracking-widest uppercase mb-6">
+          // Account
+        </h2>
+        <div className="liquid-glass rounded-[1.25rem] p-7 space-y-4">
+          <div className="flex items-center justify-between">
+            <span className="text-sm font-body text-white/60">Email</span>
+            <span className="text-sm font-body text-white/40">{user.email}</span>
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="text-sm font-body text-white/60">Plan</span>
+            <span className="text-xs font-body px-3 py-1 rounded-full liquid-glass text-white/60">
+              {profile?.plan === 'pro' ? 'Pro' : 'Free'}
+            </span>
+          </div>
+          <div className="border-t border-white/[0.08] pt-4">
+            <form action={signOut}>
+              <button
+                type="submit"
+                className="text-sm font-body text-white/40 hover:text-white/70 transition-colors"
+              >
+                Sign out
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </div>
+  )
+}
