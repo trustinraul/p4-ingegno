@@ -1,0 +1,108 @@
+'use client'
+
+import Link from 'next/link'
+import { motion } from 'framer-motion'
+import BlurText from '@/components/ui/BlurText'
+
+const freeFeatures = [
+  'Public profile at ingegno.app/username',
+  'Up to 2 visible projects',
+  'Manual activity updates',
+  'GitHub commit sync',
+  'Ingegno badge in footer',
+]
+
+const proFeatures = [
+  'Everything in Free',
+  'Unlimited visible projects',
+  'Remove Ingegno badge',
+  'Priority support',
+  'Custom domain (coming soon)',
+]
+
+export default function Pricing() {
+  return (
+    <section id="pricing" className="py-32 px-8 md:px-20 bg-black">
+      <motion.p
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.6 }}
+        className="text-xs tracking-widest uppercase text-white/30 font-body mb-8"
+      >
+        // Pricing
+      </motion.p>
+
+      <BlurText
+        text="Start free. Upgrade when you're ready."
+        className="font-heading italic text-white text-5xl md:text-6xl leading-[0.9] max-w-3xl mb-16"
+      />
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-3xl">
+        {/* Free */}
+        <motion.div
+          initial={{ filter: 'blur(10px)', opacity: 0, y: 20 }}
+          whileInView={{ filter: 'blur(0px)', opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+          className="liquid-glass rounded-[1.25rem] p-8 flex flex-col justify-between"
+        >
+          <div>
+            <p className="text-sm font-body text-white/40 mb-2">Free</p>
+            <p className="font-heading italic text-white text-5xl mb-1">€0</p>
+            <p className="text-xs font-body text-white/30 mb-8">forever</p>
+            <ul className="space-y-3">
+              {freeFeatures.map((feature) => (
+                <li key={feature} className="flex items-center gap-3 text-sm font-body text-white/60">
+                  <span className="w-1 h-1 rounded-full bg-white/30 flex-shrink-0" />
+                  {feature}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <Link
+            href="/signup"
+            className="mt-8 text-center liquid-glass rounded-full px-6 py-3 text-sm font-body text-white hover:opacity-80 transition-opacity cursor-pointer block"
+          >
+            Get started free
+          </Link>
+        </motion.div>
+
+        {/* Pro */}
+        <motion.div
+          initial={{ filter: 'blur(10px)', opacity: 0, y: 20 }}
+          whileInView={{ filter: 'blur(0px)', opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, ease: 'easeOut', delay: 0.15 }}
+          className="liquid-glass-strong rounded-[1.25rem] p-8 flex flex-col justify-between relative overflow-hidden"
+        >
+          <div className="absolute top-5 right-5">
+            <span className="text-xs font-body text-white/60 bg-white/10 px-3 py-1 rounded-full">
+              Most popular
+            </span>
+          </div>
+
+          <div>
+            <p className="text-sm font-body text-white/40 mb-2">Pro</p>
+            <p className="font-heading italic text-white text-5xl mb-1">€9</p>
+            <p className="text-xs font-body text-white/30 mb-8">/month · or €79/year</p>
+            <ul className="space-y-3">
+              {proFeatures.map((feature) => (
+                <li key={feature} className="flex items-center gap-3 text-sm font-body text-white/70">
+                  <span className="w-1 h-1 rounded-full bg-white/50 flex-shrink-0" />
+                  {feature}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <Link
+            href="/signup"
+            className="mt-8 text-center bg-white text-black rounded-full px-6 py-3 text-sm font-body font-medium hover:bg-white/90 transition-colors cursor-pointer block"
+          >
+            Get Pro →
+          </Link>
+        </motion.div>
+      </div>
+    </section>
+  )
+}
