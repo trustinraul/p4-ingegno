@@ -9,9 +9,10 @@ interface Project {
 
 interface UpdateFormProps {
   projects: Project[]
+  onSuccess?: () => void
 }
 
-export default function UpdateForm({ projects }: UpdateFormProps) {
+export default function UpdateForm({ projects, onSuccess }: UpdateFormProps) {
   const [isPending, startTransition] = useTransition()
   const [error, setError] = useState<string | null>(null)
   const formRef = useRef<HTMLFormElement>(null)
@@ -24,6 +25,7 @@ export default function UpdateForm({ projects }: UpdateFormProps) {
         setError(result.error)
       } else {
         formRef.current?.reset()
+        onSuccess?.()
       }
     })
   }

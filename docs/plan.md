@@ -4731,3 +4731,431 @@ git push
 
 After verifying everything works in production, make the GitHub repo public:
 - GitHub → Repository Settings → Danger Zone → Change repository visibility → Public
+
+---
+
+## Phase 2 — Polish, Security & Redesign
+
+Executed after the initial MVP build. Goal: ship a product that is visually coherent, secure, and free of critical bugs before public launch.
+
+---
+
+### Task 14: Debug + Security Audit + UI/UX Refinement
+
+**Files affected:** varies per step — no single source of truth
+
+- [x] **Step 1: Fix auth bug on signup**
+
+Auth flow had 4 chained bugs: missing `emailRedirectTo`, profile INSERT without active session, misleading error message on retry (Supabase email enumeration protection), and missing session refresh middleware. Fixed by:
+- Adding `emailRedirectTo` pointing to `/auth/callback` in `signUp` action
+- Moving profile creation to `app/auth/callback/route.ts` (after session is active) for the email confirmation flow; inserting directly in `signUp` when `data.session` is non-null (email confirmation disabled)
+- Confirming `proxy.ts` handles session refresh — `middleware.ts` was not needed
+- Disabling Supabase email confirmation for development (rate limit on built-in SMTP); to re-enable in production with Resend as SMTP
+
+- [ ] **Step 2: Scan for exposed API keys**
+
+Review all `.ts` / `.tsx` files for hardcoded secrets or keys that should live in env vars. Check:
+- No `SUPABASE_SERVICE_ROLE_KEY` references outside server-only files
+- No `GITHUB_CLIENT_SECRET` references in client components or public routes
+- No API keys, tokens, or passwords in any `'use client'` file
+- Confirm `.env.local` is in `.gitignore`
+
+```bash
+grep -r "eyJ" app components lib --include="*.ts" --include="*.tsx"
+grep -r "sk_" app components lib --include="*.ts" --include="*.tsx"
+grep -rn "service_role" app components lib --include="*.ts" --include="*.tsx"
+```
+
+- [ ] **Step 3: Sanitize all user inputs**
+
+Review every form field and Server Action for missing validation:
+- `signUp`: username regex already validated (`/^[a-z0-9-]{3,20}$/`), reserved words list present
+- `updateProfile`: validate `full_name` max length, `tagline` max length, `narrative` word count (≤250), `roles` array length (≤10)
+- `createProject` / `updateProject`: validate `name` not empty, `url` format if provided
+- `createUpdate`: validate `content` not empty, max 2000 chars
+- All file uploads: validate MIME type and size server-side (not just client `accept` attribute)
+
+- [ ] **Step 4: Add rate limiting**
+
+Apply rate limiting to the most sensitive endpoints to prevent abuse:
+- `app/auth/callback/route.ts` — limit code exchange attempts per IP
+- `app/actions/auth.ts` — signUp and signIn (Supabase handles this internally via GoTrue, but verify)
+- `app/api/github/sync/route.ts` — prevent manual sync spam (e.g. max 1 request per 5 min per user)
+- Use Vercel's built-in rate limiting or a simple in-memory counter with `next/headers` for the sync route
+
+- [ ] **Step 5: Final security review**
+
+Run through the OWASP Top 10 checklist for the current surface:
+- No SQL injection risk (Supabase parameterized queries via JS client)
+- XSS: no `dangerouslySetInnerHTML` — confirm no raw HTML rendering anywhere
+- CSRF: Server Actions use Next.js built-in CSRF protection via same-origin cookies
+- Auth bypass: confirm all `/dashboard/**` routes check `supabase.auth.getUser()` server-side, not just client cookies
+- RLS: confirm no query uses `service_role_key` for user-owned data reads — only for admin operations
+- `github_connections`: confirm `access_token` column never returned in any SELECT used by client components
+
+- [ ] **Step 6: Visual harmony audit**
+
+Review all pages for typographic and spacing consistency:
+- Font sizes: headings use `font-heading italic`, body copy uses `font-body`. No mixed usage.
+- Spacing: `space-y-8` or `space-y-12` between sections. No inconsistent gaps.
+- Text opacity scale: `text-white` → `/80` → `/60` → `/40` → `/30` → `/20`. No out-of-scale values.
+- Rounded corners: cards use `rounded-[1.25rem]`, buttons use `rounded-full`, inputs use `rounded-xl`.
+- Liquid glass consistency: `.liquid-glass` for subtle containers, `.liquid-glass-strong` for overlays and auth forms.
+- Check all pages: landing, `/discover`, `/dashboard`, `/dashboard/profile`, `/dashboard/projects`, `/dashboard/settings`, `/[username]`
+
+- [ ] **Step 7: Add meaningful images**
+
+Replace any placeholder or missing visuals with images that reinforce the Ingegno identity:
+- Landing hero: one strong visual that evokes the Da Vinci / polymath concept (e.g., sketch, geometry, Renaissance reference)
+- `/discover` page: consider a subtle background texture or visual treatment that distinguishes it from the landing
+- Source from Unsplash (search: "Da Vinci sketch", "Renaissance geometry", "polymath", "builder")
+- All images: use Next.js `<Image>` with correct `width`, `height`, and `alt` attributes
+
+- [ ] **Step 8: Mobile test at 375px**
+
+Open DevTools → device emulation → iPhone SE (375px width). Test every route:
+- `/` — landing: navbar collapses correctly, hero text doesn't overflow, pricing cards stack vertically
+- `/discover` — grid collapses to 1 column, cards readable
+- `/signup` and `/login` — forms fill available width, no horizontal scroll
+- `/dashboard` — sidebar: on mobile the sidebar should either be hidden by default or overlay mode. Adjust `DashboardShell` if needed.
+- `/dashboard/profile` — ProfileForm fields stack correctly
+- `/dashboard/projects` — project cards readable
+- `/[username]` — ProfileHero text scales down, ProjectGrid is 1 column, ActivityFeed items readable
+- Fix any overflow, truncation, or layout breakage found
+
+- [ ] **Step 9: Make GitHub repo public**
+
+Before making public, verify:
+- `.gitignore` includes `.env.local`, `.env*.local`
+- No secrets in git history (`git log --all --full-history -- .env.local`)
+- `README.md` exists and is accurate
+
+```bash
+# Check for accidental secret commits
+git log --all --oneline | head -20
+git diff HEAD~5..HEAD -- .env.local
+```
+
+Then: GitHub → Repository Settings → Danger Zone → Change repository visibility → Public
+
+- [ ] **Step 10: Final review pass**
+
+End-to-end review before declaring the project finished:
+- TypeScript: run `npx tsc --noEmit` — zero errors
+- No `console.error` or unhandled promise rejections in browser DevTools
+- Run Vitest: `npm run test` — `lib/plan.test.ts` passes
+- Re-run security checklist from Step 5
+- Check Vercel deployment logs for runtime errors
+- Verify OG image generates correctly at `/api/og/[username]`
+
+---
+
+### Task 15: Discover Page + Dashboard Redesign
+
+**Implemented 2026-05-26.**
+
+> ⚠️ **Pending redesign — see Task 16 below.** The current `DiscoverCard` (profile preview card) is superseded by the Pinterest-style grid spec. Task 16 replaces `DiscoverCard` and `app/discover/page.tsx`.
+
+**New files:**
+- `app/discover/page.tsx` — grid of all public profiles, sorted by recent activity
+- `components/landing/DiscoverCard.tsx` — profile card with avatar, roles, activity counter (updates in last 3.5 days) — **to be replaced in Task 16**
+- `components/dashboard/DashboardShell.tsx` — Client Component wrapper managing sidebar collapse state
+- `components/dashboard/AddUpdateButton.tsx` — "Add Update" button + inline modal with UpdateForm
+- `components/ui/icons.tsx` — added `HomeIcon`, `FolderIcon`, `SettingsIcon`, `CompassIcon`, `MenuIcon`
+
+**Modified files:**
+- `components/landing/Navbar.tsx` — added "Discover" tab in center nav pill
+- `components/dashboard/DashboardNav.tsx` — new collapsible sidebar: links (Dashboard, Projects, Settings, Discover), hamburger toggle, icon-only mode when collapsed
+- `app/dashboard/layout.tsx` — uses `DashboardShell` instead of hardcoded `ml-64` layout
+- `app/dashboard/page.tsx` — replaced redirect with read-only profile view (ProfileHero + ProfileNarrative + ProjectGrid + ActivityFeed + AddUpdateButton); empty state if `full_name` is null
+- `app/dashboard/profile/page.tsx` — heading changed to "Edit Profile"
+- `app/dashboard/settings/page.tsx` — added "// Profile" section with "Edit profile →" button
+- `components/dashboard/UpdateForm.tsx` — added optional `onSuccess` callback prop
+
+**User flow after redesign:**
+- Visitor: Landing → Discover tab → grid of profiles → click card → `/[username]` public profile
+- Da Vinci (creator): Dashboard → sees own profile read-only → "Add Update" button for quick posts → Settings → "Edit profile" → edit form
+
+---
+
+---
+
+### Task 16: Discover — Pinterest-style Grid
+
+Replaces the current profile-card grid with a visual, image-first grid. The unit of discovery is no longer the profile — it's a single piece of work.
+
+**Design concept:** Masonry grid of visual cards. Two card types share the same grid:
+1. **Update card** — a single update that has an image attached. The image fills the card; the update's text content is the caption below. Clicking the card goes to the author's public profile.
+2. **Project collage card** — manually activated by the user once a project is marked "Launched". Shows a slideshow/collage of all images from updates linked to that project. The user triggers it from their dashboard, Ingegno proposes an ordering of the images before publishing, and the user confirms. Caption is the project name + status badge. Clicking goes to the author's public profile.
+
+Cards without images are excluded from the Discover grid. A user with no image updates simply doesn't appear until they post one.
+
+**Grid behavior:** Masonry layout (variable card height based on image aspect ratio), sorted by `created_at` descending. No pagination in MVP — limit 60 items on initial load.
+
+**Files:**
+- Replace: `app/discover/page.tsx` — fetch updates with images + published project collages, build masonry grid
+- Replace: `components/discover/DiscoverCard.tsx` (rename from `landing/DiscoverCard.tsx`) — image card with caption and author attribution
+- Create: `components/discover/ProjectCollageCard.tsx` — slideshow card for completed projects
+- Create: `app/actions/collage.ts` — `publishProjectCollage(projectId)` Server Action: validates project is "launched", fetches all linked update images, returns ordered proposals; `confirmProjectCollage(projectId, orderedImageUrls)` stores final collage
+- Modify: `supabase/migrations/` — add `project_collages` table: `id`, `user_id`, `project_id` (unique), `image_urls text[]`, `published_at`, `created_at`
+- Modify: `app/dashboard/projects/page.tsx` — "Launched" projects show a "Publish collage →" button if no collage exists yet; if collage exists, show "Edit collage"
+- Create: `components/dashboard/CollagePublisher.tsx` — modal: shows Ingegno's proposed image order (draggable to reorder), "Publish" button calls `confirmProjectCollage`
+
+**RLS for `project_collages`:**
+- SELECT: `EXISTS (SELECT 1 FROM profiles WHERE id = project_collages.user_id AND (is_public = true OR auth.uid() = id))`
+- ALL owner: `auth.uid() = user_id`
+
+**Constraints:**
+- Update cards: only updates where `image_url IS NOT NULL` appear in Discover
+- Project collage cards: only appear after user confirms via `CollagePublisher` — never auto-published
+- `image_urls` array in `project_collages`: minimum 2 images required to publish a collage; maximum 12
+- Collage proposals from Ingegno: order images by `updates.created_at` ascending (chronological build narrative) as the default proposal — user can reorder before confirming
+- No Discover card links to a profile with `is_public = false`
+
+- [ ] **Step 1: Add `project_collages` table to Supabase**
+
+Run in SQL Editor:
+
+```sql
+CREATE TABLE project_collages (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id uuid REFERENCES profiles(id) ON DELETE CASCADE NOT NULL,
+  project_id uuid REFERENCES projects(id) ON DELETE CASCADE NOT NULL UNIQUE,
+  image_urls text[] NOT NULL,
+  created_at timestamptz DEFAULT now()
+);
+
+ALTER TABLE project_collages ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "collages_select" ON project_collages FOR SELECT
+  USING (EXISTS (
+    SELECT 1 FROM profiles WHERE id = project_collages.user_id
+    AND (is_public = true OR auth.uid() = id)
+  ));
+CREATE POLICY "collages_owner" ON project_collages FOR ALL
+  USING (auth.uid() = user_id);
+```
+
+- [ ] **Step 2: Create `app/actions/collage.ts`**
+
+```typescript
+'use server'
+import { createClient } from '@/lib/supabase/server'
+import { revalidatePath } from 'next/cache'
+
+// Returns proposed image order (chronological) for user to review before confirming
+export async function publishProjectCollage(projectId: string): Promise<{
+  proposedImages: string[]
+  error?: string
+}> {
+  const supabase = createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) return { proposedImages: [], error: 'Not authenticated' }
+
+  // Verify project is launched and owned by user
+  const { data: project } = await supabase
+    .from('projects')
+    .select('status')
+    .eq('id', projectId)
+    .eq('user_id', user.id)
+    .single()
+
+  if (!project) return { proposedImages: [], error: 'Project not found' }
+  if (project.status !== 'launched') return { proposedImages: [], error: 'Project must be launched first' }
+
+  // Fetch all updates linked to this project that have images, ordered chronologically
+  const { data: updates } = await supabase
+    .from('updates')
+    .select('image_url, created_at')
+    .eq('project_id', projectId)
+    .eq('user_id', user.id)
+    .not('image_url', 'is', null)
+    .order('created_at', { ascending: true })
+
+  const images = (updates ?? []).map((u) => u.image_url as string)
+
+  if (images.length < 2) {
+    return { proposedImages: [], error: 'Need at least 2 images linked to this project to create a collage' }
+  }
+
+  return { proposedImages: images.slice(0, 12) }
+}
+
+export async function confirmProjectCollage(projectId: string, orderedImageUrls: string[]) {
+  const supabase = createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) return { error: 'Not authenticated' }
+
+  if (orderedImageUrls.length < 2) return { error: 'Minimum 2 images required' }
+  if (orderedImageUrls.length > 12) return { error: 'Maximum 12 images allowed' }
+
+  const { error } = await supabase
+    .from('project_collages')
+    .upsert({ user_id: user.id, project_id: projectId, image_urls: orderedImageUrls })
+
+  if (error) return { error: error.message }
+  revalidatePath('/dashboard/projects')
+  revalidatePath('/discover')
+  return { success: true }
+}
+```
+
+- [ ] **Step 3: Create `components/dashboard/CollagePublisher.tsx`**
+
+Modal triggered from the projects dashboard. Shows proposed image order, allows drag-to-reorder (or simple up/down buttons for MVP), then confirms.
+
+```typescript
+'use client'
+import { useState, useTransition } from 'react'
+import { confirmProjectCollage } from '@/app/actions/collage'
+import Image from 'next/image'
+
+interface CollagePublisherProps {
+  projectId: string
+  projectName: string
+  proposedImages: string[]
+  onClose: () => void
+}
+
+export default function CollagePublisher({ projectId, projectName, proposedImages, onClose }: CollagePublisherProps) {
+  const [images, setImages] = useState(proposedImages)
+  const [isPending, startTransition] = useTransition()
+  const [error, setError] = useState<string | null>(null)
+
+  function moveUp(i: number) {
+    if (i === 0) return
+    const next = [...images]
+    ;[next[i - 1], next[i]] = [next[i], next[i - 1]]
+    setImages(next)
+  }
+
+  function moveDown(i: number) {
+    if (i === images.length - 1) return
+    const next = [...images]
+    ;[next[i], next[i + 1]] = [next[i + 1], next[i]]
+    setImages(next)
+  }
+
+  function confirm() {
+    startTransition(async () => {
+      const result = await confirmProjectCollage(projectId, images)
+      if (result?.error) {
+        setError(result.error)
+      } else {
+        onClose()
+      }
+    })
+  }
+
+  return (
+    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center px-4">
+      <div className="liquid-glass-strong rounded-[1.5rem] p-8 max-w-lg w-full max-h-[80vh] overflow-y-auto space-y-6">
+        <div>
+          <h2 className="font-heading italic text-white text-2xl">Publish collage</h2>
+          <p className="text-sm font-body text-white/40 mt-1">{projectName}</p>
+        </div>
+
+        <p className="text-xs font-body text-white/40 tracking-widest uppercase">
+          Ingegno&apos;s proposed order — reorder before publishing
+        </p>
+
+        <div className="space-y-3">
+          {images.map((url, i) => (
+            <div key={url} className="flex items-center gap-3">
+              <div className="relative w-16 h-16 rounded-xl overflow-hidden shrink-0">
+                <Image src={url} alt={`Image ${i + 1}`} fill className="object-cover" />
+              </div>
+              <div className="flex flex-col gap-1">
+                <button
+                  type="button"
+                  onClick={() => moveUp(i)}
+                  disabled={i === 0}
+                  className="text-white/30 hover:text-white/70 disabled:opacity-20 text-sm transition-colors"
+                >↑</button>
+                <button
+                  type="button"
+                  onClick={() => moveDown(i)}
+                  disabled={i === images.length - 1}
+                  className="text-white/30 hover:text-white/70 disabled:opacity-20 text-sm transition-colors"
+                >↓</button>
+              </div>
+              <span className="text-xs font-body text-white/20">{i + 1} / {images.length}</span>
+            </div>
+          ))}
+        </div>
+
+        {error && <p className="text-sm font-body text-red-400">{error}</p>}
+
+        <div className="flex gap-3 pt-2">
+          <button
+            onClick={confirm}
+            disabled={isPending}
+            className="flex-1 bg-white text-black font-body text-sm font-medium rounded-full py-3 hover:bg-white/90 transition-colors disabled:opacity-50"
+          >
+            {isPending ? 'Publishing…' : 'Publish collage'}
+          </button>
+          <button
+            onClick={onClose}
+            className="px-5 text-sm font-body text-white/40 hover:text-white/70 transition-colors"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+```
+
+- [ ] **Step 4: Update `app/dashboard/projects/page.tsx`**
+
+For each project with `status === 'launched'`, fetch whether a collage exists and show the "Publish collage →" / "Edit collage" button. On click, call `publishProjectCollage(projectId)` to get the proposed images, then render `CollagePublisher`.
+
+Pass `collageStatus` (none | published) to `ProjectsClient` so it can render the button per card.
+
+- [ ] **Step 5: Replace `app/discover/page.tsx` and `DiscoverCard`**
+
+`app/discover/page.tsx` fetches two datasets in parallel:
+1. Updates with `image_url IS NOT NULL`, joined with `profiles` (is_public = true), ordered by `created_at` DESC, limit 60
+2. `project_collages` joined with `projects` (status = 'launched') and `profiles` (is_public = true), ordered by `created_at` DESC
+
+Merge and sort by date. Render as a CSS masonry grid (`columns-2 md:columns-3 lg:columns-4`).
+
+`components/discover/DiscoverCard.tsx` — update card:
+- Full-width image (natural aspect ratio, no crop)
+- Caption: `update.content` truncated to ~120 chars
+- Author: `@username` with small avatar — links to `/[username]`
+
+`components/discover/ProjectCollageCard.tsx` — collage card:
+- Auto-advancing slideshow (CSS animation or simple interval), cycles through `image_urls`
+- Caption: project name + "Launched" badge
+- Author: `@username` — links to `/[username]`
+
+- [ ] **Step 6: Manual verification**
+
+- Post 2+ updates with images on a public profile → visit `/discover` → verify image cards appear
+- Mark a project as "Launched" with 2+ linked image updates → click "Publish collage →" → verify `CollagePublisher` opens with proposed order → reorder → confirm → visit `/discover` → verify collage card appears and cycles through images
+- Verify a profile with `is_public = false` does not appear in Discover
+- Verify updates without images do not appear in Discover
+
+- [ ] **Step 7: Commit**
+
+```bash
+git add .
+git commit -m "feat: discover pinterest grid with update cards and project collages"
+```
+
+---
+
+## Future Ideas (V2 Backlog)
+
+Features not in MVP scope. To be prioritized after launch validation.
+
+### Networking — DV-to-DV messaging
+Direct messaging system between creators inside the platform. Inbox in dashboard, notification badge. Scope: one-to-one messages, no group threads in V1.
+
+### Discover with mandatory sign-up
+Gate the Discover page (or individual profile views) behind authentication. Motivation: capture more registrations, build a closed creator network. Trade-off: reduces viral discovery. Evaluate with data before implementing.
+
+### Premium social media widgets (Pro feature)
+Widgets that appear on the public profile alongside the existing activity feed. The user links a social account; the widget shows recent activity counts (e.g., "1 new reel · 2 carousels · 5 stories" for Instagram). Each network requires its own OAuth integration. Priority order based on user demand: Instagram → YouTube → LinkedIn. Inspired by the existing GitHub activity feed pattern already in the product.

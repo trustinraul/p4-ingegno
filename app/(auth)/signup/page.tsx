@@ -4,10 +4,32 @@ import { useActionState } from 'react'
 import Link from 'next/link'
 import { signUp } from '@/app/actions/auth'
 
-const initialState = { error: undefined as string | undefined }
+const initialState = { error: undefined as string | undefined, success: false }
 
 export default function SignupPage() {
   const [state, formAction] = useActionState(signUp, initialState)
+
+  if (state?.success) {
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center px-4">
+        <div className="w-full max-w-md">
+          <div className="mb-10 text-center">
+            <span className="font-heading italic text-white text-3xl">Ingegno</span>
+          </div>
+          <div className="liquid-glass-strong rounded-2xl p-8 text-center">
+            <h1 className="font-heading italic text-white text-2xl mb-3">
+              Check your email.
+            </h1>
+            <p className="font-body text-white/40 text-sm leading-relaxed">
+              We sent a confirmation link to your inbox.
+              <br />
+              Click it to activate your profile.
+            </p>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-black flex items-center justify-center px-4">

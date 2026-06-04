@@ -1,6 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
-import DashboardNav from '@/components/dashboard/DashboardNav'
+import DashboardShell from '@/components/dashboard/DashboardShell'
 
 export default async function DashboardLayout({
   children,
@@ -15,17 +15,16 @@ export default async function DashboardLayout({
 
   const { data: profile } = await supabase
     .from('profiles')
-    .select('username, full_name, avatar_url, is_public')
+    .select('username, is_public')
     .eq('id', user.id)
     .single()
 
   return (
-    <div className="min-h-screen bg-black text-white flex">
-      <DashboardNav
-        username={profile?.username ?? ''}
-        isPublic={profile?.is_public ?? false}
-      />
-      <main className="flex-1 ml-64 p-8 min-h-screen">{children}</main>
-    </div>
+    <DashboardShell
+      username={profile?.username ?? ''}
+      isPublic={profile?.is_public ?? false}
+    >
+      {children}
+    </DashboardShell>
   )
 }

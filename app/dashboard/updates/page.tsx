@@ -1,7 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
-import { deleteUpdate } from '@/app/actions/updates'
 import UpdateForm from '@/components/dashboard/UpdateForm'
+import DeleteUpdateButton from '@/components/dashboard/DeleteUpdateButton'
 
 function timeAgo(dateStr: string): string {
   const diff = Date.now() - new Date(dateStr).getTime()
@@ -74,17 +74,7 @@ export default async function UpdatesPage() {
                   </div>
                 </div>
 
-                <form action={deleteUpdate.bind(null, update.id)}>
-                  <button
-                    type="submit"
-                    className="p-2 text-white/20 hover:text-red-400/70 transition-colors text-sm font-body shrink-0"
-                    onClick={(e) => {
-                      if (!confirm('Delete this update?')) e.preventDefault()
-                    }}
-                  >
-                    Delete
-                  </button>
-                </form>
+                <DeleteUpdateButton id={update.id} />
               </div>
             </div>
           ))}

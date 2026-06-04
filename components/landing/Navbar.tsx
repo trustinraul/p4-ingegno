@@ -24,6 +24,9 @@ export default function Navbar() {
         <Link href="#about" className="text-sm font-body text-white/70 hover:text-white transition-colors">
           About
         </Link>
+        <Link href="/discover" className="text-sm font-body text-white/70 hover:text-white transition-colors">
+          Discover
+        </Link>
         <Link
           href="/signup"
           className="bg-white text-black text-sm font-body font-medium px-4 py-1.5 rounded-full hover:bg-white/90 transition-colors flex items-center gap-1 cursor-pointer"

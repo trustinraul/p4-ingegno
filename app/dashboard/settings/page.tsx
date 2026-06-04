@@ -1,5 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
+import Link from 'next/link'
 import GitHubConnect from '@/components/dashboard/GitHubConnect'
 import { signOut } from '@/app/actions/auth'
 
@@ -24,6 +25,24 @@ export default async function SettingsPage() {
   return (
     <div className="max-w-2xl space-y-12">
       <h1 className="font-heading italic text-white text-3xl">Settings</h1>
+
+      {/* Profile section */}
+      <section>
+        <h2 className="text-sm font-body text-white/40 tracking-widest uppercase mb-6">
+          // Profile
+        </h2>
+        <div className="liquid-glass rounded-[1.25rem] p-7 flex items-center justify-between">
+          <div>
+            <p className="text-sm font-body text-white/60">Name, tagline, roles, narrative, avatar</p>
+          </div>
+          <Link
+            href="/dashboard/profile"
+            className="liquid-glass rounded-full px-5 py-2 text-sm font-body text-white/70 hover:text-white transition-colors"
+          >
+            Edit profile →
+          </Link>
+        </div>
+      </section>
 
       {/* GitHub section */}
       <section>

@@ -7,7 +7,7 @@ interface ProfileHeroProps {
   profile: {
     full_name: string
     tagline: string | null
-    roles: string[]
+    roles: string[] | null
     avatar_url: string | null
   }
 }
@@ -78,14 +78,14 @@ export default function ProfileHero({ profile }: ProfileHeroProps) {
         )}
 
         {/* Roles */}
-        {profile.roles.length > 0 && (
+        {(profile.roles?.length ?? 0) > 0 && (
           <motion.div
             initial={{ filter: 'blur(10px)', opacity: 0, y: 20 }}
             animate={{ filter: 'blur(0px)', opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: 'easeOut', delay: 0.65 }}
             className="flex flex-wrap justify-center gap-2 mt-2"
           >
-            {profile.roles.map((role) => (
+            {(profile.roles ?? []).map((role) => (
               <span
                 key={role}
                 className="liquid-glass rounded-full px-4 py-1.5 text-sm font-body text-white/70"

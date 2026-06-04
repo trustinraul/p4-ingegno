@@ -3,7 +3,10 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 
-export async function signUp(prevState: { error?: string }, formData: FormData) {
+export async function signUp(
+  prevState: { error?: string; success?: boolean },
+  formData: FormData
+) {
   const email = formData.get('email') as string
   const password = formData.get('password') as string
   const username = (formData.get('username') as string).toLowerCase().trim()
@@ -25,13 +28,26 @@ export async function signUp(prevState: { error?: string }, formData: FormData) 
     .single()
   if (existing) return { error: 'Username already taken' }
 
-  const { data, error } = await supabase.auth.signUp({ email, password })
+  const { data, error } = await supabase.auth.signUp({
+    email,
+    password,
+    options: {
+      emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
+      data: { username },
+    },
+  })
+
   if (error) return { error: error.message }
   if (!data.user) return { error: 'Signup failed — please try again' }
 
-  await supabase.from('profiles').insert({ id: data.user.id, username })
+  if (data.session) {
+    // Email confirmation disabled — session is active, create profile now
+    await supabase.from('profiles').insert({ id: data.user.id, username })
+    redirect('/dashboard/profile')
+  }
 
-  redirect('/dashboard/profile')
+  // Email confirmation enabled — profile will be created in /auth/callback
+  return { success: true }
 }
 
 export async function signIn(prevState: { error?: string }, formData: FormData) {

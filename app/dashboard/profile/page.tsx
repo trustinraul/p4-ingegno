@@ -18,7 +18,7 @@ export default async function ProfilePage() {
   return (
     <div className="max-w-2xl">
       <div className="mb-8 flex items-center justify-between">
-        <h1 className="font-heading italic text-white text-3xl">Profile</h1>
+        <h1 className="font-heading italic text-white text-3xl">Edit Profile</h1>
         <span
           className={`text-xs font-body px-3 py-1 rounded-full ${
             profile?.is_public
