@@ -9,22 +9,28 @@ export default async function ProjectsPage() {
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect('/login')
 
-  const { data: projects } = await supabase
-    .from('projects')
-    .select('*')
-    .eq('user_id', user.id)
-    .order('display_order')
-
-  const { data: profile } = await supabase
-    .from('profiles')
-    .select('plan')
-    .eq('id', user.id)
-    .single()
+  const [{ data: projects }, { data: profile }, { data: collages }] = await Promise.all([
+    supabase
+      .from('projects')
+      .select('*')
+      .eq('user_id', user.id)
+      .order('display_order'),
+    supabase
+      .from('profiles')
+      .select('plan')
+      .eq('id', user.id)
+      .single(),
+    supabase
+      .from('project_collages')
+      .select('project_id')
+      .eq('user_id', user.id),
+  ])
 
   const plan = (profile?.plan ?? 'free') as 'free' | 'pro'
   const allProjects: Project[] = projects ?? []
   const lockedProjects = getLockedProjects(allProjects, plan)
   const lockedIds = lockedProjects.map((p) => p.id)
+  const collageProjectIds = (collages ?? []).map((c) => c.project_id)
   const showBanner = plan === 'free' && allProjects.length > 2
 
   return (
@@ -43,7 +49,11 @@ export default async function ProjectsPage() {
         </div>
       )}
 
-      <ProjectsClient projects={allProjects} lockedIds={lockedIds} />
+      <ProjectsClient
+        projects={allProjects}
+        lockedIds={lockedIds}
+        collageProjectIds={collageProjectIds}
+      />
     </div>
   )
 }

@@ -17,12 +17,21 @@ export async function createProject(formData: FormData) {
 
   const nextOrder = existing?.[0]?.display_order != null ? existing[0].display_order + 1 : 0
 
+  const name = (formData.get('name') as string).trim()
+  if (!name) return { error: 'Project name is required' }
+  if (name.length > 100) return { error: 'Project name must be under 100 characters' }
+
+  const urlRaw = (formData.get('url') as string) || null
+  if (urlRaw) {
+    try { new URL(urlRaw) } catch { return { error: 'Project URL must be a valid URL' } }
+  }
+
   const { error } = await supabase.from('projects').insert({
     user_id: user.id,
-    name: formData.get('name') as string,
+    name,
     description: (formData.get('description') as string) || null,
     status: (formData.get('status') as string) || 'in_progress',
-    url: (formData.get('url') as string) || null,
+    url: urlRaw,
     display_order: nextOrder,
   })
 
@@ -36,13 +45,22 @@ export async function updateProject(id: string, formData: FormData) {
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return { error: 'Not authenticated' }
 
+  const name = (formData.get('name') as string).trim()
+  if (!name) return { error: 'Project name is required' }
+  if (name.length > 100) return { error: 'Project name must be under 100 characters' }
+
+  const urlRaw = (formData.get('url') as string) || null
+  if (urlRaw) {
+    try { new URL(urlRaw) } catch { return { error: 'Project URL must be a valid URL' } }
+  }
+
   const { error } = await supabase
     .from('projects')
     .update({
-      name: formData.get('name') as string,
+      name,
       description: (formData.get('description') as string) || null,
       status: formData.get('status') as string,
-      url: (formData.get('url') as string) || null,
+      url: urlRaw,
     })
     .eq('id', id)
     .eq('user_id', user.id)

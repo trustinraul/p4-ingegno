@@ -1,8 +1,10 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useTransition } from 'react'
 import { deleteProject, moveProjectUp, moveProjectDown } from '@/app/actions/projects'
+import { publishProjectCollage } from '@/app/actions/collage'
 import ProjectForm from './ProjectForm'
+import CollagePublisher from './CollagePublisher'
 import { cn } from '@/lib/utils'
 
 interface Project {
@@ -14,23 +16,59 @@ interface Project {
   display_order: number
 }
 
+interface CollageModal {
+  projectId: string
+  projectName: string
+  proposedImages: string[]
+}
+
 interface ProjectsClientProps {
   projects: Project[]
   lockedIds: string[]
+  collageProjectIds: string[]
 }
 
-export default function ProjectsClient({ projects, lockedIds }: ProjectsClientProps) {
+export default function ProjectsClient({ projects, lockedIds, collageProjectIds }: ProjectsClientProps) {
   const [showAddForm, setShowAddForm] = useState(false)
   const [editingId, setEditingId] = useState<string | null>(null)
+  const [collageModal, setCollageModal] = useState<CollageModal | null>(null)
+  const [collagePendingId, setCollagePendingId] = useState<string | null>(null)
+  const [collageError, setCollageError] = useState<string | null>(null)
 
   const lockedSet = new Set(lockedIds)
+  const collageSet = new Set(collageProjectIds)
+
+  async function handleCollageClick(project: Project) {
+    setCollagePendingId(project.id)
+    setCollageError(null)
+    const result = await publishProjectCollage(project.id)
+    setCollagePendingId(null)
+    if (result.error) {
+      setCollageError(result.error)
+      return
+    }
+    setCollageModal({
+      projectId: project.id,
+      projectName: project.name,
+      proposedImages: result.proposedImages,
+    })
+  }
 
   return (
     <div className="space-y-4">
+      {collageModal && (
+        <CollagePublisher
+          projectId={collageModal.projectId}
+          projectName={collageModal.projectName}
+          proposedImages={collageModal.proposedImages}
+          onClose={() => setCollageModal(null)}
+        />
+      )}
+
       {!showAddForm && (
         <button
           onClick={() => setShowAddForm(true)}
-          className="liquid-glass rounded-[1rem] px-5 py-2.5 text-sm font-body text-white/70 hover:text-white border border-white/[0.1] hover:border-white/20 transition-colors"
+          className="liquid-glass rounded-[1rem] px-5 py-2.5 text-sm font-body text-white/70 hover:text-white border border-white/[0.1] hover:border-white/20 transition-colors cursor-pointer"
         >
           + Add project
         </button>
@@ -46,9 +84,17 @@ export default function ProjectsClient({ projects, lockedIds }: ProjectsClientPr
         </p>
       )}
 
+      {collageError && (
+        <p className="text-sm font-body text-red-400/80 bg-red-400/5 border border-red-400/10 rounded-xl px-4 py-3">
+          {collageError}
+        </p>
+      )}
+
       <div className="space-y-3">
         {projects.map((project, idx) => {
           const isLocked = lockedSet.has(project.id)
+          const hasCollage = collageSet.has(project.id)
+          const isLoadingCollage = collagePendingId === project.id
 
           if (editingId === project.id) {
             return (
@@ -105,6 +151,20 @@ export default function ProjectsClient({ projects, lockedIds }: ProjectsClientPr
                       {project.url}
                     </a>
                   )}
+
+                  {project.status === 'launched' && (
+                    <button
+                      onClick={() => handleCollageClick(project)}
+                      disabled={isLoadingCollage}
+                      className="mt-3 text-xs font-body text-violet-400/70 hover:text-violet-400 border border-violet-400/20 hover:border-violet-400/40 rounded-full px-3 py-1 transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {isLoadingCollage
+                        ? 'Loading…'
+                        : hasCollage
+                        ? 'Edit collage'
+                        : 'Publish collage →'}
+                    </button>
+                  )}
                 </div>
 
                 <div className="flex items-center gap-1 shrink-0">
@@ -130,14 +190,14 @@ export default function ProjectsClient({ projects, lockedIds }: ProjectsClientPr
                   </form>
                   <button
                     onClick={() => setEditingId(project.id)}
-                    className="p-2 text-white/30 hover:text-white/70 transition-colors text-sm font-body"
+                    className="p-2 text-white/30 hover:text-white/70 transition-colors text-sm font-body cursor-pointer"
                   >
                     Edit
                   </button>
                   <form action={deleteProject.bind(null, project.id)}>
                     <button
                       type="submit"
-                      className="p-2 text-white/20 hover:text-red-400/70 transition-colors text-sm font-body"
+                      className="p-2 text-white/20 hover:text-red-400/70 transition-colors text-sm font-body cursor-pointer"
                       onClick={(e) => {
                         if (!confirm(`Delete "${project.name}"?`)) e.preventDefault()
                       }}

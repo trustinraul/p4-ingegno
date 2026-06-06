@@ -1,10 +1,19 @@
 import { createClient } from '@/lib/supabase/server'
 import { NextResponse } from 'next/server'
 
+const syncCooldown = new Map<string, number>()
+const COOLDOWN_MS = 5 * 60 * 1000
+
 export async function POST(request: Request) {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+
+  const last = syncCooldown.get(user.id) ?? 0
+  if (Date.now() - last < COOLDOWN_MS) {
+    return NextResponse.json({ error: 'Rate limit: wait 5 minutes between syncs' }, { status: 429 })
+  }
+  syncCooldown.set(user.id, Date.now())
 
   // Query includes access_token — this entire handler is server-side only
   const { data: connection } = await supabase
