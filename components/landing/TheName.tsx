@@ -28,12 +28,14 @@ export default function TheName() {
                 src="/images/davinci_portrait.jpeg"
                 alt="Leonardo da Vinci - Self Portrait"
                 fill
-                className="object-cover object-center"
+                className="object-cover"
                 style={{
-                  opacity: 0.15,
-                  filter: 'invert(1) grayscale(1) contrast(1.15)',
-                  maskImage: 'radial-gradient(circle at center, black 40%, transparent 95%)',
-                  WebkitMaskImage: 'radial-gradient(circle at center, black 40%, transparent 95%)',
+                  objectPosition: '50% 8%',
+                  opacity: 0.5,
+                  filter: 'grayscale(1) contrast(1.1)',
+                  mixBlendMode: 'luminosity',
+                  maskImage: 'radial-gradient(ellipse 70% 80% at 50% 45%, black 45%, transparent 100%)',
+                  WebkitMaskImage: 'radial-gradient(ellipse 70% 80% at 50% 45%, black 45%, transparent 100%)',
                 }}
                 sizes="(max-width: 1024px) 100vw, 40vw"
                 priority={false}
