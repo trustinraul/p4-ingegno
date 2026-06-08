@@ -30,7 +30,7 @@ export default function TheName() {
                 fill
                 className="object-cover"
                 style={{
-                  objectPosition: '50% 8%',
+                  objectPosition: '50% 0%',
                   opacity: 0.5,
                   filter: 'grayscale(1) contrast(1.1)',
                   mixBlendMode: 'luminosity',
