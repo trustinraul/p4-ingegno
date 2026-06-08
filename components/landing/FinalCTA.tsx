@@ -1,12 +1,43 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import BlurText from '@/components/ui/BlurText'
 
 export default function FinalCTA() {
   return (
-    <section className="py-40 px-8 text-center bg-black flex flex-col items-center">
+    <section className="relative overflow-hidden py-40 px-8 text-center bg-black flex flex-col items-center">
+      {/* Da Vinci anatomy notebook — full-section texture */}
+      <motion.div
+        className="absolute inset-0 pointer-events-none select-none"
+        style={{ zIndex: 0 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 1.4, ease: 'easeOut' }}
+        aria-hidden="true"
+      >
+        <Image
+          src="/images/davinci_notebook_anatomy.jpg"
+          alt=""
+          fill
+          className="object-cover object-center"
+          style={{ opacity: 0.03, mixBlendMode: 'luminosity' }}
+          sizes="100vw"
+        />
+      </motion.div>
+
+      {/* Radial glow — upward violet bloom */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse 50% 40% at 50% 100%, rgba(139,92,246,0.04) 0%, transparent 70%)',
+          zIndex: 2,
+        }}
+      />
+
+      <div className="relative z-10 flex flex-col items-center">
       <BlurText
         text="One URL. Everything you are."
         className="font-heading italic text-white text-5xl md:text-6xl lg:text-7xl leading-[0.9] max-w-3xl mb-6"
@@ -38,6 +69,7 @@ export default function FinalCTA() {
           </svg>
         </Link>
       </motion.div>
+      </div>
     </section>
   )
 }

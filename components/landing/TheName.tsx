@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 
 const paragraphs = [
@@ -23,6 +24,26 @@ export default function TheName() {
           i
         </span>
       </div>
+
+      {/* Da Vinci Vitruvian Man — right-side decorative layer */}
+      <motion.div
+        className="absolute right-0 top-0 h-full w-1/2 pointer-events-none select-none"
+        style={{ zIndex: 1 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 1.2, ease: 'easeOut' }}
+        aria-hidden="true"
+      >
+        <Image
+          src="/images/davinci_vitruvian_man.jpg"
+          alt=""
+          fill
+          className="object-cover object-center"
+          style={{ opacity: 0.04, mixBlendMode: 'luminosity' }}
+          sizes="50vw"
+        />
+      </motion.div>
 
       <div className="relative z-10 max-w-2xl">
         <motion.p

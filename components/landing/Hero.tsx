@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import BlurText from '@/components/ui/BlurText'
@@ -39,6 +40,25 @@ export default function Hero() {
           <ellipse cx="350" cy="350" rx="100" ry="280" />
         </svg>
       </div>
+
+      {/* Da Vinci Codex flight sketch — upper-right ghost watermark */}
+      <motion.div
+        className="absolute top-0 right-0 w-80 h-64 pointer-events-none select-none"
+        style={{ zIndex: 1 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.6, ease: 'easeOut', delay: 1.5 }}
+        aria-hidden="true"
+      >
+        <Image
+          src="/images/davinci_codex_flight.jpg"
+          alt=""
+          fill
+          className="object-cover object-top"
+          style={{ opacity: 0.025, mixBlendMode: 'luminosity' }}
+          sizes="320px"
+        />
+      </motion.div>
 
       {/* Radial glow */}
       <div

@@ -50,7 +50,6 @@ export default function Features() {
             className="liquid-glass rounded-[1.25rem] p-7 min-h-[380px] flex flex-col justify-between"
           >
             <div>
-              <p className="text-xs font-body text-white/20 mb-6">{feature.number}</p>
               <p className="font-heading italic text-white text-2xl leading-snug">{feature.title}</p>
             </div>
             <p className="text-sm font-body text-white/40 leading-relaxed">{feature.body}</p>
