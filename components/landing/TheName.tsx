@@ -40,7 +40,7 @@ export default function TheName() {
           alt=""
           fill
           className="object-cover object-center"
-          style={{ opacity: 0.04, mixBlendMode: 'luminosity' }}
+          style={{ opacity: 0.07, mixBlendMode: 'luminosity' }}
           sizes="50vw"
         />
       </motion.div>

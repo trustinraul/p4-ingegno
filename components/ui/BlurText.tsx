@@ -43,11 +43,11 @@ export default function BlurText({ text, className, delay = 0 }: BlurTextProps) 
       {words.map((word, i) => (
         <motion.span
           key={i}
-          initial={{ filter: 'blur(10px)', opacity: 0, y: 50 }}
+          initial={{ filter: 'blur(10px)', opacity: 0.1, y: 50 }}
           animate={
             isVisible
               ? { filter: 'blur(0px)', opacity: 1, y: 0 }
-              : { filter: 'blur(10px)', opacity: 0, y: 50 }
+              : { filter: 'blur(10px)', opacity: 0.1, y: 50 }
           }
           transition={{
             duration: 0.7,
