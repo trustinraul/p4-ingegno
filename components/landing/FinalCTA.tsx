@@ -7,7 +7,7 @@ import BlurText from '@/components/ui/BlurText'
 
 export default function FinalCTA() {
   return (
-    <section className="relative overflow-hidden py-40 px-8 text-center bg-black flex flex-col items-center">
+    <section className="relative overflow-hidden py-40 px-8 text-center bg-transparent flex flex-col items-center">
       {/* Da Vinci anatomy notebook — full-section texture */}
       <motion.div
         className="absolute inset-0 pointer-events-none select-none"
@@ -23,7 +23,12 @@ export default function FinalCTA() {
           alt=""
           fill
           className="object-cover object-center"
-          style={{ opacity: 0.04, mixBlendMode: 'luminosity' }}
+          style={{
+            opacity: 0.04,
+            filter: 'invert(1) grayscale(1)',
+            maskImage: 'radial-gradient(circle at center, black 20%, transparent 80%)',
+            WebkitMaskImage: 'radial-gradient(circle at center, black 20%, transparent 80%)'
+          }}
           sizes="100vw"
         />
       </motion.div>

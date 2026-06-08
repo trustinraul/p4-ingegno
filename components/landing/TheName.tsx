@@ -11,88 +11,83 @@ const paragraphs = [
 
 export default function TheName() {
   return (
-    <section id="about" className="py-32 px-8 md:px-20 bg-black relative overflow-hidden">
-      {/* Decorative large "i" */}
-      <div
-        className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none select-none"
-        style={{ zIndex: 0 }}
-      >
-        <span
-          className="font-heading italic text-white"
-          style={{ fontSize: '22rem', opacity: 0.06, lineHeight: 1 }}
-        >
-          i
-        </span>
-      </div>
-
-      {/* Da Vinci Vitruvian Man — right-side decorative layer */}
-      <motion.div
-        className="absolute right-0 top-0 h-full w-[55%] pointer-events-none select-none"
-        style={{ zIndex: 1 }}
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 1.4, ease: 'easeOut' }}
-        aria-hidden="true"
-      >
-        <Image
-          src="/images/davinci_vitruvian_man.jpg"
-          alt=""
-          fill
-          className="object-cover object-top"
-          style={{ opacity: 0.08, mixBlendMode: 'luminosity' }}
-          sizes="55vw"
-          priority={false}
-        />
-        <div
-          className="absolute inset-0"
-          style={{ background: 'linear-gradient(to right, #000000 0%, transparent 30%)' }}
-        />
-      </motion.div>
-
-      <div className="relative z-10 max-w-2xl">
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6 }}
-          className="text-xs tracking-widest uppercase text-white/30 font-body mb-8"
-        >
-          // The name
-        </motion.p>
-
-        <motion.p
-          initial={{ filter: 'blur(10px)', opacity: 0, y: 20 }}
-          whileInView={{ filter: 'blur(0px)', opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="font-heading italic text-white text-6xl mb-3"
-        >
-          ingegno
-        </motion.p>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-sm font-body text-white/30 mb-12"
-        >
-          /in·ˈjen·yo/ · Italian, Renaissance
-        </motion.p>
-
-        {paragraphs.map((para, i) => (
+    <section id="about" className="py-32 px-8 md:px-20 bg-transparent relative overflow-hidden">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+        
+        {/* Left Column: Text content */}
+        <div className="lg:col-span-7 text-left">
           <motion.p
-            key={i}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6 }}
+            className="text-xs tracking-widest uppercase text-white/30 font-body mb-8"
+          >
+            // The name
+          </motion.p>
+
+          <motion.p
             initial={{ filter: 'blur(10px)', opacity: 0, y: 20 }}
             whileInView={{ filter: 'blur(0px)', opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.3 + i * 0.15 }}
-            className="text-base font-body text-white/65 leading-relaxed mb-5"
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            className="font-heading italic text-white text-6xl mb-3"
           >
-            {para}
+            ingegno
           </motion.p>
-        ))}
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-sm font-body text-white/30 mb-12"
+          >
+            /in·ˈjen·yo/ · Italian, Renaissance
+          </motion.p>
+
+          {paragraphs.map((para, i) => (
+            <motion.p
+              key={i}
+              initial={{ filter: 'blur(10px)', opacity: 0, y: 20 }}
+              whileInView={{ filter: 'blur(0px)', opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6, ease: 'easeOut', delay: 0.3 + i * 0.15 }}
+              className="text-base font-body text-white/65 leading-relaxed mb-5"
+            >
+              {para}
+            </motion.p>
+          ))}
+        </div>
+
+        {/* Right Column: Premium framed Vitruvian Man glass card */}
+        <div className="lg:col-span-5 w-full flex justify-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+            className="relative w-full aspect-[4/5] rounded-[1.5rem] overflow-hidden liquid-glass-strong p-1 max-w-[360px] lg:max-w-full"
+          >
+            <div className="relative w-full h-full rounded-[1.25rem] overflow-hidden bg-white/[0.02]">
+              <Image
+                src="/images/davinci_vitruvian_man.jpg"
+                alt="Leonardo da Vinci - Vitruvian Man"
+                fill
+                className="object-cover object-center"
+                style={{
+                  opacity: 0.15,
+                  filter: 'invert(1) grayscale(1) contrast(1.15)',
+                  maskImage: 'radial-gradient(circle at center, black 40%, transparent 95%)',
+                  WebkitMaskImage: 'radial-gradient(circle at center, black 40%, transparent 95%)'
+                }}
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                priority={false}
+              />
+            </div>
+          </motion.div>
+        </div>
+
       </div>
     </section>
   )

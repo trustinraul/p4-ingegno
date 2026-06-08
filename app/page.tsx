@@ -9,7 +9,7 @@ import LandingFooter from '@/components/landing/LandingFooter'
 
 export default function LandingPage() {
   return (
-    <main className="bg-black min-h-screen">
+    <main className="bg-[#080808] min-h-screen">
       <Navbar />
       <Hero />
       <TheProblem />

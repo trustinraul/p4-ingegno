@@ -20,47 +20,49 @@ const painPoints = [
 
 export default function TheProblem() {
   return (
-    <section className="py-32 px-8 md:px-20 bg-black">
-      <motion.p
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.6 }}
-        className="text-xs tracking-widest uppercase text-white/30 font-body mb-8"
-      >
-        // The problem
-      </motion.p>
+    <section className="py-32 px-8 md:px-20 bg-transparent">
+      <div className="max-w-5xl mx-auto flex flex-col items-center text-center">
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+          className="text-xs tracking-widest uppercase text-white/30 font-body mb-8 text-center"
+        >
+          // The problem
+        </motion.p>
 
-      <BlurText
-        text='"So... what exactly do you do?"'
-        className="font-heading italic text-white text-5xl md:text-6xl lg:text-7xl leading-[0.9] max-w-4xl"
-      />
+        <BlurText
+          text='"So... what exactly do you do?"'
+          className="font-heading italic text-white text-5xl md:text-6xl lg:text-7xl leading-[0.9] max-w-4xl text-center mx-auto"
+        />
 
-      <motion.p
-        initial={{ opacity: 0, y: 10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.6, delay: 0.5 }}
-        className="text-sm font-heading italic mt-5 mb-20"
-        style={{ color: 'rgba(139,92,246,0.6)' }}
-      >
-        — Every potential client, ever.
-      </motion.p>
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="text-sm font-heading italic mt-5 mb-20 text-center"
+          style={{ color: 'rgba(139,92,246,0.6)' }}
+        >
+          — Every potential client, ever.
+        </motion.p>
 
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-5">
-        {painPoints.map((point, i) => (
-          <motion.div
-            key={i}
-            initial={{ filter: 'blur(10px)', opacity: 0, y: 20 }}
-            whileInView={{ filter: 'blur(0px)', opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, ease: 'easeOut', delay: i * 0.15 }}
-            className={`${['md:col-span-2', 'md:col-span-2', 'md:col-span-1'][i]} liquid-glass rounded-[1.25rem] p-8 flex flex-col gap-5`}
-          >
-            <p className="font-heading italic text-white text-xl leading-snug">{point.title}</p>
-            <p className="text-sm font-body text-white/60 leading-relaxed">{point.body}</p>
-          </motion.div>
-        ))}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full text-left">
+          {painPoints.map((point, i) => (
+            <motion.div
+              key={i}
+              initial={{ filter: 'blur(10px)', opacity: 0, y: 20 }}
+              whileInView={{ filter: 'blur(0px)', opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, ease: 'easeOut', delay: i * 0.15 }}
+              className="liquid-glass rounded-[1.25rem] p-8 flex flex-col gap-5"
+            >
+              <p className="font-heading italic text-white text-xl leading-snug">{point.title}</p>
+              <p className="text-sm font-body text-white/60 leading-relaxed">{point.body}</p>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   )

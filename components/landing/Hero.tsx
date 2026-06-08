@@ -12,7 +12,7 @@ const fadeUp = {
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen bg-black flex flex-col items-center justify-center overflow-hidden px-8 text-center">
+    <section className="relative min-h-screen bg-transparent flex flex-col items-center justify-center overflow-hidden px-8 text-center">
       {/* Wireframe geometric background */}
       <div
         className="absolute bottom-0 left-1/2 -translate-x-1/2 pointer-events-none"
@@ -55,7 +55,12 @@ export default function Hero() {
           alt=""
           fill
           className="object-cover object-top"
-          style={{ opacity: 0.025, mixBlendMode: 'luminosity' }}
+          style={{
+            opacity: 0.03,
+            filter: 'invert(1) grayscale(1)',
+            maskImage: 'radial-gradient(circle at center, black 30%, transparent 85%)',
+            WebkitMaskImage: 'radial-gradient(circle at center, black 30%, transparent 85%)',
+          }}
           sizes="320px"
         />
       </motion.div>

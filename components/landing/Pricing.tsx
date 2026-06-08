@@ -22,23 +22,24 @@ const proFeatures = [
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="py-32 px-8 md:px-20 bg-black">
-      <motion.p
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.6 }}
-        className="text-xs tracking-widest uppercase text-white/30 font-body mb-8"
-      >
-        // Pricing
-      </motion.p>
+    <section id="pricing" className="py-32 px-8 md:px-20 bg-transparent">
+      <div className="max-w-5xl mx-auto flex flex-col items-center text-center">
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+          className="text-xs tracking-widest uppercase text-white/30 font-body mb-8 text-center mx-auto"
+        >
+          // Pricing
+        </motion.p>
 
-      <BlurText
-        text="Start free. Upgrade when you're ready."
-        className="font-heading italic text-white text-5xl md:text-6xl leading-[0.9] max-w-3xl mb-16"
-      />
+        <BlurText
+          text="Start free. Upgrade when you're ready."
+          className="font-heading italic text-white text-5xl md:text-6xl leading-[0.9] max-w-3xl mb-16 text-center mx-auto"
+        />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-3xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-3xl mx-auto text-left">
         {/* Free */}
         <motion.div
           initial={{ filter: 'blur(10px)', opacity: 0, y: 20 }}
@@ -106,6 +107,7 @@ export default function Pricing() {
             Get Pro →
           </Link>
         </motion.div>
+      </div>
       </div>
     </section>
   )
