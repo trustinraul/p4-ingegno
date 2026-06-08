@@ -41,12 +41,13 @@ export default function TheProblem() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.6, delay: 0.5 }}
-        className="text-sm font-heading italic text-white/30 mt-5 mb-20"
+        className="text-sm font-heading italic mt-5 mb-20"
+        style={{ color: 'rgba(139,92,246,0.6)' }}
       >
         — Every potential client, ever.
       </motion.p>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-5">
         {painPoints.map((point, i) => (
           <motion.div
             key={i}
@@ -54,10 +55,10 @@ export default function TheProblem() {
             whileInView={{ filter: 'blur(0px)', opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6, ease: 'easeOut', delay: i * 0.15 }}
-            className="liquid-glass rounded-[1.25rem] p-7 min-h-[200px] flex flex-col justify-between"
+            className={`${['md:col-span-2', 'md:col-span-2', 'md:col-span-1'][i]} liquid-glass rounded-[1.25rem] p-8 flex flex-col gap-5`}
           >
             <p className="font-heading italic text-white text-xl leading-snug">{point.title}</p>
-            <p className="text-sm font-body text-white/40 leading-relaxed mt-4">{point.body}</p>
+            <p className="text-sm font-body text-white/60 leading-relaxed">{point.body}</p>
           </motion.div>
         ))}
       </div>

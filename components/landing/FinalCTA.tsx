@@ -23,7 +23,7 @@ export default function FinalCTA() {
           alt=""
           fill
           className="object-cover object-center"
-          style={{ opacity: 0.03, mixBlendMode: 'luminosity' }}
+          style={{ opacity: 0.04, mixBlendMode: 'luminosity' }}
           sizes="100vw"
         />
       </motion.div>
@@ -32,43 +32,43 @@ export default function FinalCTA() {
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse 50% 40% at 50% 100%, rgba(139,92,246,0.04) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse 60% 50% at 50% 100%, rgba(139,92,246,0.07) 0%, transparent 70%)',
           zIndex: 2,
         }}
       />
 
       <div className="relative z-10 flex flex-col items-center">
-      <BlurText
-        text="One URL. Everything you are."
-        className="font-heading italic text-white text-5xl md:text-6xl lg:text-7xl leading-[0.9] max-w-3xl mb-6"
-      />
+        <BlurText
+          text="One URL. Everything you are."
+          className="font-heading italic text-white text-5xl md:text-6xl lg:text-7xl leading-[0.9] max-w-3xl mb-6"
+        />
 
-      <motion.p
-        initial={{ filter: 'blur(10px)', opacity: 0, y: 20 }}
-        whileInView={{ filter: 'blur(0px)', opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.6, ease: 'easeOut', delay: 0.4 }}
-        className="text-base font-body text-white/50 mb-10"
-      >
-        Join the Da Vincis who&apos;ve already claimed their name.
-      </motion.p>
-
-      <motion.div
-        initial={{ filter: 'blur(10px)', opacity: 0, y: 20 }}
-        whileInView={{ filter: 'blur(0px)', opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.6, ease: 'easeOut', delay: 0.6 }}
-      >
-        <Link
-          href="/signup"
-          className="liquid-glass-strong rounded-full px-8 py-4 text-sm font-body font-medium text-white hover:opacity-90 transition-opacity flex items-center gap-2 cursor-pointer"
+        <motion.p
+          initial={{ filter: 'blur(10px)', opacity: 0, y: 20 }}
+          whileInView={{ filter: 'blur(0px)', opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, ease: 'easeOut', delay: 0.4 }}
+          className="text-base font-body text-white/65 mb-10"
         >
-          Claim your username
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M7 17L17 7" /><path d="M7 7h10v10" />
-          </svg>
-        </Link>
-      </motion.div>
+          Join the Da Vincis who&apos;ve already claimed their name.
+        </motion.p>
+
+        <motion.div
+          initial={{ filter: 'blur(10px)', opacity: 0, y: 20 }}
+          whileInView={{ filter: 'blur(0px)', opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, ease: 'easeOut', delay: 0.6 }}
+        >
+          <Link
+            href="/signup"
+            className="liquid-glass-strong rounded-full px-8 py-4 text-sm font-body font-medium text-white hover:opacity-90 transition-opacity flex items-center gap-2 cursor-pointer"
+          >
+            Claim your username
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M7 17L17 7" /><path d="M7 7h10v10" />
+            </svg>
+          </Link>
+        </motion.div>
       </div>
     </section>
   )

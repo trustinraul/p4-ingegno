@@ -19,7 +19,7 @@ export default function TheName() {
       >
         <span
           className="font-heading italic text-white"
-          style={{ fontSize: '22rem', opacity: 0.025, lineHeight: 1 }}
+          style={{ fontSize: '22rem', opacity: 0.06, lineHeight: 1 }}
         >
           i
         </span>
@@ -27,21 +27,26 @@ export default function TheName() {
 
       {/* Da Vinci Vitruvian Man — right-side decorative layer */}
       <motion.div
-        className="absolute right-0 top-0 h-full w-1/2 pointer-events-none select-none"
+        className="absolute right-0 top-0 h-full w-[55%] pointer-events-none select-none"
         style={{ zIndex: 1 }}
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 1.2, ease: 'easeOut' }}
+        transition={{ duration: 1.4, ease: 'easeOut' }}
         aria-hidden="true"
       >
         <Image
           src="/images/davinci_vitruvian_man.jpg"
           alt=""
           fill
-          className="object-cover object-center"
-          style={{ opacity: 0.07, mixBlendMode: 'luminosity' }}
-          sizes="50vw"
+          className="object-cover object-top"
+          style={{ opacity: 0.08, mixBlendMode: 'luminosity' }}
+          sizes="55vw"
+          priority={false}
+        />
+        <div
+          className="absolute inset-0"
+          style={{ background: 'linear-gradient(to right, #000000 0%, transparent 30%)' }}
         />
       </motion.div>
 
@@ -83,7 +88,7 @@ export default function TheName() {
             whileInView={{ filter: 'blur(0px)', opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, ease: 'easeOut', delay: 0.3 + i * 0.15 }}
-            className="text-base font-body text-white/50 leading-relaxed mb-5"
+            className="text-base font-body text-white/65 leading-relaxed mb-5"
           >
             {para}
           </motion.p>

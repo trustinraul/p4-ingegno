@@ -48,13 +48,15 @@ export default function Pricing() {
           className="liquid-glass rounded-[1.25rem] p-8 flex flex-col justify-between"
         >
           <div>
-            <p className="text-sm font-body text-white/40 mb-2">Free</p>
-            <p className="font-heading italic text-white text-5xl mb-1">€0</p>
-            <p className="text-xs font-body text-white/30 mb-8">forever</p>
+            <div className="min-h-[80px]">
+              <p className="text-sm font-body text-white/40 mb-2">Free</p>
+              <p className="font-heading italic text-white text-5xl mb-1">€0</p>
+              <p className="text-xs font-body text-white/30 mb-8">forever</p>
+            </div>
             <ul className="space-y-3">
               {freeFeatures.map((feature) => (
                 <li key={feature} className="flex items-center gap-3 text-sm font-body text-white/60">
-                  <span className="w-1 h-1 rounded-full bg-white/30 flex-shrink-0" />
+                  <span className="text-white/30 flex-shrink-0 text-xs">—</span>
                   {feature}
                 </li>
               ))}
@@ -83,13 +85,15 @@ export default function Pricing() {
           </div>
 
           <div>
-            <p className="text-sm font-body text-white/40 mb-2">Pro</p>
-            <p className="font-heading italic text-white text-5xl mb-1">€9</p>
-            <p className="text-xs font-body text-white/30 mb-8">/month · or €79/year</p>
+            <div className="min-h-[80px]">
+              <p className="text-sm font-body text-white/40 mb-2">Pro</p>
+              <p className="font-heading italic text-5xl mb-1" style={{ color: '#8B5CF6' }}>€9</p>
+              <p className="text-xs font-body text-white/30 mb-8">/month · or €79/year</p>
+            </div>
             <ul className="space-y-3">
               {proFeatures.map((feature) => (
                 <li key={feature} className="flex items-center gap-3 text-sm font-body text-white/70">
-                  <span className="w-1 h-1 rounded-full bg-white/50 flex-shrink-0" />
+                  <span className="text-white/60 flex-shrink-0 text-xs">✓</span>
                   {feature}
                 </li>
               ))}

@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 import BlurText from '@/components/ui/BlurText'
 
 const fadeUp = {
-  initial: { filter: 'blur(10px)', opacity: 0, y: 20 },
+  initial: { filter: 'blur(8px)', opacity: 0.15, y: 12 },
   animate: { filter: 'blur(0px)', opacity: 1, y: 0 },
 }
 
@@ -23,7 +23,7 @@ export default function Hero() {
           height="700"
           viewBox="0 0 700 700"
           fill="none"
-          stroke="rgba(255,255,255,0.06)"
+          stroke="rgba(255,255,255,0.10)"
           strokeWidth="1"
           style={{ animation: 'rotate3d 60s linear infinite' }}
         >
@@ -60,6 +60,15 @@ export default function Hero() {
         />
       </motion.div>
 
+      {/* Violet accent bloom */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse 40% 30% at 50% 60%, rgba(139,92,246,0.06) 0%, transparent 70%)',
+          zIndex: 1,
+        }}
+      />
+
       {/* Radial glow */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -91,7 +100,7 @@ export default function Hero() {
         <BlurText
           text="Your life's work. One URL."
           delay={0.4}
-          className="text-6xl md:text-7xl lg:text-[5.5rem] font-heading italic text-white leading-[0.85] tracking-[-3px] max-w-3xl text-center"
+          className="text-5xl md:text-6xl lg:text-[4.75rem] font-heading italic text-white leading-[0.9] tracking-[-2px] max-w-2xl text-center"
         />
 
         {/* Subheadline */}
@@ -142,7 +151,13 @@ export default function Hero() {
           className="liquid-glass rounded-[1.5rem] p-1 mt-6 w-full max-w-sm"
         >
           <div className="bg-white/[0.03] rounded-[1.25rem] p-6 flex flex-col items-center gap-3">
-            <div className="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center">
+            <div
+              className="w-14 h-14 rounded-full flex items-center justify-center"
+              style={{
+                background: 'linear-gradient(135deg, rgba(139,92,246,0.15) 0%, rgba(255,255,255,0.05) 100%)',
+                boxShadow: '0 0 0 1px rgba(139,92,246,0.3), inset 0 1px 1px rgba(255,255,255,0.15)',
+              }}
+            >
               <span className="font-heading italic text-white text-2xl">L</span>
             </div>
             <span className="font-heading italic text-white text-2xl">Leonardo</span>
@@ -170,7 +185,7 @@ export default function Hero() {
           <div className="liquid-glass rounded-full px-4 py-2 flex items-center gap-3">
             <span className="text-xs font-body text-white/30">Profiles already live</span>
             <div className="flex gap-3">
-              {['Marco', 'Sofia', 'Lena', 'Arjun', 'Mila'].map((name) => (
+              {['Khalid', 'Valeria', 'Søren', 'Zara', 'Ren'].map((name) => (
                 <span key={name} className="text-xs font-heading italic text-white/50">
                   {name}
                 </span>
