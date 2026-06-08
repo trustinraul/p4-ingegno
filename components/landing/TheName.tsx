@@ -13,9 +13,37 @@ export default function TheName() {
   return (
     <section id="about" className="py-32 px-8 md:px-20 bg-transparent relative overflow-hidden">
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
-        
-        {/* Left Column: Text content */}
-        <div className="lg:col-span-7 text-left">
+
+        {/* Left Column: Da Vinci Portrait glass card */}
+        <div className="lg:col-span-5 w-full flex justify-center order-1 lg:order-1">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+            className="relative w-full aspect-[4/5] rounded-[1.5rem] overflow-hidden liquid-glass-strong p-1 max-w-[360px] lg:max-w-full"
+          >
+            <div className="relative w-full h-full rounded-[1.25rem] overflow-hidden bg-white/[0.02]">
+              <Image
+                src="/images/davinci_portrait.jpeg"
+                alt="Leonardo da Vinci - Self Portrait"
+                fill
+                className="object-cover object-center"
+                style={{
+                  opacity: 0.15,
+                  filter: 'invert(1) grayscale(1) contrast(1.15)',
+                  maskImage: 'radial-gradient(circle at center, black 40%, transparent 95%)',
+                  WebkitMaskImage: 'radial-gradient(circle at center, black 40%, transparent 95%)',
+                }}
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                priority={false}
+              />
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Right Column: Text content */}
+        <div className="lg:col-span-7 text-left order-2 lg:order-2">
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -58,34 +86,6 @@ export default function TheName() {
               {para}
             </motion.p>
           ))}
-        </div>
-
-        {/* Right Column: Premium framed Vitruvian Man glass card */}
-        <div className="lg:col-span-5 w-full flex justify-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="relative w-full aspect-[4/5] rounded-[1.5rem] overflow-hidden liquid-glass-strong p-1 max-w-[360px] lg:max-w-full"
-          >
-            <div className="relative w-full h-full rounded-[1.25rem] overflow-hidden bg-white/[0.02]">
-              <Image
-                src="/images/davinci_vitruvian_man.jpg"
-                alt="Leonardo da Vinci - Vitruvian Man"
-                fill
-                className="object-cover object-center"
-                style={{
-                  opacity: 0.15,
-                  filter: 'invert(1) grayscale(1) contrast(1.15)',
-                  maskImage: 'radial-gradient(circle at center, black 40%, transparent 95%)',
-                  WebkitMaskImage: 'radial-gradient(circle at center, black 40%, transparent 95%)'
-                }}
-                sizes="(max-width: 1024px) 100vw, 40vw"
-                priority={false}
-              />
-            </div>
-          </motion.div>
         </div>
 
       </div>
