@@ -26,7 +26,8 @@ function timeAgo(dateStr: string): string {
 export default function GitHubConnect({ connection }: GitHubConnectProps) {
   const [isPendingDisconnect, startDisconnect] = useTransition()
   const [syncing, setSyncing] = useState(false)
-  const [syncResult, setSyncResult] = useState<string | null>(null)
+  const [syncResult, setSyncResult] = useState<{ message: string; isError: boolean } | null>(null)
+  const [confirmingDisconnect, setConfirmingDisconnect] = useState(false)
 
   const clientId = process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID
   const callbackUrl =
@@ -41,14 +42,17 @@ export default function GitHubConnect({ connection }: GitHubConnectProps) {
   async function syncNow() {
     setSyncing(true)
     setSyncResult(null)
+    setConfirmingDisconnect(false)
     try {
       const res = await fetch('/api/github/sync', { method: 'POST' })
       const data = await res.json()
-      setSyncResult(
-        data.error ? `Error: ${data.error}` : `Synced ${data.synced} commits`
-      )
+      if (data.error) {
+        setSyncResult({ message: `Error: ${data.error}`, isError: true })
+      } else {
+        setSyncResult({ message: `Synced ${data.synced} commits`, isError: false })
+      }
     } catch {
-      setSyncResult('Sync failed')
+      setSyncResult({ message: 'Sync failed', isError: true })
     } finally {
       setSyncing(false)
     }
@@ -94,16 +98,42 @@ export default function GitHubConnect({ connection }: GitHubConnectProps) {
           >
             {syncing ? 'Syncing…' : 'Sync now'}
           </button>
-          <button
-            onClick={() => {
-              if (!confirm('Disconnect GitHub? This will also delete your synced activity.')) return
-              startDisconnect(async () => { await disconnectGitHub() })
-            }}
-            disabled={isPendingDisconnect}
-            className="px-4 py-2 text-sm font-body text-white/45 hover:text-white/75 transition-colors disabled:opacity-50"
-          >
-            Disconnect
-          </button>
+          {confirmingDisconnect ? (
+            <div className="flex flex-col items-end gap-1">
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => {
+                    startDisconnect(async () => {
+                      await disconnectGitHub()
+                      setConfirmingDisconnect(false)
+                    })
+                  }}
+                  disabled={isPendingDisconnect}
+                  className="px-4 py-2 text-sm font-body text-red-400/80 hover:text-red-400 transition-colors disabled:opacity-50 cursor-pointer"
+                >
+                  {isPendingDisconnect ? 'Disconnecting…' : 'Confirm'}
+                </button>
+                <button
+                  onClick={() => setConfirmingDisconnect(false)}
+                  disabled={isPendingDisconnect}
+                  className="px-4 py-2 text-sm font-body text-white/45 hover:text-white/85 transition-colors disabled:opacity-50 cursor-pointer"
+                >
+                  Cancel
+                </button>
+              </div>
+              <p className="text-xs font-body text-white/45">
+                This will also delete your synced activity.
+              </p>
+            </div>
+          ) : (
+            <button
+              onClick={() => setConfirmingDisconnect(true)}
+              disabled={isPendingDisconnect}
+              className="px-4 py-2 text-sm font-body text-white/45 hover:text-white/75 transition-colors disabled:opacity-50"
+            >
+              Disconnect
+            </button>
+          )}
         </div>
       </div>
 
@@ -112,7 +142,9 @@ export default function GitHubConnect({ connection }: GitHubConnectProps) {
       </p>
 
       {syncResult && (
-        <p className="text-xs font-body text-white/55">{syncResult}</p>
+        <p className={`text-xs font-body ${syncResult.isError ? 'text-red-400/80' : 'text-white/55'}`}>
+          {syncResult.message}
+        </p>
       )}
 
       <div className="border-t border-white/[0.08] pt-6">
