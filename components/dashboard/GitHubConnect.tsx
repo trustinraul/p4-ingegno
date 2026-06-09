@@ -109,14 +109,14 @@ export default function GitHubConnect({ connection }: GitHubConnectProps) {
                     })
                   }}
                   disabled={isPendingDisconnect}
-                  className="px-4 py-2 text-sm font-body text-red-400/80 hover:text-red-400 transition-colors disabled:opacity-50 cursor-pointer"
+                  className="px-4 py-2 text-sm font-body text-red-400/80 hover:text-red-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                 >
                   {isPendingDisconnect ? 'Disconnecting…' : 'Confirm'}
                 </button>
                 <button
                   onClick={() => setConfirmingDisconnect(false)}
                   disabled={isPendingDisconnect}
-                  className="px-4 py-2 text-sm font-body text-white/45 hover:text-white/85 transition-colors disabled:opacity-50 cursor-pointer"
+                  className="px-4 py-2 text-sm font-body text-white/45 hover:text-white/85 transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                 >
                   Cancel
                 </button>
