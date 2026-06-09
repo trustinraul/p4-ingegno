@@ -10,7 +10,7 @@ export default function RepoSelector({ selectedRepos }: RepoSelectorProps) {
   const [allRepos, setAllRepos] = useState<string[]>([])
   const [selected, setSelected] = useState<Set<string>>(new Set(selectedRepos))
   const [isPending, startTransition] = useTransition()
-  const [status, setStatus] = useState<string | null>(null)
+  const [status, setStatus] = useState<{ message: string; isError: boolean } | null>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -36,8 +36,12 @@ export default function RepoSelector({ selectedRepos }: RepoSelectorProps) {
     setStatus(null)
     startTransition(async () => {
       const result = await updateReposToShow(Array.from(selected))
-      setStatus(result?.error ? result.error : 'Saved')
-      setTimeout(() => setStatus(null), 2000)
+      if (result?.error) {
+        setStatus({ message: result.error, isError: true })
+      } else {
+        setStatus({ message: 'Saved', isError: false })
+        setTimeout(() => setStatus(null), 2000)
+      }
     })
   }
 
@@ -78,7 +82,11 @@ export default function RepoSelector({ selectedRepos }: RepoSelectorProps) {
           {isPending ? 'Saving…' : 'Save selection'}
         </button>
         {status && (
-          <span className="text-xs font-body text-white/55">{status}</span>
+          <span
+            className={`text-xs font-body ${status.isError ? 'text-red-400/80' : 'text-white/55'}`}
+          >
+            {status.message}
+          </span>
         )}
       </div>
     </div>
