@@ -57,8 +57,9 @@ export default function DashboardNav({ username, isPublic, isCollapsed, onToggle
               title={label}
               aria-label={label}
               className={cn(
-                'flex items-center gap-3 px-3 py-2.5 rounded-full text-sm font-body transition-colors',
+                'flex flex-col items-center gap-1 px-3 py-2 rounded-2xl text-sm font-body transition-colors',
                 'justify-center',
+                'md:flex-row md:gap-3 md:py-2.5 md:rounded-full',
                 !isCollapsed && 'md:justify-start',
                 isActive
                   ? 'bg-white/10 text-white'
@@ -66,6 +67,9 @@ export default function DashboardNav({ username, isPublic, isCollapsed, onToggle
               )}
             >
               <Icon className="shrink-0" />
+              {/* Mobile label — always visible below icon */}
+              <span className="md:hidden text-[10px] leading-tight">{label}</span>
+              {/* Desktop label — only when sidebar is expanded */}
               {!isCollapsed && <span className="hidden md:inline">{label}</span>}
             </Link>
           )
@@ -79,8 +83,9 @@ export default function DashboardNav({ username, isPublic, isCollapsed, onToggle
           title="Discover"
           aria-label="Discover"
           className={cn(
-            'flex items-center gap-3 px-3 py-2.5 rounded-full text-sm font-body transition-colors',
+            'flex flex-col items-center gap-1 px-3 py-2 rounded-2xl text-sm font-body transition-colors',
             'justify-center',
+            'md:flex-row md:gap-3 md:py-2.5 md:rounded-full',
             !isCollapsed && 'md:justify-start',
             pathname === '/discover'
               ? 'bg-white/10 text-white'
@@ -88,6 +93,9 @@ export default function DashboardNav({ username, isPublic, isCollapsed, onToggle
           )}
         >
           <CompassIcon className="shrink-0" />
+          {/* Mobile label — always visible below icon */}
+          <span className="md:hidden text-[10px] leading-tight">Discover</span>
+          {/* Desktop label — only when sidebar is expanded */}
           {!isCollapsed && <span className="hidden md:inline">Discover</span>}
         </Link>
 
@@ -108,7 +116,12 @@ export default function DashboardNav({ username, isPublic, isCollapsed, onToggle
             aria-label="Sign out"
             className="px-3 py-2 text-xs font-body text-white/45 hover:text-white/75 transition-colors w-full text-center md:text-left"
           >
-            <span className="md:hidden">→</span>
+            {/* Mobile: icon + tiny label stacked */}
+            <span className="md:hidden flex flex-col items-center gap-0.5">
+              <span>→</span>
+              <span className="text-[10px] leading-tight">Sign out</span>
+            </span>
+            {/* Desktop: text only, respects collapse */}
             <span className="hidden md:inline">{isCollapsed ? '→' : 'Sign out'}</span>
           </button>
         </form>
