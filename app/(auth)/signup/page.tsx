@@ -1,13 +1,45 @@
 'use client'
 
-import { useActionState } from 'react'
+import { useActionState, useState } from 'react'
 import Link from 'next/link'
 import { signUp } from '@/app/actions/auth'
 
 const initialState: { error?: string; success?: boolean } = {}
 
+function validateUsername(value: string): string | null {
+  if (!value) return null
+  return /^[a-z0-9-]{3,20}$/.test(value)
+    ? null
+    : '3–20 characters: lowercase letters, numbers, hyphens.'
+}
+
+function validateEmail(value: string): string | null {
+  if (!value) return null
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+    ? null
+    : 'Enter a valid email address.'
+}
+
+function validatePassword(value: string): string | null {
+  if (!value) return null
+  return value.length >= 6 ? null : 'At least 6 characters.'
+}
+
 export default function SignupPage() {
   const [state, formAction, pending] = useActionState(signUp, initialState)
+
+  const [username, setUsername] = useState('')
+  const [usernameTouched, setUsernameTouched] = useState(false)
+
+  const [email, setEmail] = useState('')
+  const [emailTouched, setEmailTouched] = useState(false)
+
+  const [password, setPassword] = useState('')
+  const [passwordTouched, setPasswordTouched] = useState(false)
+
+  const usernameError = usernameTouched ? validateUsername(username) : null
+  const emailError = emailTouched ? validateEmail(email) : null
+  const passwordError = passwordTouched ? validatePassword(password) : null
 
   if (state?.success) {
     return (
@@ -57,8 +89,15 @@ export default function SignupPage() {
                 placeholder="your-handle"
                 autoComplete="username"
                 required
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                onBlur={() => setUsernameTouched(true)}
+                aria-invalid={usernameError !== null ? true : undefined}
                 className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white font-body text-sm placeholder:text-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-1 focus-visible:ring-offset-black focus:border-white/30 transition-colors"
               />
+              {usernameError && (
+                <p className="font-body text-xs text-red-400/80">{usernameError}</p>
+              )}
             </div>
 
             <div className="flex flex-col gap-1.5">
@@ -71,8 +110,15 @@ export default function SignupPage() {
                 placeholder="you@example.com"
                 autoComplete="email"
                 required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                onBlur={() => setEmailTouched(true)}
+                aria-invalid={emailError !== null ? true : undefined}
                 className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white font-body text-sm placeholder:text-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-1 focus-visible:ring-offset-black focus:border-white/30 transition-colors"
               />
+              {emailError && (
+                <p className="font-body text-xs text-red-400/80">{emailError}</p>
+              )}
             </div>
 
             <div className="flex flex-col gap-1.5">
@@ -86,8 +132,15 @@ export default function SignupPage() {
                 autoComplete="new-password"
                 required
                 minLength={6}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                onBlur={() => setPasswordTouched(true)}
+                aria-invalid={passwordError !== null ? true : undefined}
                 className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white font-body text-sm placeholder:text-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-1 focus-visible:ring-offset-black focus:border-white/30 transition-colors"
               />
+              {passwordError && (
+                <p className="font-body text-xs text-red-400/80">{passwordError}</p>
+              )}
             </div>
 
             {state?.error && (
