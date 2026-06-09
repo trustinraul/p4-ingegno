@@ -3,6 +3,43 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 
+function CheckMark() {
+  return (
+    <svg
+      aria-hidden="true"
+      className="text-white/75 flex-shrink-0"
+      width="14"
+      height="14"
+      viewBox="0 0 10 10"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <polyline points="1.5,5 4,7.5 8.5,2.5" />
+    </svg>
+  )
+}
+
+function Dash() {
+  return (
+    <svg
+      aria-hidden="true"
+      className="text-white/45 flex-shrink-0"
+      width="14"
+      height="14"
+      viewBox="0 0 14 14"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+    >
+      <line x1="3" y1="7" x2="11" y2="7" />
+    </svg>
+  )
+}
+
 const freeFeatures = [
   'Public profile at ingegno.app/username',
   'Up to 2 visible projects',
@@ -51,7 +88,7 @@ export default function Pricing() {
             <ul className="space-y-3">
               {freeFeatures.map((feature) => (
                 <li key={feature} className="flex items-center gap-3 text-sm font-body text-white/75">
-                  <span className="text-white/45 flex-shrink-0 text-xs">—</span>
+                  <Dash />
                   {feature}
                 </li>
               ))}
@@ -88,7 +125,7 @@ export default function Pricing() {
             <ul className="space-y-3">
               {proFeatures.map((feature) => (
                 <li key={feature} className="flex items-center gap-3 text-sm font-body text-white/85">
-                  <span className="text-white/75 flex-shrink-0 text-xs">✓</span>
+                  <CheckMark />
                   {feature}
                 </li>
               ))}
