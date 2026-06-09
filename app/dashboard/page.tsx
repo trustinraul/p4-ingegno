@@ -22,7 +22,7 @@ export default async function DashboardPage() {
   if (!profile?.full_name) {
     return (
       <div className="flex items-center justify-center min-h-[60vh] px-4">
-        <OnboardingChecklist hasName={false} hasProjects={false} isPublic={false} />
+        <OnboardingChecklist hasName={false} hasProjects={false} isPublic={false} username={profile?.username ?? ''} />
       </div>
     )
   }
@@ -53,15 +53,10 @@ export default async function DashboardPage() {
     .slice(0, 20)
 
   const hasProjects = (projects?.length ?? 0) > 0
-  const onboardingDone = hasProjects && profile.is_public
 
   return (
     <div className="-m-8">
-      {!onboardingDone && (
-        <div className="px-8 pt-8 pb-2">
-          <OnboardingChecklist hasName={true} hasProjects={hasProjects} isPublic={profile.is_public} />
-        </div>
-      )}
+      <OnboardingChecklist variant="banner" hasName={true} hasProjects={hasProjects} isPublic={profile.is_public} username={profile.username} />
       <div className="sticky top-4 z-30 flex justify-end px-8 pointer-events-none">
         <div className="pointer-events-auto">
           <AddUpdateButton projects={projects ?? []} />
