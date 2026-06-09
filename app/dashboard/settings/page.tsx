@@ -28,12 +28,12 @@ export default async function SettingsPage() {
 
       {/* Profile section */}
       <section>
-        <h2 className="text-sm font-body text-white/40 tracking-widest uppercase mb-6">
+        <h2 className="text-sm font-body text-white/70 tracking-widest uppercase mb-6">
           // Profile
         </h2>
         <div className="liquid-glass rounded-[1.25rem] p-7 flex items-center justify-between">
           <div>
-            <p className="text-sm font-body text-white/60">Name, tagline, roles, narrative, avatar</p>
+            <p className="text-sm font-body text-white/75">Name, tagline, roles, narrative, avatar</p>
           </div>
           <Link
             href="/dashboard/profile"
@@ -46,7 +46,7 @@ export default async function SettingsPage() {
 
       {/* GitHub section */}
       <section>
-        <h2 className="text-sm font-body text-white/40 tracking-widest uppercase mb-6">
+        <h2 className="text-sm font-body text-white/70 tracking-widest uppercase mb-6">
           // GitHub
         </h2>
         <GitHubConnect connection={connection} />
@@ -54,17 +54,17 @@ export default async function SettingsPage() {
 
       {/* Account section */}
       <section>
-        <h2 className="text-sm font-body text-white/40 tracking-widest uppercase mb-6">
+        <h2 className="text-sm font-body text-white/70 tracking-widest uppercase mb-6">
           // Account
         </h2>
         <div className="liquid-glass rounded-[1.25rem] p-7 space-y-4">
           <div className="flex items-center justify-between">
-            <span className="text-sm font-body text-white/60">Email</span>
-            <span className="text-sm font-body text-white/40">{user.email}</span>
+            <span className="text-sm font-body text-white/75">Email</span>
+            <span className="text-sm font-body text-white/55">{user.email}</span>
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-sm font-body text-white/60">Plan</span>
-            <span className="text-xs font-body px-3 py-1 rounded-full liquid-glass text-white/60">
+            <span className="text-sm font-body text-white/75">Plan</span>
+            <span className="text-xs font-body px-3 py-1 rounded-full liquid-glass text-white/75">
               {profile?.plan === 'pro' ? 'Pro' : 'Free'}
             </span>
           </div>
@@ -72,7 +72,7 @@ export default async function SettingsPage() {
             <form action={signOut}>
               <button
                 type="submit"
-                className="text-sm font-body text-white/40 hover:text-white/70 transition-colors"
+                className="text-sm font-body text-white/55 hover:text-white/85 transition-colors"
               >
                 Sign out
               </button>

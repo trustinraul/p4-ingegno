@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import BlurText from '@/components/ui/BlurText'
 
 interface ProfileHeroProps {
@@ -13,6 +13,7 @@ interface ProfileHeroProps {
 }
 
 export default function ProfileHero({ profile }: ProfileHeroProps) {
+  const prefersReducedMotion = useReducedMotion()
   const initials = profile.full_name
     .split(' ')
     .map((n) => n[0])
@@ -71,7 +72,7 @@ export default function ProfileHero({ profile }: ProfileHeroProps) {
             initial={{ filter: 'blur(10px)', opacity: 0, y: 20 }}
             animate={{ filter: 'blur(0px)', opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: 'easeOut', delay: 0.5 }}
-            className="text-lg text-white/50 font-body font-light mt-4 max-w-lg"
+            className="text-lg text-white/65 font-body font-light mt-4 max-w-lg"
           >
             {profile.tagline}
           </motion.p>
@@ -88,7 +89,7 @@ export default function ProfileHero({ profile }: ProfileHeroProps) {
             {(profile.roles ?? []).map((role) => (
               <span
                 key={role}
-                className="liquid-glass rounded-full px-4 py-1.5 text-sm font-body text-white/70"
+                className="liquid-glass rounded-full px-4 py-1.5 text-sm font-body text-white/85"
               >
                 {role}
               </span>
@@ -103,21 +104,25 @@ export default function ProfileHero({ profile }: ProfileHeroProps) {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 1.2 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2"
-        style={{ animation: 'bounce 2s infinite' }}
       >
-        <svg
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="text-white/15"
+        <motion.div
+          animate={prefersReducedMotion ? {} : { y: [0, 8, 0] }}
+          transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
         >
-          <path d="M6 9l6 6 6-6" />
-        </svg>
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="text-white/45"
+          >
+            <path d="M6 9l6 6 6-6" />
+          </svg>
+        </motion.div>
       </motion.div>
     </section>
   )

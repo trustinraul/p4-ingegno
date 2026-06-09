@@ -52,10 +52,10 @@ export default function CollagePublisher({
       <div className="liquid-glass-strong rounded-[1.5rem] p-8 max-w-lg w-full max-h-[80vh] overflow-y-auto space-y-6">
         <div>
           <h2 className="font-heading italic text-white text-2xl">Publish collage</h2>
-          <p className="text-sm font-body text-white/40 mt-1">{projectName}</p>
+          <p className="text-sm font-body text-white/55 mt-1">{projectName}</p>
         </div>
 
-        <p className="text-xs font-body text-white/40 tracking-widest uppercase">
+        <p className="text-xs font-body text-white/55 tracking-widest uppercase">
           Ingegno&apos;s proposed order — reorder before publishing
         </p>
 
@@ -70,7 +70,7 @@ export default function CollagePublisher({
                   type="button"
                   onClick={() => moveUp(i)}
                   disabled={i === 0}
-                  className="text-white/30 hover:text-white/70 disabled:opacity-20 text-sm transition-colors cursor-pointer disabled:cursor-not-allowed"
+                  className="text-white/45 hover:text-white/85 disabled:opacity-20 text-sm transition-colors cursor-pointer disabled:cursor-not-allowed"
                 >
                   ↑
                 </button>
@@ -78,12 +78,12 @@ export default function CollagePublisher({
                   type="button"
                   onClick={() => moveDown(i)}
                   disabled={i === images.length - 1}
-                  className="text-white/30 hover:text-white/70 disabled:opacity-20 text-sm transition-colors cursor-pointer disabled:cursor-not-allowed"
+                  className="text-white/45 hover:text-white/85 disabled:opacity-20 text-sm transition-colors cursor-pointer disabled:cursor-not-allowed"
                 >
                   ↓
                 </button>
               </div>
-              <span className="text-xs font-body text-white/20">
+              <span className="text-xs font-body text-white/45">
                 {i + 1} / {images.length}
               </span>
             </div>
@@ -102,7 +102,7 @@ export default function CollagePublisher({
           </button>
           <button
             onClick={onClose}
-            className="px-5 text-sm font-body text-white/40 hover:text-white/70 transition-colors cursor-pointer"
+            className="px-5 text-sm font-body text-white/55 hover:text-white/85 transition-colors cursor-pointer"
           >
             Cancel
           </button>

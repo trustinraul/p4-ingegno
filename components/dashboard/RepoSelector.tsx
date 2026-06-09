@@ -42,16 +42,16 @@ export default function RepoSelector({ selectedRepos }: RepoSelectorProps) {
   }
 
   if (loading) {
-    return <p className="text-sm font-body text-white/30">Loading repos…</p>
+    return <p className="text-sm font-body text-white/45">Loading repos…</p>
   }
 
   if (allRepos.length === 0) {
-    return <p className="text-sm font-body text-white/30">No repositories found.</p>
+    return <p className="text-sm font-body text-white/45">No repositories found.</p>
   }
 
   return (
     <div className="space-y-3">
-      <p className="text-xs font-body text-white/40 tracking-widest uppercase">
+      <p className="text-xs font-body text-white/55 tracking-widest uppercase">
         Repos to show on your profile
       </p>
       <div className="space-y-2 max-h-64 overflow-y-auto pr-1">
@@ -63,7 +63,7 @@ export default function RepoSelector({ selectedRepos }: RepoSelectorProps) {
               onChange={() => toggle(repo)}
               className="accent-white/60 w-4 h-4"
             />
-            <span className="text-sm font-body text-white/60 group-hover:text-white/80 transition-colors">
+            <span className="text-sm font-body text-white/75 group-hover:text-white/80 transition-colors">
               {repo}
             </span>
           </label>
@@ -78,7 +78,7 @@ export default function RepoSelector({ selectedRepos }: RepoSelectorProps) {
           {isPending ? 'Saving…' : 'Save selection'}
         </button>
         {status && (
-          <span className="text-xs font-body text-white/40">{status}</span>
+          <span className="text-xs font-body text-white/55">{status}</span>
         )}
       </div>
     </div>

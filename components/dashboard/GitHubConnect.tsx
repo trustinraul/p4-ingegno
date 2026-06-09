@@ -57,7 +57,7 @@ export default function GitHubConnect({ connection }: GitHubConnectProps) {
   if (!connection) {
     return (
       <div className="liquid-glass rounded-[1.25rem] p-7 space-y-4">
-        <p className="text-sm font-body text-white/60">
+        <p className="text-sm font-body text-white/75">
           Connect your GitHub account to display recent commits on your public profile.
         </p>
         <button
@@ -78,18 +78,18 @@ export default function GitHubConnect({ connection }: GitHubConnectProps) {
             @{connection.github_username}
           </p>
           {connection.last_synced_at ? (
-            <p className="text-xs font-body text-white/30">
+            <p className="text-xs font-body text-white/45">
               Last synced {timeAgo(connection.last_synced_at)}
             </p>
           ) : (
-            <p className="text-xs font-body text-white/30">Never synced</p>
+            <p className="text-xs font-body text-white/45">Never synced</p>
           )}
         </div>
         <div className="flex items-center gap-3">
           <button
             onClick={syncNow}
             disabled={syncing}
-            className="px-4 py-2 text-sm font-body text-white/70 hover:text-white border border-white/[0.1] hover:border-white/20 rounded-[0.75rem] transition-colors disabled:opacity-50"
+            className="px-4 py-2 text-sm font-body text-white/85 hover:text-white border border-white/[0.1] hover:border-white/20 rounded-[0.75rem] transition-colors disabled:opacity-50"
           >
             {syncing ? 'Syncing…' : 'Sync now'}
           </button>
@@ -99,7 +99,7 @@ export default function GitHubConnect({ connection }: GitHubConnectProps) {
               startDisconnect(async () => { await disconnectGitHub() })
             }}
             disabled={isPendingDisconnect}
-            className="px-4 py-2 text-sm font-body text-white/30 hover:text-white/60 transition-colors disabled:opacity-50"
+            className="px-4 py-2 text-sm font-body text-white/45 hover:text-white/75 transition-colors disabled:opacity-50"
           >
             Disconnect
           </button>
@@ -107,7 +107,7 @@ export default function GitHubConnect({ connection }: GitHubConnectProps) {
       </div>
 
       {syncResult && (
-        <p className="text-xs font-body text-white/40">{syncResult}</p>
+        <p className="text-xs font-body text-white/55">{syncResult}</p>
       )}
 
       <div className="border-t border-white/[0.08] pt-6">

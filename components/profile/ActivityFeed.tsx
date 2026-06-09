@@ -35,17 +35,7 @@ export default function ActivityFeed({ activity, profile }: ActivityFeedProps) {
   return (
     <section className="py-24 px-8 md:px-20 bg-black">
       <div className="max-w-2xl">
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6 }}
-          className="text-xs tracking-widest uppercase text-white/30 font-body mb-10"
-        >
-          // Activity
-        </motion.p>
-
-        <div className="space-y-3">
+        <div className="divide-y divide-white/[0.06]">
           {activity.map((item, i) => (
             <motion.div
               key={item.id}
@@ -53,18 +43,18 @@ export default function ActivityFeed({ activity, profile }: ActivityFeedProps) {
               whileInView={{ filter: 'blur(0px)', opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.6, ease: 'easeOut', delay: i * 0.07 }}
-              className="liquid-glass rounded-[1rem] p-5"
+              className="py-5"
             >
               {item.type === 'github_commit' ? (
                 <div>
                   <div className="flex items-center gap-3 mb-2">
-                    <GitHubIcon className="text-white/40 flex-shrink-0 w-4 h-4" />
-                    <span className="text-sm font-body text-white/40">{item.repo_name}</span>
-                    <span className="text-xs font-body text-white/20 ml-auto">
+                    <GitHubIcon className="text-white/55 flex-shrink-0 w-4 h-4" />
+                    <span className="text-sm font-body text-white/55">{item.repo_name}</span>
+                    <span className="text-xs font-body text-white/45 ml-auto">
                       {getRelativeTime(item.created_at)}
                     </span>
                   </div>
-                  <p className="text-sm font-body text-white/70 leading-relaxed pl-7">
+                  <p className="text-sm font-body text-white/85 leading-relaxed pl-7">
                     {item.content}
                   </p>
                 </div>
@@ -80,15 +70,15 @@ export default function ActivityFeed({ activity, profile }: ActivityFeedProps) {
                       />
                     ) : (
                       <div className="w-5 h-5 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
-                        <span className="text-[8px] font-heading italic text-white/60">{initials}</span>
+                        <span className="text-[8px] font-heading italic text-white/75">{initials}</span>
                       </div>
                     )}
-                    <span className="text-sm font-body text-white/40">Posted an update</span>
-                    <span className="text-xs font-body text-white/20 ml-auto">
+                    <span className="text-sm font-body text-white/55">Posted an update</span>
+                    <span className="text-xs font-body text-white/45 ml-auto">
                       {getRelativeTime(item.created_at)}
                     </span>
                   </div>
-                  <p className="text-sm font-body text-white/70 leading-relaxed pl-8">
+                  <p className="text-sm font-body text-white/85 leading-relaxed pl-8">
                     {item.content}
                   </p>
                   {item.image_url && (

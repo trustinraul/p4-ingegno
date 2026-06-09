@@ -1,11 +1,11 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
-import Link from 'next/link'
 import ProfileHero from '@/components/profile/ProfileHero'
 import ProfileNarrative from '@/components/profile/ProfileNarrative'
 import ProjectGrid from '@/components/profile/ProjectGrid'
 import ActivityFeed from '@/components/profile/ActivityFeed'
 import AddUpdateButton from '@/components/dashboard/AddUpdateButton'
+import OnboardingChecklist from '@/components/dashboard/OnboardingChecklist'
 import type { ActivityItem } from '@/lib/types'
 
 export default async function DashboardPage() {
@@ -21,19 +21,8 @@ export default async function DashboardPage() {
 
   if (!profile?.full_name) {
     return (
-      <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="liquid-glass rounded-[1.25rem] p-10 text-center max-w-sm">
-          <h2 className="font-heading italic text-white text-2xl mb-3">Your profile is empty.</h2>
-          <p className="font-body text-white/40 text-sm mb-6">
-            Add your name, tagline, and roles to get started.
-          </p>
-          <Link
-            href="/dashboard/profile"
-            className="inline-block bg-white text-black font-body text-sm font-medium rounded-full px-6 py-2.5 hover:bg-white/90 transition-colors"
-          >
-            Edit profile →
-          </Link>
-        </div>
+      <div className="flex items-center justify-center min-h-[60vh] px-4">
+        <OnboardingChecklist hasName={false} hasProjects={false} isPublic={false} />
       </div>
     )
   }
@@ -63,8 +52,16 @@ export default async function DashboardPage() {
     .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
     .slice(0, 20)
 
+  const hasProjects = (projects?.length ?? 0) > 0
+  const onboardingDone = hasProjects && profile.is_public
+
   return (
     <div className="-m-8">
+      {!onboardingDone && (
+        <div className="px-8 pt-8 pb-2">
+          <OnboardingChecklist hasName={true} hasProjects={hasProjects} isPublic={profile.is_public} />
+        </div>
+      )}
       <div className="sticky top-4 z-30 flex justify-end px-8 pointer-events-none">
         <div className="pointer-events-auto">
           <AddUpdateButton projects={projects ?? []} />

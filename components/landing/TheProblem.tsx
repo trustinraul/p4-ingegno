@@ -1,7 +1,6 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import BlurText from '@/components/ui/BlurText'
 
 const painPoints = [
   {
@@ -27,15 +26,20 @@ export default function TheProblem() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6 }}
-          className="text-xs tracking-widest uppercase text-white/30 font-body mb-8 text-center"
+          className="text-xs tracking-widest uppercase text-white/45 font-body mb-8 text-center"
         >
           // The problem
         </motion.p>
 
-        <BlurText
-          text='"So... what exactly do you do?"'
+        <motion.h2
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
           className="font-heading italic text-white text-5xl md:text-6xl lg:text-7xl leading-[0.9] max-w-4xl text-center mx-auto"
-        />
+        >
+          &ldquo;So... what exactly do you do?&rdquo;
+        </motion.h2>
 
         <motion.p
           initial={{ opacity: 0, y: 10 }}
@@ -48,18 +52,22 @@ export default function TheProblem() {
           — Every potential client, ever.
         </motion.p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full text-left">
+        <div className="max-w-4xl w-full flex flex-col gap-16">
           {painPoints.map((point, i) => (
             <motion.div
               key={i}
-              initial={{ filter: 'blur(10px)', opacity: 0, y: 20 }}
-              whileInView={{ filter: 'blur(0px)', opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, ease: 'easeOut', delay: i * 0.15 }}
-              className="liquid-glass rounded-[1.25rem] p-8 flex flex-col gap-5"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.5, ease: 'easeOut', delay: i * 0.1 }}
+              className={`flex flex-col gap-3 ${i % 2 === 1 ? 'items-end text-right' : 'items-start text-left'}`}
             >
-              <p className="font-heading italic text-white text-xl leading-snug">{point.title}</p>
-              <p className="text-sm font-body text-white/60 leading-relaxed">{point.body}</p>
+              <p className="font-heading italic text-white text-3xl md:text-4xl leading-tight max-w-2xl" style={{ textWrap: 'balance' } as React.CSSProperties}>
+                &ldquo;{point.title}&rdquo;
+              </p>
+              <p className="text-sm text-white/75 font-body max-w-lg leading-relaxed">
+                {point.body}
+              </p>
             </motion.div>
           ))}
         </div>

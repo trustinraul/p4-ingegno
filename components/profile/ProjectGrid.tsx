@@ -17,18 +17,8 @@ export default function ProjectGrid({ projects, plan }: ProjectGridProps) {
 
   return (
     <section className="py-24 px-8 md:px-20 bg-black">
-      <motion.p
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.6 }}
-        className="text-xs tracking-widest uppercase text-white/30 font-body mb-10"
-      >
-        // Work
-      </motion.p>
-
       {projects.length === 0 ? (
-        <div className="liquid-glass rounded-[1.25rem] p-12 text-center text-sm text-white/25 font-body">
+        <div className="border border-white/[0.08] rounded-[1.25rem] p-12 text-center text-sm text-white/45 font-body">
           No projects yet.
         </div>
       ) : (
@@ -42,7 +32,7 @@ export default function ProjectGrid({ projects, plan }: ProjectGridProps) {
                 whileInView={{ filter: 'blur(0px)', opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.1 }}
                 transition={{ duration: 0.6, ease: 'easeOut', delay: i * 0.1 }}
-                className="liquid-glass rounded-[1.25rem] p-7 min-h-[240px] flex flex-col justify-between"
+                className="border border-white/[0.08] rounded-[1.25rem] p-7 min-h-[240px] flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center gap-2 mb-5">
@@ -52,7 +42,7 @@ export default function ProjectGrid({ projects, plan }: ProjectGridProps) {
                         project.status === 'launched' ? 'bg-green-400' : 'bg-yellow-400'
                       )}
                     />
-                    <span className="text-xs font-body text-white/30 capitalize">
+                    <span className="text-xs font-body text-white/45 capitalize">
                       {project.status === 'in_progress' ? 'In progress' : 'Launched'}
                     </span>
                   </div>
@@ -62,7 +52,7 @@ export default function ProjectGrid({ projects, plan }: ProjectGridProps) {
                   </p>
 
                   {project.description && (
-                    <p className="text-sm font-body text-white/40 leading-relaxed">
+                    <p className="text-sm font-body text-white/55 leading-relaxed">
                       {project.description}
                     </p>
                   )}
@@ -73,7 +63,7 @@ export default function ProjectGrid({ projects, plan }: ProjectGridProps) {
                     href={project.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm font-body text-white/40 hover:text-white/70 transition-colors mt-5 cursor-pointer"
+                    className="flex items-center gap-2 text-sm font-body text-white/55 hover:text-white/85 transition-colors mt-5 cursor-pointer"
                   >
                     <ArrowUpRight />
                     {domain}
@@ -90,7 +80,7 @@ export default function ProjectGrid({ projects, plan }: ProjectGridProps) {
               whileInView={{ filter: 'blur(0px)', opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.6, ease: 'easeOut', delay: (visible.length + i) * 0.1 }}
-              className="liquid-glass rounded-[1.25rem] p-7 min-h-[240px] flex flex-col justify-between relative overflow-hidden"
+              className="border border-white/[0.08] rounded-[1.25rem] p-7 min-h-[240px] flex flex-col justify-between relative overflow-hidden"
             >
               {/* Blur overlay */}
               <div className="absolute inset-0 backdrop-blur-[2px] bg-black/20 z-10" />
@@ -106,12 +96,12 @@ export default function ProjectGrid({ projects, plan }: ProjectGridProps) {
                   strokeWidth="1.5"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="text-white/30"
+                  className="text-white/45"
                 >
                   <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
                   <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                 </svg>
-                <p className="text-xs font-body text-white/30 text-center px-4">
+                <p className="text-xs font-body text-white/45 text-center px-4">
                   Upgrade to Pro to unlock
                 </p>
               </div>
@@ -122,7 +112,7 @@ export default function ProjectGrid({ projects, plan }: ProjectGridProps) {
                   {project.name}
                 </p>
                 {project.description && (
-                  <p className="text-sm font-body text-white/40 leading-relaxed mt-3">
+                  <p className="text-sm font-body text-white/55 leading-relaxed mt-3">
                     {project.description}
                   </p>
                 )}

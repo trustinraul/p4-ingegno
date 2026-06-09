@@ -37,12 +37,12 @@ export default function ProjectForm({ project, onClose }: ProjectFormProps) {
   }
 
   const inputClass =
-    'w-full bg-white/[0.06] border border-white/[0.1] rounded-[0.75rem] px-4 py-2.5 text-sm font-body text-white placeholder:text-white/30 focus:outline-none focus:border-white/30 transition-colors'
+    'w-full bg-white/[0.06] border border-white/[0.1] rounded-[0.75rem] px-4 py-2.5 text-sm font-body text-white placeholder:text-white/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-1 focus-visible:ring-offset-black focus:border-white/30 transition-colors'
 
   return (
     <form action={handleSubmit} className="liquid-glass rounded-[1.25rem] p-6 space-y-4">
       <div>
-        <label className="block text-xs font-body text-white/40 tracking-widest uppercase mb-2">
+        <label className="block text-sm font-body text-white/70 tracking-widest uppercase mb-2">
           Name *
         </label>
         <input
@@ -55,7 +55,7 @@ export default function ProjectForm({ project, onClose }: ProjectFormProps) {
       </div>
 
       <div>
-        <label className="block text-xs font-body text-white/40 tracking-widest uppercase mb-2">
+        <label className="block text-sm font-body text-white/70 tracking-widest uppercase mb-2">
           Description
         </label>
         <textarea
@@ -68,7 +68,7 @@ export default function ProjectForm({ project, onClose }: ProjectFormProps) {
       </div>
 
       <div>
-        <label className="block text-xs font-body text-white/40 tracking-widest uppercase mb-2">
+        <label className="block text-sm font-body text-white/70 tracking-widest uppercase mb-2">
           Status
         </label>
         <select
@@ -82,7 +82,7 @@ export default function ProjectForm({ project, onClose }: ProjectFormProps) {
       </div>
 
       <div>
-        <label className="block text-xs font-body text-white/40 tracking-widest uppercase mb-2">
+        <label className="block text-sm font-body text-white/70 tracking-widest uppercase mb-2">
           URL
         </label>
         <input
@@ -102,7 +102,7 @@ export default function ProjectForm({ project, onClose }: ProjectFormProps) {
         <button
           type="submit"
           disabled={isPending}
-          className="flex-1 bg-white/10 hover:bg-white/15 border border-white/[0.12] rounded-[0.75rem] px-4 py-2.5 text-sm font-body text-white transition-colors disabled:opacity-50"
+          className="flex-1 bg-white/10 hover:bg-white/15 border border-white/[0.12] rounded-[0.75rem] px-4 py-2.5 text-sm font-body text-white transition-colors disabled:opacity-50 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60"
         >
           {isPending ? 'Saving…' : project ? 'Save changes' : 'Add project'}
         </button>
@@ -110,7 +110,7 @@ export default function ProjectForm({ project, onClose }: ProjectFormProps) {
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2.5 text-sm font-body text-white/40 hover:text-white/70 transition-colors"
+            className="px-4 py-2.5 text-sm font-body text-white/55 hover:text-white/70 transition-colors focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60"
           >
             Cancel
           </button>

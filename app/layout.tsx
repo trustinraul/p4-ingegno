@@ -1,12 +1,13 @@
 import type { Metadata } from 'next'
-import { Instrument_Serif, Barlow } from 'next/font/google'
+import { EB_Garamond, Barlow } from 'next/font/google'
 import './globals.css'
 
-const instrumentSerif = Instrument_Serif({
-  weight: '400',
-  style: 'italic',
+const ebGaramond = EB_Garamond({
   subsets: ['latin'],
-  variable: '--font-instrument-serif',
+  weight: ['400', '500', '600', '700', '800'],
+  style: ['normal', 'italic'],
+  variable: '--font-heading',
+  display: 'swap',
 })
 
 const barlow = Barlow({
@@ -26,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${instrumentSerif.variable} ${barlow.variable}`}>
+    <html lang="en" className={`${ebGaramond.variable} ${barlow.variable}`}>
       <body className="font-body antialiased">
         {children}
       </body>

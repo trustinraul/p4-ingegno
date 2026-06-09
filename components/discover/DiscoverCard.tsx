@@ -64,24 +64,8 @@ export default function DiscoverCard({ update, author }: DiscoverCardProps) {
         </div>
       </div>
 
-      <div className="px-4 py-3 space-y-2">
-        <p className="text-xs font-body text-white/60 leading-relaxed">{caption}</p>
-        <div className="flex items-center gap-2">
-          <div className="w-5 h-5 rounded-full overflow-hidden bg-white/10 shrink-0">
-            {author.avatar_url ? (
-              <img
-                src={author.avatar_url}
-                alt={author.full_name ?? author.username}
-                className="w-full h-full object-cover"
-              />
-            ) : (
-              <div className="w-full h-full flex items-center justify-center">
-                <span className="font-heading italic text-white text-[7px]">{initials}</span>
-              </div>
-            )}
-          </div>
-          <span className="text-xs font-body text-white/40">@{author.username}</span>
-        </div>
+      <div className="px-4 py-3">
+        <p className="text-xs font-body text-white/75 leading-relaxed">{caption}</p>
       </div>
     </Link>
   )

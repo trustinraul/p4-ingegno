@@ -25,7 +25,7 @@ export default function Hero() {
           fill="none"
           stroke="rgba(255,255,255,0.10)"
           strokeWidth="1"
-          style={{ animation: 'rotate3d 60s linear infinite' }}
+          className="rotate3d-svg"
         >
           <polygon points="350,80 560,260 490,500 210,500 140,260" />
           <polygon points="350,80 560,260 620,420 350,620 80,420 140,260" />
@@ -83,7 +83,7 @@ export default function Hero() {
         }}
       />
 
-      <div className="relative z-10 flex flex-col items-center gap-6 max-w-4xl mx-auto pt-32">
+      <div className="relative z-10 flex flex-col items-center gap-6 max-w-4xl mx-auto pt-20 md:pt-32">
         {/* Beta badge */}
         <motion.div
           variants={fadeUp}
@@ -95,7 +95,7 @@ export default function Hero() {
             <span className="text-xs font-body font-medium text-white/90 bg-white/10 px-2 py-0.5 rounded-full">
               Beta
             </span>
-            <span className="text-sm font-body text-white/60">
+            <span className="text-sm font-body text-white/75">
               Now in early access — claim your username
             </span>
           </div>
@@ -114,7 +114,7 @@ export default function Hero() {
           initial="initial"
           animate="animate"
           transition={{ duration: 0.6, ease: 'easeOut', delay: 0.7 }}
-          className="text-base md:text-lg text-white/60 font-body font-light max-w-lg leading-relaxed mt-5"
+          className="text-base md:text-lg text-white/75 font-body font-light max-w-lg leading-relaxed mt-5"
         >
           One elegant page that holds your projects, your writing, your skills, and your story — built for the people who can&apos;t be put in a box.
         </motion.p>
@@ -129,22 +129,22 @@ export default function Hero() {
         >
           <Link
             href="/signup"
-            className="liquid-glass-strong rounded-full px-6 py-3 text-sm font-body font-medium text-white hover:opacity-90 transition-opacity flex items-center gap-2 cursor-pointer"
+            className="liquid-glass-strong rounded-full px-6 py-3 text-sm font-body font-medium text-white hover:opacity-90 transition-opacity flex items-center gap-2 cursor-pointer focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60"
           >
             Claim your username
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M7 17L17 7" /><path d="M7 7h10v10" />
             </svg>
           </Link>
-          <Link
-            href="/signup"
-            className="text-sm font-body text-white/50 hover:text-white/80 transition-colors flex items-center gap-1.5 cursor-pointer"
+          <a
+            href="#features"
+            className="text-sm font-body text-white/50 hover:text-white/80 transition-colors flex items-center gap-1.5 cursor-pointer focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60"
           >
             See how it works
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M5 12h14" /><path d="M12 5l7 7-7 7" />
             </svg>
-          </Link>
+          </a>
         </motion.div>
 
         {/* Preview card */}
@@ -153,7 +153,7 @@ export default function Hero() {
           initial="initial"
           animate="animate"
           transition={{ duration: 0.6, ease: 'easeOut', delay: 1.1 }}
-          className="liquid-glass rounded-[1.5rem] p-1 mt-6 w-full max-w-sm"
+          className="hidden lg:block liquid-glass rounded-[1.5rem] p-1 mt-6 w-full max-w-sm"
         >
           <div className="bg-white/[0.03] rounded-[1.25rem] p-6 flex flex-col items-center gap-3">
             <div
@@ -170,7 +170,7 @@ export default function Hero() {
               {['Painter', 'Engineer', 'Anatomist'].map((role) => (
                 <span
                   key={role}
-                  className="liquid-glass rounded-full px-3 py-1 text-xs font-body text-white/70"
+                  className="liquid-glass rounded-full px-3 py-1 text-xs font-body text-white/85"
                 >
                   {role}
                 </span>
@@ -185,13 +185,13 @@ export default function Hero() {
           initial="initial"
           animate="animate"
           transition={{ duration: 0.6, ease: 'easeOut', delay: 1.3 }}
-          className="flex items-center gap-4 mt-4"
+          className="hidden sm:flex items-center gap-4 mt-4"
         >
           <div className="liquid-glass rounded-full px-4 py-2 flex items-center gap-3">
-            <span className="text-xs font-body text-white/30">Profiles already live</span>
+            <span className="text-xs font-body text-white/45">Profiles already live</span>
             <div className="flex gap-3">
               {['Khalid', 'Valeria', 'Søren', 'Zara', 'Ren'].map((name) => (
-                <span key={name} className="text-xs font-heading italic text-white/50">
+                <span key={name} className="text-xs font-heading italic text-white/65">
                   {name}
                 </span>
               ))}

@@ -1,38 +1,11 @@
 'use client'
 
-import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import BlurText from '@/components/ui/BlurText'
 
 export default function FinalCTA() {
   return (
     <section className="relative overflow-hidden py-40 px-8 text-center bg-transparent flex flex-col items-center">
-      {/* Da Vinci anatomy notebook — full-section texture */}
-      <motion.div
-        className="absolute inset-0 pointer-events-none select-none"
-        style={{ zIndex: 0 }}
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 1.4, ease: 'easeOut' }}
-        aria-hidden="true"
-      >
-        <Image
-          src="/images/davinci_notebook_anatomy.jpg"
-          alt=""
-          fill
-          className="object-cover object-center"
-          style={{
-            opacity: 0.04,
-            filter: 'invert(1) grayscale(1)',
-            maskImage: 'radial-gradient(circle at center, black 20%, transparent 80%)',
-            WebkitMaskImage: 'radial-gradient(circle at center, black 20%, transparent 80%)'
-          }}
-          sizes="100vw"
-        />
-      </motion.div>
-
       {/* Radial glow — upward violet bloom */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -43,17 +16,22 @@ export default function FinalCTA() {
       />
 
       <div className="relative z-10 flex flex-col items-center">
-        <BlurText
-          text="One URL. Everything you are."
+        <motion.h2
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
           className="font-heading italic text-white text-5xl md:text-6xl lg:text-7xl leading-[0.9] max-w-3xl mb-6"
-        />
+        >
+          One URL. Everything you are.
+        </motion.h2>
 
         <motion.p
           initial={{ filter: 'blur(10px)', opacity: 0, y: 20 }}
           whileInView={{ filter: 'blur(0px)', opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6, ease: 'easeOut', delay: 0.4 }}
-          className="text-base font-body text-white/65 mb-10"
+          className="text-base font-body text-white/75 mb-10"
         >
           Join the Da Vincis who&apos;ve already claimed their name.
         </motion.p>
@@ -66,7 +44,7 @@ export default function FinalCTA() {
         >
           <Link
             href="/signup"
-            className="liquid-glass-strong rounded-full px-8 py-4 text-sm font-body font-medium text-white hover:opacity-90 transition-opacity flex items-center gap-2 cursor-pointer"
+            className="liquid-glass-strong rounded-full px-8 py-4 text-sm font-body font-medium text-white hover:opacity-90 transition-opacity flex items-center gap-2 cursor-pointer focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60"
           >
             Claim your username
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">

@@ -39,7 +39,7 @@ export default function DashboardNav({ username, isPublic, isCollapsed, onToggle
         )}
         <button
           onClick={onToggle}
-          className="p-2 text-white/30 hover:text-white/70 transition-colors rounded-lg hover:bg-white/5 hidden md:block"
+          className="p-2 text-white/45 hover:text-white/85 transition-colors rounded-lg hover:bg-white/5 hidden md:block"
           aria-label="Toggle sidebar"
         >
           <MenuIcon />
@@ -55,13 +55,14 @@ export default function DashboardNav({ username, isPublic, isCollapsed, onToggle
               key={href}
               href={href}
               title={label}
+              aria-label={label}
               className={cn(
                 'flex items-center gap-3 px-3 py-2.5 rounded-full text-sm font-body transition-colors',
                 'justify-center',
                 !isCollapsed && 'md:justify-start',
                 isActive
                   ? 'bg-white/10 text-white'
-                  : 'text-white/40 hover:text-white/70'
+                  : 'text-white/55 hover:text-white/85'
               )}
             >
               <Icon className="shrink-0" />
@@ -76,13 +77,14 @@ export default function DashboardNav({ username, isPublic, isCollapsed, onToggle
         <Link
           href="/discover"
           title="Discover"
+          aria-label="Discover"
           className={cn(
             'flex items-center gap-3 px-3 py-2.5 rounded-full text-sm font-body transition-colors',
             'justify-center',
             !isCollapsed && 'md:justify-start',
             pathname === '/discover'
               ? 'bg-white/10 text-white'
-              : 'text-white/40 hover:text-white/70'
+              : 'text-white/55 hover:text-white/85'
           )}
         >
           <CompassIcon className="shrink-0" />
@@ -93,7 +95,7 @@ export default function DashboardNav({ username, isPublic, isCollapsed, onToggle
           <Link
             href={`/${username}`}
             target="_blank"
-            className="hidden md:flex px-3 py-2 text-xs font-body text-white/30 hover:text-white/60 transition-colors items-center gap-1"
+            className="hidden md:flex px-3 py-2 text-xs font-body text-white/45 hover:text-white/75 transition-colors items-center gap-1"
           >
             View profile →
           </Link>
@@ -103,7 +105,8 @@ export default function DashboardNav({ username, isPublic, isCollapsed, onToggle
           <button
             type="submit"
             title="Sign out"
-            className="px-3 py-2 text-xs font-body text-white/30 hover:text-white/60 transition-colors w-full text-center md:text-left"
+            aria-label="Sign out"
+            className="px-3 py-2 text-xs font-body text-white/45 hover:text-white/75 transition-colors w-full text-center md:text-left"
           >
             <span className="md:hidden">→</span>
             <span className="hidden md:inline">{isCollapsed ? '→' : 'Sign out'}</span>

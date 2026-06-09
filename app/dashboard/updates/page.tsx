@@ -40,7 +40,7 @@ export default async function UpdatesPage() {
       <UpdateForm projects={projects ?? []} />
 
       {(!updates || updates.length === 0) ? (
-        <p className="text-sm font-body text-white/40 text-center py-12">
+        <p className="text-sm font-body text-white/55 text-center py-12">
           No updates yet. Post your first update to start building in public.
         </p>
       ) : (
@@ -49,7 +49,7 @@ export default async function UpdatesPage() {
             <div key={update.id} className="liquid-glass rounded-[1.25rem] p-6 space-y-4">
               <div className="flex items-start justify-between gap-4">
                 <div className="flex-1 min-w-0 space-y-3">
-                  <p className="text-sm font-body text-white/80 leading-relaxed whitespace-pre-wrap">
+                  <p className="text-sm font-body text-white/90 leading-relaxed whitespace-pre-wrap">
                     {update.content}
                   </p>
 
@@ -64,11 +64,11 @@ export default async function UpdatesPage() {
 
                   <div className="flex items-center gap-3 flex-wrap">
                     {update.projects?.name && (
-                      <span className="text-xs font-body px-2.5 py-0.5 rounded-full border border-white/10 text-white/40">
+                      <span className="text-xs font-body px-2.5 py-0.5 rounded-full border border-white/10 text-white/55">
                         {update.projects.name}
                       </span>
                     )}
-                    <span className="text-xs font-body text-white/30">
+                    <span className="text-xs font-body text-white/45">
                       {timeAgo(update.created_at)}
                     </span>
                   </div>

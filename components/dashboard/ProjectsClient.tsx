@@ -68,7 +68,7 @@ export default function ProjectsClient({ projects, lockedIds, collageProjectIds 
       {!showAddForm && (
         <button
           onClick={() => setShowAddForm(true)}
-          className="liquid-glass rounded-[1rem] px-5 py-2.5 text-sm font-body text-white/70 hover:text-white border border-white/[0.1] hover:border-white/20 transition-colors cursor-pointer"
+          className="liquid-glass rounded-[1rem] px-5 py-2.5 text-sm font-body text-white/85 hover:text-white border border-white/[0.1] hover:border-white/20 transition-colors cursor-pointer"
         >
           + Add project
         </button>
@@ -79,7 +79,7 @@ export default function ProjectsClient({ projects, lockedIds, collageProjectIds 
       )}
 
       {projects.length === 0 && !showAddForm && (
-        <p className="text-sm font-body text-white/40">
+        <p className="text-sm font-body text-white/55">
           No projects yet. Add your first project to showcase your work.
         </p>
       )}
@@ -131,7 +131,7 @@ export default function ProjectsClient({ projects, lockedIds, collageProjectIds 
                       {project.status === 'launched' ? 'Launched' : 'In Progress'}
                     </span>
                     {isLocked && (
-                      <span className="text-xs font-body text-white/30 border border-white/10 px-2.5 py-0.5 rounded-full">
+                      <span className="text-xs font-body text-white/45 border border-white/10 px-2.5 py-0.5 rounded-full">
                         Not visible (free plan)
                       </span>
                     )}
@@ -146,7 +146,7 @@ export default function ProjectsClient({ projects, lockedIds, collageProjectIds 
                       href={project.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs font-body text-white/30 hover:text-white/60 transition-colors mt-1 inline-block truncate max-w-xs"
+                      className="text-xs font-body text-white/45 hover:text-white/75 transition-colors mt-1 inline-block truncate max-w-xs"
                     >
                       {project.url}
                     </a>
@@ -172,7 +172,7 @@ export default function ProjectsClient({ projects, lockedIds, collageProjectIds 
                     <button
                       type="submit"
                       disabled={idx === 0}
-                      className="p-2 text-white/30 hover:text-white/70 disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
+                      className="p-2 text-white/45 hover:text-white/85 disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
                       aria-label="Move up"
                     >
                       ↑
@@ -182,7 +182,7 @@ export default function ProjectsClient({ projects, lockedIds, collageProjectIds 
                     <button
                       type="submit"
                       disabled={idx === projects.length - 1}
-                      className="p-2 text-white/30 hover:text-white/70 disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
+                      className="p-2 text-white/45 hover:text-white/85 disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
                       aria-label="Move down"
                     >
                       ↓
@@ -190,14 +190,14 @@ export default function ProjectsClient({ projects, lockedIds, collageProjectIds 
                   </form>
                   <button
                     onClick={() => setEditingId(project.id)}
-                    className="p-2 text-white/30 hover:text-white/70 transition-colors text-sm font-body cursor-pointer"
+                    className="p-2 text-white/45 hover:text-white/85 transition-colors text-sm font-body cursor-pointer"
                   >
                     Edit
                   </button>
                   <form action={deleteProject.bind(null, project.id)}>
                     <button
                       type="submit"
-                      className="p-2 text-white/20 hover:text-red-400/70 transition-colors text-sm font-body cursor-pointer"
+                      className="p-2 text-white/45 hover:text-red-400/70 transition-colors text-sm font-body cursor-pointer"
                       onClick={(e) => {
                         if (!confirm(`Delete "${project.name}"?`)) e.preventDefault()
                       }}

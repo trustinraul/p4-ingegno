@@ -40,9 +40,9 @@ export default async function ProjectsPage() {
       </div>
 
       {showBanner && (
-        <div className="liquid-glass rounded-[1rem] p-4 text-sm font-body text-white/60">
+        <div className="liquid-glass rounded-[1rem] p-4 text-sm font-body text-white/75">
           You have {allProjects.length} projects. Only the first 2 are visible on your public profile.{' '}
-          <span className="text-white/80 underline underline-offset-2 cursor-pointer">
+          <span className="text-white/90 underline underline-offset-2 cursor-pointer">
             Upgrade to Pro
           </span>{' '}
           to show all.

@@ -38,7 +38,7 @@ export default function AddUpdateButton({ projects }: { projects: Project[] }) {
               <h2 className="font-heading italic text-white text-xl">New update.</h2>
               <button
                 onClick={() => setIsOpen(false)}
-                className="text-white/30 hover:text-white/70 transition-colors text-xl leading-none"
+                className="text-white/45 hover:text-white/70 transition-colors text-xl leading-none"
                 aria-label="Close"
               >
                 ✕

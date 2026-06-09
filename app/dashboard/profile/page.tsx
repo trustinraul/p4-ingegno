@@ -22,8 +22,8 @@ export default async function ProfilePage() {
         <span
           className={`text-xs font-body px-3 py-1 rounded-full ${
             profile?.is_public
-              ? 'bg-white/10 text-white/70'
-              : 'bg-white/5 text-white/30'
+              ? 'bg-white/10 text-white/85'
+              : 'bg-white/5 text-white/45'
           }`}
         >
           {profile?.is_public ? '● Live' : '○ Draft'}

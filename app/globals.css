@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme inline {
-  --font-heading: var(--font-instrument-serif);
+  --font-heading: var(--font-heading);
   --font-body: var(--font-barlow);
 }
 
@@ -94,4 +94,14 @@ body::after {
 @keyframes rotate3d {
   from { transform: rotateY(0deg) rotateX(15deg); }
   to   { transform: rotateY(360deg) rotateX(15deg); }
+}
+
+.rotate3d-svg {
+  animation: rotate3d 60s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rotate3d-svg {
+    animation: none;
+  }
 }

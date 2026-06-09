@@ -31,12 +31,12 @@ export default function UpdateForm({ projects, onSuccess }: UpdateFormProps) {
   }
 
   const inputClass =
-    'w-full bg-white/[0.06] border border-white/[0.1] rounded-[0.75rem] px-4 py-2.5 text-sm font-body text-white placeholder:text-white/30 focus:outline-none focus:border-white/30 transition-colors'
+    'w-full bg-white/[0.06] border border-white/[0.1] rounded-[0.75rem] px-4 py-2.5 text-sm font-body text-white placeholder:text-white/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-1 focus-visible:ring-offset-black focus:border-white/30 transition-colors'
 
   return (
     <form ref={formRef} action={handleSubmit} className="liquid-glass rounded-[1.25rem] p-6 space-y-4">
       <div>
-        <label className="block text-xs font-body text-white/40 tracking-widest uppercase mb-2">
+        <label className="block text-sm font-body text-white/70 tracking-widest uppercase mb-2">
           Update *
         </label>
         <textarea
@@ -51,7 +51,7 @@ export default function UpdateForm({ projects, onSuccess }: UpdateFormProps) {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {projects.length > 0 && (
           <div>
-            <label className="block text-xs font-body text-white/40 tracking-widest uppercase mb-2">
+            <label className="block text-sm font-body text-white/70 tracking-widest uppercase mb-2">
               Project (optional)
             </label>
             <select name="project_id" className={inputClass}>
@@ -66,14 +66,14 @@ export default function UpdateForm({ projects, onSuccess }: UpdateFormProps) {
         )}
 
         <div>
-          <label className="block text-xs font-body text-white/40 tracking-widest uppercase mb-2">
+          <label className="block text-sm font-body text-white/70 tracking-widest uppercase mb-2">
             Image (optional)
           </label>
           <input
             name="image"
             type="file"
             accept="image/*"
-            className="w-full text-sm font-body text-white/40 file:mr-4 file:py-2 file:px-4 file:rounded-[0.5rem] file:border-0 file:text-xs file:font-body file:bg-white/10 file:text-white/60 hover:file:bg-white/15 file:cursor-pointer cursor-pointer"
+            className="w-full text-sm font-body text-white/55 file:mr-4 file:py-2 file:px-4 file:rounded-[0.5rem] file:border-0 file:text-xs file:font-body file:bg-white/10 file:text-white/75 hover:file:bg-white/15 file:cursor-pointer cursor-pointer"
           />
         </div>
       </div>

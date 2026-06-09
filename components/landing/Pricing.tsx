@@ -2,7 +2,6 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import BlurText from '@/components/ui/BlurText'
 
 const freeFeatures = [
   'Public profile at ingegno.app/username',
@@ -24,20 +23,15 @@ export default function Pricing() {
   return (
     <section id="pricing" className="py-32 px-8 md:px-20 bg-transparent">
       <div className="max-w-5xl mx-auto flex flex-col items-center text-center">
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+        <motion.h2
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6 }}
-          className="text-xs tracking-widest uppercase text-white/30 font-body mb-8 text-center mx-auto"
-        >
-          // Pricing
-        </motion.p>
-
-        <BlurText
-          text="Start free. Upgrade when you're ready."
+          transition={{ duration: 0.5, ease: 'easeOut' }}
           className="font-heading italic text-white text-5xl md:text-6xl leading-[0.9] max-w-3xl mb-16 text-center mx-auto"
-        />
+        >
+          Start free. Upgrade when you&apos;re ready.
+        </motion.h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-3xl mx-auto text-left">
         {/* Free */}
@@ -50,14 +44,14 @@ export default function Pricing() {
         >
           <div>
             <div className="min-h-[80px]">
-              <p className="text-sm font-body text-white/40 mb-2">Free</p>
+              <p className="text-sm font-body text-white/55 mb-2">Free</p>
               <p className="font-heading italic text-white text-5xl mb-1">€0</p>
-              <p className="text-xs font-body text-white/30 mb-8">forever</p>
+              <p className="text-xs font-body text-white/45 mb-8">forever</p>
             </div>
             <ul className="space-y-3">
               {freeFeatures.map((feature) => (
-                <li key={feature} className="flex items-center gap-3 text-sm font-body text-white/60">
-                  <span className="text-white/30 flex-shrink-0 text-xs">—</span>
+                <li key={feature} className="flex items-center gap-3 text-sm font-body text-white/75">
+                  <span className="text-white/45 flex-shrink-0 text-xs">—</span>
                   {feature}
                 </li>
               ))}
@@ -80,21 +74,21 @@ export default function Pricing() {
           className="liquid-glass-strong rounded-[1.25rem] p-8 flex flex-col justify-between relative overflow-hidden"
         >
           <div className="absolute top-5 right-5">
-            <span className="text-xs font-body text-white/60 bg-white/10 px-3 py-1 rounded-full">
+            <span className="text-xs font-body text-white/75 bg-white/10 px-3 py-1 rounded-full">
               Most popular
             </span>
           </div>
 
           <div>
             <div className="min-h-[80px]">
-              <p className="text-sm font-body text-white/40 mb-2">Pro</p>
+              <p className="text-sm font-body text-white/55 mb-2">Pro</p>
               <p className="font-heading italic text-5xl mb-1" style={{ color: '#8B5CF6' }}>€9</p>
-              <p className="text-xs font-body text-white/30 mb-8">/month · or €79/year</p>
+              <p className="text-xs font-body text-white/45 mb-8">/month · or €79/year</p>
             </div>
             <ul className="space-y-3">
               {proFeatures.map((feature) => (
-                <li key={feature} className="flex items-center gap-3 text-sm font-body text-white/70">
-                  <span className="text-white/60 flex-shrink-0 text-xs">✓</span>
+                <li key={feature} className="flex items-center gap-3 text-sm font-body text-white/85">
+                  <span className="text-white/75 flex-shrink-0 text-xs">✓</span>
                   {feature}
                 </li>
               ))}

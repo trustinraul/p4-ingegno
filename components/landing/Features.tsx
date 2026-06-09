@@ -60,15 +60,15 @@ export default function Features() {
             className="font-heading italic text-white text-5xl md:text-6xl leading-[0.9] max-w-xl text-left"
           />
 
-          <div className="flex flex-col gap-4 w-full">
+          <div className="flex flex-col divide-y divide-white/[0.06] w-full">
             {features.map((feature, i) => (
               <motion.div
                 key={i}
-                initial={{ filter: 'blur(10px)', opacity: 0, x: 20 }}
-                whileInView={{ filter: 'blur(0px)', opacity: 1, x: 0 }}
+                initial={{ opacity: 0, x: 16 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.5, ease: 'easeOut', delay: i * 0.12 }}
-                className="liquid-glass rounded-[1rem] px-8 py-7 flex items-start gap-8"
+                className="py-7 flex items-start gap-8"
               >
                 <div
                   className="w-px h-12 flex-shrink-0 mt-1"
@@ -76,7 +76,7 @@ export default function Features() {
                 />
                 <div>
                   <p className="font-heading italic text-white text-2xl leading-snug mb-3">{feature.title}</p>
-                  <p className="text-sm font-body text-white/60 leading-relaxed">{feature.body}</p>
+                  <p className="text-sm font-body text-white/75 leading-relaxed">{feature.body}</p>
                 </div>
               </motion.div>
             ))}

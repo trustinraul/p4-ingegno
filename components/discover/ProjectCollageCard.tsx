@@ -100,7 +100,7 @@ export default function ProjectCollageCard({ collage, project, author }: Project
 
       <div className="px-4 py-3 space-y-2">
         <div className="flex items-center gap-2 flex-wrap">
-          <p className="text-xs font-body text-white/60 leading-relaxed">{project.name}</p>
+          <p className="text-xs font-body text-white/75 leading-relaxed">{project.name}</p>
           <span className="text-[10px] font-body text-violet-400/80 bg-violet-400/10 border border-violet-400/20 rounded-full px-2 py-0.5">
             Launched
           </span>
@@ -119,7 +119,7 @@ export default function ProjectCollageCard({ collage, project, author }: Project
               </div>
             )}
           </div>
-          <span className="text-xs font-body text-white/40">@{author.username}</span>
+          <span className="text-xs font-body text-white/55">@{author.username}</span>
         </div>
       </div>
     </Link>

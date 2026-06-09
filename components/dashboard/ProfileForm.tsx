@@ -124,11 +124,11 @@ export default function ProfileForm({ profile }: ProfileFormProps) {
           <button
             type="button"
             onClick={() => avatarInputRef.current?.click()}
-            className="font-body text-sm text-white/60 hover:text-white transition-colors"
+            className="font-body text-sm text-white/75 hover:text-white transition-colors"
           >
             Upload photo
           </button>
-          <p className="font-body text-xs text-white/25">JPG, PNG or WebP. Max 2 MB.</p>
+          <p className="font-body text-xs text-white/45">JPG, PNG or WebP. Max 2 MB.</p>
           {avatarError && (
             <p className="font-body text-xs text-red-400/80">{avatarError}</p>
           )}
@@ -148,7 +148,7 @@ export default function ProfileForm({ profile }: ProfileFormProps) {
 
         <div className="grid grid-cols-2 gap-4">
           <div className="flex flex-col gap-1.5">
-            <label className="font-body text-xs text-white/40 uppercase tracking-wider">
+            <label className="font-body text-sm text-white/70 uppercase tracking-wider">
               Full name
             </label>
             <input
@@ -156,12 +156,12 @@ export default function ProfileForm({ profile }: ProfileFormProps) {
               type="text"
               defaultValue={profile?.full_name ?? ''}
               placeholder="Ada Lovelace"
-              className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white font-body text-sm placeholder:text-white/20 focus:outline-none focus:border-white/30 transition-colors"
+              className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white font-body text-sm placeholder:text-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-1 focus-visible:ring-offset-black focus:border-white/30 transition-colors"
             />
           </div>
 
           <div className="flex flex-col gap-1.5">
-            <label className="font-body text-xs text-white/40 uppercase tracking-wider">
+            <label className="font-body text-sm text-white/70 uppercase tracking-wider">
               Username
             </label>
             <input
@@ -175,7 +175,7 @@ export default function ProfileForm({ profile }: ProfileFormProps) {
         </div>
 
         <div className="flex flex-col gap-1.5">
-          <label className="font-body text-xs text-white/40 uppercase tracking-wider">
+          <label className="font-body text-sm text-white/70 uppercase tracking-wider">
             Tagline
           </label>
           <input
@@ -183,13 +183,13 @@ export default function ProfileForm({ profile }: ProfileFormProps) {
             type="text"
             defaultValue={profile?.tagline ?? ''}
             placeholder="Founder · Designer · Writer"
-            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white font-body text-sm placeholder:text-white/20 focus:outline-none focus:border-white/30 transition-colors"
+            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white font-body text-sm placeholder:text-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-1 focus-visible:ring-offset-black focus:border-white/30 transition-colors"
           />
         </div>
 
         {/* Roles tag input */}
         <div className="flex flex-col gap-2">
-          <label className="font-body text-xs text-white/40 uppercase tracking-wider">
+          <label className="font-body text-sm text-white/70 uppercase tracking-wider">
             Roles
           </label>
           <div className="flex flex-wrap gap-2 mb-2">
@@ -202,7 +202,7 @@ export default function ProfileForm({ profile }: ProfileFormProps) {
                 <button
                   type="button"
                   onClick={() => removeRole(role)}
-                  className="text-white/30 hover:text-white/70 transition-colors leading-none"
+                  className="text-white/45 hover:text-white/85 transition-colors leading-none"
                   aria-label={`Remove ${role}`}
                 >
                   ×
@@ -216,20 +216,20 @@ export default function ProfileForm({ profile }: ProfileFormProps) {
             onChange={(e) => setRoleInput(e.target.value)}
             onKeyDown={addRole}
             placeholder="Type a role and press Enter"
-            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white font-body text-sm placeholder:text-white/20 focus:outline-none focus:border-white/30 transition-colors"
+            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white font-body text-sm placeholder:text-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-1 focus-visible:ring-offset-black focus:border-white/30 transition-colors"
           />
         </div>
 
         {/* Narrative */}
         <div className="flex flex-col gap-1.5">
           <div className="flex items-center justify-between">
-            <label className="font-body text-xs text-white/40 uppercase tracking-wider">
+            <label className="font-body text-sm text-white/70 uppercase tracking-wider">
               Narrative
             </label>
             <span
               className={cn(
                 'font-body text-xs transition-colors',
-                wordCount > 250 ? 'text-red-400/80' : 'text-white/25'
+                wordCount > 250 ? 'text-red-400/80' : 'text-white/45'
               )}
             >
               {wordCount}/250 words
@@ -241,7 +241,7 @@ export default function ProfileForm({ profile }: ProfileFormProps) {
             onChange={(e) => setNarrative(e.target.value)}
             placeholder="Tell the world who you are and what you're building…"
             rows={7}
-            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white font-body text-sm placeholder:text-white/20 focus:outline-none focus:border-white/30 transition-colors resize-none"
+            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white font-body text-sm placeholder:text-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-1 focus-visible:ring-offset-black focus:border-white/30 transition-colors resize-none"
           />
         </div>
 
@@ -261,13 +261,13 @@ export default function ProfileForm({ profile }: ProfileFormProps) {
 
           {/* Make public toggle */}
           <div className="flex items-center gap-3">
-            <span className="font-body text-sm text-white/40">Make public</span>
+            <span className="font-body text-sm text-white/55">Make public</span>
             <button
               type="button"
               onClick={handleToggle}
               disabled={isPending}
               className={cn(
-                'relative w-11 h-6 rounded-full transition-colors focus:outline-none disabled:opacity-50',
+                'relative w-11 h-6 rounded-full transition-colors focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60 disabled:opacity-50',
                 isPublic ? 'bg-white/30' : 'bg-white/10'
               )}
               aria-pressed={isPublic}

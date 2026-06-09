@@ -79,14 +79,14 @@ export default async function DiscoverPage() {
       <div className="max-w-7xl mx-auto px-6 pt-36 pb-24">
         <div className="mb-12">
           <h1 className="font-heading italic text-white text-5xl md:text-6xl mb-3">Discover.</h1>
-          <p className="font-body text-white/40 text-lg">
+          <p className="font-body text-white/55 text-lg">
             Modern polymaths building in public.
           </p>
         </div>
 
         {items.length === 0 ? (
           <div className="liquid-glass rounded-[1.25rem] p-12 text-center">
-            <p className="font-body text-white/40">
+            <p className="font-body text-white/55">
               No visual updates yet. Be the first to post one.
             </p>
           </div>

@@ -20,7 +20,7 @@ export default function SignupPage() {
             <h1 className="font-heading italic text-white text-2xl mb-3">
               Check your email.
             </h1>
-            <p className="font-body text-white/40 text-sm leading-relaxed">
+            <p className="font-body text-white/55 text-sm leading-relaxed">
               We sent a confirmation link to your inbox.
               <br />
               Click it to activate your profile.
@@ -42,13 +42,13 @@ export default function SignupPage() {
           <h1 className="font-heading italic text-white text-2xl mb-2">
             Create your profile.
           </h1>
-          <p className="font-body text-white/40 text-sm mb-8">
+          <p className="font-body text-white/55 text-sm mb-8">
             Your place on the internet.
           </p>
 
           <form action={formAction} className="flex flex-col gap-4">
             <div className="flex flex-col gap-1.5">
-              <label className="font-body text-xs text-white/40 uppercase tracking-wider">
+              <label className="font-body text-sm text-white/70 uppercase tracking-wider">
                 Username
               </label>
               <input
@@ -57,12 +57,12 @@ export default function SignupPage() {
                 placeholder="your-handle"
                 autoComplete="username"
                 required
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white font-body text-sm placeholder:text-white/20 focus:outline-none focus:border-white/30 transition-colors"
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white font-body text-sm placeholder:text-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-1 focus-visible:ring-offset-black focus:border-white/30 transition-colors"
               />
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="font-body text-xs text-white/40 uppercase tracking-wider">
+              <label className="font-body text-sm text-white/70 uppercase tracking-wider">
                 Email
               </label>
               <input
@@ -71,12 +71,12 @@ export default function SignupPage() {
                 placeholder="you@example.com"
                 autoComplete="email"
                 required
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white font-body text-sm placeholder:text-white/20 focus:outline-none focus:border-white/30 transition-colors"
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white font-body text-sm placeholder:text-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-1 focus-visible:ring-offset-black focus:border-white/30 transition-colors"
               />
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="font-body text-xs text-white/40 uppercase tracking-wider">
+              <label className="font-body text-sm text-white/70 uppercase tracking-wider">
                 Password
               </label>
               <input
@@ -86,7 +86,7 @@ export default function SignupPage() {
                 autoComplete="new-password"
                 required
                 minLength={6}
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white font-body text-sm placeholder:text-white/20 focus:outline-none focus:border-white/30 transition-colors"
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white font-body text-sm placeholder:text-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-1 focus-visible:ring-offset-black focus:border-white/30 transition-colors"
               />
             </div>
 
@@ -105,9 +105,9 @@ export default function SignupPage() {
           </form>
         </div>
 
-        <p className="text-center font-body text-sm text-white/30 mt-6">
+        <p className="text-center font-body text-sm text-white/45 mt-6">
           Already have an account?{' '}
-          <Link href="/login" className="text-white/60 hover:text-white transition-colors">
+          <Link href="/login" className="text-white/75 hover:text-white transition-colors">
             Sign in
           </Link>
         </p>

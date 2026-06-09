@@ -14,8 +14,44 @@ export default function TheName() {
     <section id="about" className="py-32 px-8 md:px-20 bg-transparent relative overflow-hidden">
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
 
-        {/* Left Column: Da Vinci Portrait glass card */}
-        <div className="lg:col-span-5 w-full flex justify-center order-1 lg:order-1">
+        {/* Left Column: Text content */}
+        <div className="lg:col-span-7 text-left order-2 lg:order-1">
+          <motion.p
+            initial={{ filter: 'blur(10px)', opacity: 0, y: 20 }}
+            whileInView={{ filter: 'blur(0px)', opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            className="font-heading italic text-white text-6xl mb-3"
+          >
+            ingegno
+          </motion.p>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-sm font-body text-white/45 mb-12"
+          >
+            /in·ˈjen·yo/ · Italian, Renaissance
+          </motion.p>
+
+          {paragraphs.map((para, i) => (
+            <motion.p
+              key={i}
+              initial={{ filter: 'blur(10px)', opacity: 0, y: 20 }}
+              whileInView={{ filter: 'blur(0px)', opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6, ease: 'easeOut', delay: 0.3 + i * 0.15 }}
+              className="text-base font-body text-white/75 leading-relaxed mb-5"
+            >
+              {para}
+            </motion.p>
+          ))}
+        </div>
+
+        {/* Right Column: Da Vinci Portrait glass card */}
+        <div className="lg:col-span-5 w-full flex justify-center order-1 lg:order-2">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -42,52 +78,6 @@ export default function TheName() {
               />
             </div>
           </motion.div>
-        </div>
-
-        {/* Right Column: Text content */}
-        <div className="lg:col-span-7 text-left order-2 lg:order-2">
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6 }}
-            className="text-xs tracking-widest uppercase text-white/30 font-body mb-8"
-          >
-            // The name
-          </motion.p>
-
-          <motion.p
-            initial={{ filter: 'blur(10px)', opacity: 0, y: 20 }}
-            whileInView={{ filter: 'blur(0px)', opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-            className="font-heading italic text-white text-6xl mb-3"
-          >
-            ingegno
-          </motion.p>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-sm font-body text-white/30 mb-12"
-          >
-            /in·ˈjen·yo/ · Italian, Renaissance
-          </motion.p>
-
-          {paragraphs.map((para, i) => (
-            <motion.p
-              key={i}
-              initial={{ filter: 'blur(10px)', opacity: 0, y: 20 }}
-              whileInView={{ filter: 'blur(0px)', opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.6, ease: 'easeOut', delay: 0.3 + i * 0.15 }}
-              className="text-base font-body text-white/65 leading-relaxed mb-5"
-            >
-              {para}
-            </motion.p>
-          ))}
         </div>
 
       </div>
