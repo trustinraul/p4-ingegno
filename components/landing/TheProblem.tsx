@@ -60,7 +60,7 @@ export default function TheProblem() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.5, ease: 'easeOut', delay: i * 0.1 }}
-              className={`flex flex-col gap-3 ${i % 2 === 1 ? 'items-end text-right' : 'items-start text-left'}`}
+              className={`flex flex-col gap-3 ${i % 2 === 1 ? 'md:items-end md:text-right' : 'items-start text-left'}`}
             >
               <p className="font-heading italic text-white text-3xl md:text-4xl leading-tight max-w-2xl" style={{ textWrap: 'balance' } as React.CSSProperties}>
                 &ldquo;{point.title}&rdquo;

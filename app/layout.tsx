@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { EB_Garamond, Barlow } from 'next/font/google'
+import MotionProvider from '@/components/MotionProvider'
 import './globals.css'
 
 const ebGaramond = EB_Garamond({
@@ -29,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${ebGaramond.variable} ${barlow.variable}`}>
       <body className="font-body antialiased">
-        {children}
+        <MotionProvider>{children}</MotionProvider>
       </body>
     </html>
   )

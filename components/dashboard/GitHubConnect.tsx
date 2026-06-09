@@ -89,6 +89,7 @@ export default function GitHubConnect({ connection }: GitHubConnectProps) {
           <button
             onClick={syncNow}
             disabled={syncing}
+            title="Pull your latest commits from the selected repositories into your public activity feed"
             className="px-4 py-2 text-sm font-body text-white/85 hover:text-white border border-white/[0.1] hover:border-white/20 rounded-[0.75rem] transition-colors disabled:opacity-50"
           >
             {syncing ? 'Syncing…' : 'Sync now'}
@@ -105,6 +106,10 @@ export default function GitHubConnect({ connection }: GitHubConnectProps) {
           </button>
         </div>
       </div>
+
+      <p className="text-xs font-body text-white/45 leading-relaxed">
+        Syncing pulls your most recent commits from the repositories you select below into your profile&apos;s activity feed. Run it whenever you want your profile to reflect new work.
+      </p>
 
       {syncResult && (
         <p className="text-xs font-body text-white/55">{syncResult}</p>

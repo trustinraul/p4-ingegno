@@ -96,7 +96,7 @@ export default function Hero() {
               Beta
             </span>
             <span className="text-sm font-body text-white/75">
-              Now in early access — claim your username
+              Now in early access: claim your username
             </span>
           </div>
         </motion.div>

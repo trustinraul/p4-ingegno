@@ -46,7 +46,7 @@ export default function Pricing() {
             <div className="min-h-[80px]">
               <p className="text-sm font-body text-white/55 mb-2">Free</p>
               <p className="font-heading italic text-white text-5xl mb-1">€0</p>
-              <p className="text-xs font-body text-white/45 mb-8">forever</p>
+              <p className="text-xs font-body text-white/55 mb-8">forever</p>
             </div>
             <ul className="space-y-3">
               {freeFeatures.map((feature) => (
@@ -83,7 +83,7 @@ export default function Pricing() {
             <div className="min-h-[80px]">
               <p className="text-sm font-body text-white/55 mb-2">Pro</p>
               <p className="font-heading italic text-5xl mb-1" style={{ color: '#8B5CF6' }}>€9</p>
-              <p className="text-xs font-body text-white/45 mb-8">/month · or €79/year</p>
+              <p className="text-xs font-body text-white/55 mb-8">/month · or €79/year</p>
             </div>
             <ul className="space-y-3">
               {proFeatures.map((feature) => (

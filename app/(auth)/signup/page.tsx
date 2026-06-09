@@ -7,7 +7,7 @@ import { signUp } from '@/app/actions/auth'
 const initialState: { error?: string; success?: boolean } = {}
 
 export default function SignupPage() {
-  const [state, formAction] = useActionState(signUp, initialState)
+  const [state, formAction, pending] = useActionState(signUp, initialState)
 
   if (state?.success) {
     return (
@@ -48,7 +48,7 @@ export default function SignupPage() {
 
           <form action={formAction} className="flex flex-col gap-4">
             <div className="flex flex-col gap-1.5">
-              <label className="font-body text-sm text-white/70 uppercase tracking-wider">
+              <label className="font-body text-sm text-white/70">
                 Username
               </label>
               <input
@@ -62,7 +62,7 @@ export default function SignupPage() {
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="font-body text-sm text-white/70 uppercase tracking-wider">
+              <label className="font-body text-sm text-white/70">
                 Email
               </label>
               <input
@@ -76,7 +76,7 @@ export default function SignupPage() {
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="font-body text-sm text-white/70 uppercase tracking-wider">
+              <label className="font-body text-sm text-white/70">
                 Password
               </label>
               <input
@@ -98,9 +98,10 @@ export default function SignupPage() {
 
             <button
               type="submit"
-              className="w-full mt-2 bg-white text-black font-body text-sm font-medium rounded-full py-3 hover:bg-white/90 transition-colors"
+              disabled={pending}
+              className="w-full mt-2 bg-white text-black font-body text-sm font-medium rounded-full py-3 hover:bg-white/90 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              Create profile
+              {pending ? 'Creating profile…' : 'Create profile'}
             </button>
           </form>
         </div>

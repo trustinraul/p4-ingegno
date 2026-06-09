@@ -28,9 +28,7 @@ export default async function SettingsPage() {
 
       {/* Profile section */}
       <section>
-        <h2 className="text-sm font-body text-white/70 tracking-widest uppercase mb-6">
-          // Profile
-        </h2>
+        <h2 className="font-heading italic text-white text-base mb-6">Profile</h2>
         <div className="liquid-glass rounded-[1.25rem] p-7 flex items-center justify-between">
           <div>
             <p className="text-sm font-body text-white/75">Name, tagline, roles, narrative, avatar</p>
@@ -46,17 +44,13 @@ export default async function SettingsPage() {
 
       {/* GitHub section */}
       <section>
-        <h2 className="text-sm font-body text-white/70 tracking-widest uppercase mb-6">
-          // GitHub
-        </h2>
+        <h2 className="font-heading italic text-white text-base mb-6">GitHub</h2>
         <GitHubConnect connection={connection} />
       </section>
 
       {/* Account section */}
       <section>
-        <h2 className="text-sm font-body text-white/70 tracking-widest uppercase mb-6">
-          // Account
-        </h2>
+        <h2 className="font-heading italic text-white text-base mb-6">Account</h2>
         <div className="liquid-glass rounded-[1.25rem] p-7 space-y-4">
           <div className="flex items-center justify-between">
             <span className="text-sm font-body text-white/75">Email</span>

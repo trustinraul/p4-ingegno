@@ -9,17 +9,23 @@ import type { Project } from '@/lib/types'
 interface ProjectGridProps {
   projects: Project[]
   plan: 'free' | 'pro'
+  isOwner?: boolean
 }
 
-export default function ProjectGrid({ projects, plan }: ProjectGridProps) {
+export default function ProjectGrid({ projects, plan, isOwner }: ProjectGridProps) {
   const visible = getVisibleProjects(projects, plan)
   const locked = getLockedProjects(projects, plan)
 
   return (
     <section className="py-24 px-8 md:px-20 bg-black">
       {projects.length === 0 ? (
-        <div className="border border-white/[0.08] rounded-[1.25rem] p-12 text-center text-sm text-white/45 font-body">
-          No projects yet.
+        <div className="border border-white/[0.08] rounded-[1.25rem] p-12 text-center text-sm text-white/45 font-body flex flex-col items-center gap-3">
+          <span>No projects yet.</span>
+          {isOwner && (
+            <a href="/dashboard/profile" className="text-white/60 hover:text-white transition-colors">
+              Add your first project →
+            </a>
+          )}
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">

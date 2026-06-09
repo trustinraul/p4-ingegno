@@ -7,7 +7,7 @@ import { signIn } from '@/app/actions/auth'
 const initialState = { error: undefined as string | undefined }
 
 export default function LoginPage() {
-  const [state, formAction] = useActionState(signIn, initialState)
+  const [state, formAction, pending] = useActionState(signIn, initialState)
 
   return (
     <div className="min-h-screen bg-black flex items-center justify-center px-4">
@@ -26,7 +26,7 @@ export default function LoginPage() {
 
           <form action={formAction} className="flex flex-col gap-4">
             <div className="flex flex-col gap-1.5">
-              <label className="font-body text-sm text-white/70 uppercase tracking-wider">
+              <label className="font-body text-sm text-white/70">
                 Email
               </label>
               <input
@@ -40,7 +40,7 @@ export default function LoginPage() {
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="font-body text-sm text-white/70 uppercase tracking-wider">
+              <label className="font-body text-sm text-white/70">
                 Password
               </label>
               <input
@@ -61,9 +61,10 @@ export default function LoginPage() {
 
             <button
               type="submit"
-              className="w-full mt-2 bg-white text-black font-body text-sm font-medium rounded-full py-3 hover:bg-white/90 transition-colors focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60"
+              disabled={pending}
+              className="w-full mt-2 bg-white text-black font-body text-sm font-medium rounded-full py-3 hover:bg-white/90 transition-colors focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60 disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              Sign in
+              {pending ? 'Signing in…' : 'Sign in'}
             </button>
           </form>
         </div>

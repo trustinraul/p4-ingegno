@@ -86,12 +86,15 @@ export default async function PublicProfilePage(
     .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
     .slice(0, 20)
 
+  const { data: { user } } = await supabase.auth.getUser()
+  const isOwner = user?.id === profile.id
+
   return (
     <main className="bg-black min-h-screen">
       <ProfileNavbar />
       <ProfileHero profile={profile} />
       <ProfileNarrative narrative={profile.narrative} />
-      <ProjectGrid projects={projects ?? []} plan={profile.plan} />
+      <ProjectGrid projects={projects ?? []} plan={profile.plan} isOwner={isOwner} />
       <ActivityFeed
         activity={activity}
         profile={{ avatar_url: profile.avatar_url, full_name: profile.full_name }}

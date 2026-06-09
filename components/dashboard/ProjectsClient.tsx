@@ -34,6 +34,8 @@ export default function ProjectsClient({ projects, lockedIds, collageProjectIds 
   const [collageModal, setCollageModal] = useState<CollageModal | null>(null)
   const [collagePendingId, setCollagePendingId] = useState<string | null>(null)
   const [collageError, setCollageError] = useState<string | null>(null)
+  const [confirmingDeleteId, setConfirmingDeleteId] = useState<string | null>(null)
+  const [isDeleting, startDelete] = useTransition()
 
   const lockedSet = new Set(lockedIds)
   const collageSet = new Set(collageProjectIds)
@@ -194,17 +196,36 @@ export default function ProjectsClient({ projects, lockedIds, collageProjectIds 
                   >
                     Edit
                   </button>
-                  <form action={deleteProject.bind(null, project.id)}>
+                  {confirmingDeleteId === project.id ? (
+                    <>
+                      <button
+                        onClick={() =>
+                          startDelete(async () => {
+                            await deleteProject(project.id)
+                            setConfirmingDeleteId(null)
+                          })
+                        }
+                        disabled={isDeleting}
+                        className="p-2 text-red-400/80 hover:text-red-400 transition-colors text-sm font-body cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        {isDeleting ? 'Deleting…' : 'Confirm'}
+                      </button>
+                      <button
+                        onClick={() => setConfirmingDeleteId(null)}
+                        disabled={isDeleting}
+                        className="p-2 text-white/45 hover:text-white/85 transition-colors text-sm font-body cursor-pointer disabled:opacity-50"
+                      >
+                        Cancel
+                      </button>
+                    </>
+                  ) : (
                     <button
-                      type="submit"
+                      onClick={() => setConfirmingDeleteId(project.id)}
                       className="p-2 text-white/45 hover:text-red-400/70 transition-colors text-sm font-body cursor-pointer"
-                      onClick={(e) => {
-                        if (!confirm(`Delete "${project.name}"?`)) e.preventDefault()
-                      }}
                     >
                       Delete
                     </button>
-                  </form>
+                  )}
                 </div>
               </div>
             </div>

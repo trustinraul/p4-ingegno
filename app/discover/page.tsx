@@ -85,7 +85,7 @@ export default async function DiscoverPage() {
         </div>
 
         {items.length === 0 ? (
-          <div className="liquid-glass rounded-[1.25rem] p-12 text-center">
+          <div className="border border-white/[0.08] rounded-[1.25rem] p-12 text-center">
             <p className="font-body text-white/55">
               No visual updates yet. Be the first to post one.
             </p>
