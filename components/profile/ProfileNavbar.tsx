@@ -3,7 +3,7 @@ import Link from 'next/link'
 export default function ProfileNavbar() {
   return (
     <nav className="fixed top-4 left-0 right-0 z-50 flex items-center justify-between px-8 lg:px-16">
-      <Link href="/" className="font-heading italic text-white/45 text-sm hover:text-white/75 transition-colors">
+      <Link href="/" className="font-heading italic text-white text-2xl hover:text-white/75 transition-colors">
         Ingegno
       </Link>
       <Link

@@ -33,8 +33,8 @@ export default function DashboardNav({ username, isPublic, isCollapsed, onToggle
       {/* Header */}
       <div className={cn('flex items-center mb-4 md:mb-10 px-4 pt-6 justify-center', !isCollapsed && 'md:justify-between')}>
         {!isCollapsed && (
-          <Link href="/dashboard" className="hidden md:block">
-            <span className="font-heading italic text-white text-2xl">Ingegno</span>
+          <Link href="/" className="hidden md:block group">
+            <span className="font-heading italic text-white text-2xl group-hover:text-white/75 transition-colors">Ingegno</span>
           </Link>
         )}
         <button
