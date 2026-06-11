@@ -53,14 +53,20 @@ export default function ProfileForm({ profile }: ProfileFormProps) {
   const [avatarError, setAvatarError] = useState<string | null>(null)
   const [avatarPending, setAvatarPending] = useState(false)
 
-  function addRole(e: React.KeyboardEvent<HTMLInputElement>) {
-    if (e.key === 'Enter') {
+  const MAX_ROLES = 10
+
+  function commitRole() {
+    const trimmed = roleInput.trim()
+    if (trimmed && !roles.includes(trimmed) && roles.length < MAX_ROLES) {
+      setRoles([...roles, trimmed])
+    }
+    setRoleInput('')
+  }
+
+  function handleRoleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (e.key === 'Enter' || e.key === ',') {
       e.preventDefault()
-      const trimmed = roleInput.trim()
-      if (trimmed && !roles.includes(trimmed)) {
-        setRoles([...roles, trimmed])
-      }
-      setRoleInput('')
+      commitRole()
     }
   }
 
@@ -210,14 +216,27 @@ export default function ProfileForm({ profile }: ProfileFormProps) {
               </span>
             ))}
           </div>
-          <input
-            type="text"
-            value={roleInput}
-            onChange={(e) => setRoleInput(e.target.value)}
-            onKeyDown={addRole}
-            placeholder="Type a role and press Enter"
-            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white font-body text-sm placeholder:text-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-1 focus-visible:ring-offset-black focus:border-white/30 transition-colors"
-          />
+          <div className="flex gap-2">
+            <input
+              type="text"
+              value={roleInput}
+              onChange={(e) => setRoleInput(e.target.value)}
+              onKeyDown={handleRoleKeyDown}
+              enterKeyHint="done"
+              disabled={roles.length >= MAX_ROLES}
+              placeholder={roles.length >= MAX_ROLES ? 'Maximum 10 roles' : 'Add a role'}
+              className="flex-1 min-w-0 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white font-body text-sm placeholder:text-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-1 focus-visible:ring-offset-black focus:border-white/30 transition-colors disabled:opacity-40"
+            />
+            <button
+              type="button"
+              onClick={commitRole}
+              disabled={!roleInput.trim() || roles.length >= MAX_ROLES}
+              className="shrink-0 bg-white/10 hover:bg-white/15 border border-white/[0.12] rounded-xl px-4 py-3 text-sm font-body text-white transition-colors disabled:opacity-40 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400"
+              aria-label="Add role"
+            >
+              + Add
+            </button>
+          </div>
         </div>
 
         {/* Narrative */}
