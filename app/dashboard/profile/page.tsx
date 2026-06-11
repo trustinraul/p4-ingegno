@@ -1,6 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import ProfileForm from '@/components/dashboard/ProfileForm'
+import ShareProfile from '@/components/dashboard/ShareProfile'
 
 export default async function ProfilePage() {
   const supabase = await createClient()
@@ -29,6 +30,11 @@ export default async function ProfilePage() {
           {profile?.is_public ? '● Live' : '○ Draft'}
         </span>
       </div>
+      {profile?.username && (
+        <div className="mb-8">
+          <ShareProfile username={profile.username} />
+        </div>
+      )}
       <ProfileForm profile={profile} />
     </div>
   )
