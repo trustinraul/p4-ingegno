@@ -1,7 +1,7 @@
 'use client'
 
-import { useTransition, useState } from 'react'
-import { createProject, updateProject } from '@/app/actions/projects'
+import { useTransition, useState, useRef } from 'react'
+import { createProject, updateProject, uploadProjectImage } from '@/app/actions/projects'
 import { cn } from '@/lib/utils'
 
 interface Project {
@@ -10,6 +10,7 @@ interface Project {
   description: string | null
   status: string
   url: string | null
+  cover_image_url: string | null
 }
 
 interface ProjectFormProps {
@@ -20,6 +21,23 @@ interface ProjectFormProps {
 export default function ProjectForm({ project, onClose }: ProjectFormProps) {
   const [isPending, startTransition] = useTransition()
   const [error, setError] = useState<string | null>(null)
+
+  const [coverUrl, setCoverUrl] = useState(project?.cover_image_url ?? '')
+  const [coverPending, setCoverPending] = useState(false)
+  const coverInputRef = useRef<HTMLInputElement>(null)
+
+  async function handleCoverChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0]
+    if (!file) return
+    setError(null)
+    setCoverPending(true)
+    const fd = new FormData()
+    fd.append('image', file)
+    const result = await uploadProjectImage(fd)
+    setCoverPending(false)
+    if (result?.error) setError(result.error)
+    else if (result?.url) setCoverUrl(result.url)
+  }
 
   async function handleSubmit(formData: FormData) {
     setError(null)
@@ -41,6 +59,55 @@ export default function ProjectForm({ project, onClose }: ProjectFormProps) {
 
   return (
     <form action={handleSubmit} className="liquid-glass rounded-[1.25rem] p-6 space-y-4">
+      <input type="hidden" name="cover_image_url" value={coverUrl} />
+
+      <div>
+        <label className="block text-sm font-body text-white/70 tracking-widest uppercase mb-2">
+          Cover image
+        </label>
+        <div className="flex items-center gap-4">
+          <div className="relative w-24 h-16 rounded-[0.6rem] overflow-hidden bg-white/[0.06] border border-white/[0.1] flex items-center justify-center shrink-0">
+            {coverUrl ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={coverUrl} alt="Cover" className="w-full h-full object-cover" />
+            ) : (
+              <span className="text-white/30 text-xs font-body">No image</span>
+            )}
+            {coverPending && (
+              <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
+                <span className="text-white text-xs font-body">…</span>
+              </div>
+            )}
+          </div>
+          <div className="flex flex-col gap-1">
+            <button
+              type="button"
+              onClick={() => coverInputRef.current?.click()}
+              className="font-body text-sm text-white/75 hover:text-white transition-colors text-left"
+            >
+              {coverUrl ? 'Replace image' : 'Upload image'}
+            </button>
+            {coverUrl && (
+              <button
+                type="button"
+                onClick={() => setCoverUrl('')}
+                className="font-body text-xs text-white/40 hover:text-white/70 transition-colors text-left"
+              >
+                Remove
+              </button>
+            )}
+            <p className="font-body text-xs text-white/40">JPG, PNG, WebP or GIF. Max 5 MB.</p>
+          </div>
+        </div>
+        <input
+          ref={coverInputRef}
+          type="file"
+          accept="image/jpeg,image/png,image/webp,image/gif"
+          className="hidden"
+          onChange={handleCoverChange}
+        />
+      </div>
+
       <div>
         <label className="block text-sm font-body text-white/70 tracking-widest uppercase mb-2">
           Name *

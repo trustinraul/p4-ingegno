@@ -2,6 +2,7 @@
 
 import { createClient } from '@/lib/supabase/server'
 import { revalidatePath } from 'next/cache'
+import { validateImageUpload } from '@/lib/utils'
 
 export async function createProject(formData: FormData) {
   const supabase = await createClient()
@@ -32,6 +33,7 @@ export async function createProject(formData: FormData) {
     description: (formData.get('description') as string) || null,
     status: (formData.get('status') as string) || 'in_progress',
     url: urlRaw,
+    cover_image_url: (formData.get('cover_image_url') as string) || null,
     display_order: nextOrder,
   })
 
@@ -61,6 +63,7 @@ export async function updateProject(id: string, formData: FormData) {
       description: (formData.get('description') as string) || null,
       status: formData.get('status') as string,
       url: urlRaw,
+      cover_image_url: (formData.get('cover_image_url') as string) || null,
     })
     .eq('id', id)
     .eq('user_id', user.id)
@@ -122,4 +125,28 @@ export async function moveProjectDown(id: string) {
   await supabase.from('projects').update({ display_order: below.display_order }).eq('id', current.id)
   await supabase.from('projects').update({ display_order: current.display_order }).eq('id', below.id)
   revalidatePath('/dashboard/projects')
+}
+
+export async function uploadProjectImage(formData: FormData) {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) return { error: 'Not authenticated' }
+
+  const file = formData.get('image') as File
+  if (!file || file.size === 0) return { error: 'No file provided' }
+
+  const fileError = validateImageUpload(file)
+  if (fileError) return { error: fileError }
+
+  const ext = file.name.split('.').pop()
+  const path = `${user.id}/${crypto.randomUUID()}.${ext}`
+
+  const { error: uploadError } = await supabase.storage
+    .from('project-images')
+    .upload(path, file, { upsert: false })
+
+  if (uploadError) return { error: uploadError.message }
+
+  const { data: { publicUrl } } = supabase.storage.from('project-images').getPublicUrl(path)
+  return { success: true, url: publicUrl }
 }

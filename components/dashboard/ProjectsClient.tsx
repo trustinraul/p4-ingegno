@@ -13,6 +13,7 @@ interface Project {
   description: string | null
   status: string
   url: string | null
+  cover_image_url: string | null
   display_order: number
 }
 
@@ -117,6 +118,14 @@ export default function ProjectsClient({ projects, lockedIds, collageProjectIds 
               )}
             >
               <div className="flex items-start justify-between gap-4">
+                {project.cover_image_url && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={project.cover_image_url}
+                    alt=""
+                    className="w-20 h-14 rounded-[0.6rem] object-cover border border-white/[0.08] shrink-0"
+                  />
+                )}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-3 flex-wrap">
                     <span className="font-heading italic text-white text-lg leading-tight">

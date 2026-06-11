@@ -40,6 +40,14 @@ export default function ProjectGrid({ projects, plan, isOwner }: ProjectGridProp
                 transition={{ duration: 0.6, ease: 'easeOut', delay: i * 0.1 }}
                 className="border border-white/[0.08] rounded-[1.25rem] p-7 min-h-[240px] flex flex-col justify-between"
               >
+                {project.cover_image_url && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={project.cover_image_url}
+                    alt={project.name}
+                    className="w-full h-40 object-cover rounded-[0.9rem] mb-5"
+                  />
+                )}
                 <div>
                   <div className="flex items-center gap-2 mb-5">
                     <span
