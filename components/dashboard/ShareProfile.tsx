@@ -15,6 +15,7 @@ export default function ShareProfile({ username }: ShareProfileProps) {
   useEffect(() => {
     const base = process.env.NEXT_PUBLIC_SITE_URL || window.location.origin
     const url = `${base.replace(/\/$/, '')}/${username}`
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- derives from window.location (client-only)
     setOrigin(url)
     QRCode.toDataURL(url, { margin: 1, width: 480, color: { dark: '#000000', light: '#ffffff' } })
       .then(setQrDataUrl)

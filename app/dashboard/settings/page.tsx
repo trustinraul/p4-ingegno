@@ -66,6 +66,7 @@ export default async function SettingsPage() {
           <div className="border-t border-white/[0.08] pt-4 flex flex-col gap-4">
             <div className="flex items-center justify-between">
               <span className="text-sm font-body text-white/75">Export your data</span>
+              {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- download endpoint, not a page route */}
               <a
                 href="/api/export"
                 className="liquid-glass rounded-full px-4 py-1.5 text-xs font-body text-white/70 hover:text-white transition-colors"
