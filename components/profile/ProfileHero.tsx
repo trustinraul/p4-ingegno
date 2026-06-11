@@ -2,6 +2,8 @@
 
 import { motion, useReducedMotion } from 'framer-motion'
 import BlurText from '@/components/ui/BlurText'
+import ContactLinks from './ContactLinks'
+import type { ProfileLink } from '@/lib/types'
 
 interface ProfileHeroProps {
   profile: {
@@ -9,6 +11,8 @@ interface ProfileHeroProps {
     tagline: string | null
     roles: string[] | null
     avatar_url: string | null
+    links: ProfileLink[] | null
+    contact_email: string | null
   }
 }
 
@@ -96,6 +100,8 @@ export default function ProfileHero({ profile }: ProfileHeroProps) {
             ))}
           </motion.div>
         )}
+
+        <ContactLinks links={profile.links ?? []} contactEmail={profile.contact_email} />
       </div>
 
       {/* Scroll cue */}
