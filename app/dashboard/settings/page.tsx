@@ -2,6 +2,7 @@ import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import GitHubConnect from '@/components/dashboard/GitHubConnect'
+import DeleteAccountSection from '@/components/dashboard/DeleteAccountSection'
 import { signOut } from '@/app/actions/auth'
 
 export default async function SettingsPage() {
@@ -62,7 +63,16 @@ export default async function SettingsPage() {
               {profile?.plan === 'pro' ? 'Pro' : 'Free'}
             </span>
           </div>
-          <div className="border-t border-white/[0.08] pt-4">
+          <div className="border-t border-white/[0.08] pt-4 flex flex-col gap-4">
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-body text-white/75">Export your data</span>
+              <a
+                href="/api/export"
+                className="liquid-glass rounded-full px-4 py-1.5 text-xs font-body text-white/70 hover:text-white transition-colors"
+              >
+                Download JSON
+              </a>
+            </div>
             <form action={signOut}>
               <button
                 type="submit"
@@ -71,6 +81,11 @@ export default async function SettingsPage() {
                 Sign out
               </button>
             </form>
+            {profile?.username && (
+              <div className="border-t border-white/[0.08] pt-4">
+                <DeleteAccountSection username={profile.username} />
+              </div>
+            )}
           </div>
         </div>
       </section>
