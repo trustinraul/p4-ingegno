@@ -15,20 +15,22 @@ de forma coherente.
 El nombre viene del italiano renacentista: la palabra que usaba Leonardo da Vinci
 para describir la inteligencia creativa que conecta disciplinas distintas.
 
-**URL pública:** `ingegno.app/[username]`  
+**URL pública:** `p4-ingegno.vercel.app/[username]` — dominio `ingegno.app` pendiente (aún no adquirido)  
+**Perfil de demo:** `p4-ingegno.vercel.app/leonardo` (Leonardo Bianchi)  
 **Tagline:** *"Your work, finally visible."*  
 **Repo:** [trustinraul/p4-ingegno](https://github.com/trustinraul/p4-ingegno)  
-**Deploy:** [p4-ingegno.vercel.app](https://p4-ingegno.vercel.app)
+**Deploy:** [p4-ingegno.vercel.app](https://p4-ingegno.vercel.app) (dominio `ingegno.app` se conectará cuando se adquiera)
 
 ---
 
-## Estado actual — 8 junio 2026
+## Estado actual — 10 junio 2026
 
 **Fase activa:** Pendiente de lanzamiento → Marketing y validación (desde ~27 jun 2026)
 
 **Timeline de lanzamiento:**
-- Sem 0 (prep): 20–27 jun → finalizar contenido, preparar outreach, setup IH/Reddit
-- Sem 1 (launch): 27 jun – 4 jul → publicar post, 50 outreaches, Reel 1
+- Pre-prep (10–19 jun): warm-up cuentas Reddit/IH (karma), construir lista de 50 targets
+- Sem 0 (prep): 20–27 jun → finalizar contenido, implementar email bienvenida, verificar demo (/leonardo)
+- Sem 1 (launch): 27 jun – 4 jul → **post lunes 29 jun 9:00 CET**, 50 outreaches, Reel 1
 
 ### Completado ✅
 - Build completo: auth, dashboard, perfil público, GitHub OAuth, freemium gate, og:image
@@ -37,9 +39,14 @@ para describir la inteligencia creativa que conecta disciplinas distintas.
 - Test móvil (375px): sin elementos rotos
 - Perfil de demo publicado
 - Repo público en GitHub con README
+- Imágenes con identidad visual real integradas (Da Vinci, dominio público)
+- Redesign anti-AI-slop ejecutado (audit Impeccable/Taste/ui-ux-pro-max): contraste, focus-visible, tipografía EB Garamond, eyebrows/BlurText/liquid-glass reducidos, onboarding checklist, CTAs unificados, layout
+- Wordmark "Ingegno" unificado y enlazado a landing (dashboard sidebar + navbar de perfil público)
+- Features S0 (table-stakes) enviadas y desplegadas: imágenes de portada en proyectos, links sociales + email de contacto ("Get in touch"), share link + QR del perfil, export de datos (JSON) + borrado de cuenta (GDPR), fix del input de roles en móvil, fix de overflow horizontal del dashboard en móvil (verificado a 375/400px)
 
 ### Pendiente antes del lanzamiento
-- [ ] Imágenes con identidad visual real (ver sección de dirección visual más abajo)
+- [ ] Verificación final del redesign: tab por teclado, contraste en Lighthouse, deploy verificado en p4-ingegno.vercel.app
+- [ ] Test de borrado real de cuenta con cuenta desechable en producción
 
 ---
 
@@ -57,11 +64,19 @@ para describir la inteligencia creativa que conecta disciplinas distintas.
 ## Decisiones de producto vigentes
 
 - GitHub sync: manual vía botón "Sync now" — sin webhooks hasta V2
-- Dominio custom: V2
+- Dominio custom de usuario (perfil bajo dominio propio): V2
 - Analytics de visitas: V2
 - Stripe: no hasta validar willingness to pay con datos reales
 - X/Twitter integration: descartada (API €100/mes)
 - Product Hunt: no lanzar hasta 40+ usuarios y testimonios reales
+
+---
+
+## Competencia clave
+
+- **Signature (creativesignature.app)** — competidor más directo por pain ("Finally explain what you do") e ICP (multi-hyphenate). Early access, motor de contenido SEO (blog de recognition guides). **Límite:** solo genera la bio con IA — "No portfolio required", sin perfil público ni proyectos. **Diferenciación Ingegno:** ellos dan las palabras; Ingegno da el sitio público donde vivirlas con el trabajo real.
+- **IndieLogs** — build-in-public para indie hackers. No premium, no multi-hyphenate. 2.156 usuarios.
+- **Resto** (Linktree, Carrd, Notion público, Framer): extremos del mercado, ninguno cubre el hueco premium + multi-identidad + <€20/mes. Detalle en `docs/product/research-pain-points.md`.
 
 ---
 
