@@ -3,6 +3,8 @@
 import { createClient } from '@/lib/supabase/server'
 import { revalidatePath } from 'next/cache'
 import { validateImageUpload } from '@/lib/utils'
+import { validateLinks, normalizeUrl } from '@/lib/links'
+import type { ProfileLink } from '@/lib/types'
 
 export type ProfileState = { error?: string; success?: boolean }
 
@@ -26,11 +28,29 @@ export async function updateProfile(prevState: ProfileState, formData: FormData)
   if (narrative && narrative.length > 2000) return { error: 'Narrative must be under 2000 characters' }
   if (roles.length > 10) return { error: 'Maximum 10 roles allowed' }
 
+  const contact_email = ((formData.get('contact_email') as string) || '').trim() || null
+  if (contact_email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact_email)) {
+    return { error: 'Contact email is not valid' }
+  }
+
+  const linksRaw = (formData.get('links') as string) || '[]'
+  let links: ProfileLink[]
+  try {
+    links = JSON.parse(linksRaw) as ProfileLink[]
+  } catch {
+    return { error: 'Links payload is malformed' }
+  }
+  links = links.map((l) => ({ ...l, url: normalizeUrl(l.url) }))
+  const linksError = validateLinks(links)
+  if (linksError) return { error: linksError }
+
   const updates = {
     full_name,
     tagline,
     roles,
     narrative,
+    links,
+    contact_email,
   }
 
   const { error } = await supabase.from('profiles').update(updates).eq('id', user.id)

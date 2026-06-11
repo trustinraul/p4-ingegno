@@ -6,6 +6,8 @@ import Image from 'next/image'
 import { updateProfile, updatePublicStatus, uploadAvatar } from '@/app/actions/profile'
 import type { ProfileState } from '@/app/actions/profile'
 import { cn } from '@/lib/utils'
+import { PLATFORMS, type PlatformDef } from '@/lib/links'
+import type { ProfileLink, ProfileLinkType } from '@/lib/types'
 
 interface Profile {
   id: string
@@ -15,6 +17,8 @@ interface Profile {
   roles: string[] | null
   narrative: string | null
   avatar_url: string | null
+  links: ProfileLink[] | null
+  contact_email: string | null
   is_public: boolean
   plan: string
 }
@@ -52,6 +56,28 @@ export default function ProfileForm({ profile }: ProfileFormProps) {
   const [avatarUrl, setAvatarUrl] = useState(profile?.avatar_url ?? '')
   const [avatarError, setAvatarError] = useState<string | null>(null)
   const [avatarPending, setAvatarPending] = useState(false)
+
+  const [links, setLinks] = useState<ProfileLink[]>(profile?.links ?? [])
+  const [linkType, setLinkType] = useState<ProfileLinkType>('github')
+  const [linkLabel, setLinkLabel] = useState('')
+  const [linkUrl, setLinkUrl] = useState('')
+  const [contactEmail, setContactEmail] = useState(profile?.contact_email ?? '')
+
+  const MAX_LINKS_UI = 8
+
+  function addLink() {
+    const url = linkUrl.trim()
+    if (!url || links.length >= MAX_LINKS_UI) return
+    const def = PLATFORMS.find((p) => p.type === linkType) as PlatformDef
+    const label = linkLabel.trim() || def.label
+    setLinks([...links, { type: linkType, label, url }])
+    setLinkLabel('')
+    setLinkUrl('')
+  }
+
+  function removeLink(index: number) {
+    setLinks(links.filter((_, i) => i !== index))
+  }
 
   const MAX_ROLES = 10
 
@@ -151,6 +177,7 @@ export default function ProfileForm({ profile }: ProfileFormProps) {
       {/* Main form */}
       <form action={formAction} className="flex flex-col gap-6">
         <input type="hidden" name="roles" value={roles.join(',')} />
+        <input type="hidden" name="links" value={JSON.stringify(links)} />
 
         <div className="grid grid-cols-2 gap-4">
           <div className="flex flex-col gap-1.5">
@@ -262,6 +289,91 @@ export default function ProfileForm({ profile }: ProfileFormProps) {
             rows={7}
             className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white font-body text-sm placeholder:text-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-1 focus-visible:ring-offset-black focus:border-white/30 transition-colors resize-none"
           />
+        </div>
+
+        {/* Contact email */}
+        <div className="flex flex-col gap-1.5">
+          <label className="font-body text-sm text-white/70 uppercase tracking-wider">
+            Contact email
+          </label>
+          <input
+            name="contact_email"
+            type="email"
+            value={contactEmail}
+            onChange={(e) => setContactEmail(e.target.value)}
+            placeholder="you@example.com — shown as a “Get in touch” button"
+            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white font-body text-sm placeholder:text-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-1 focus-visible:ring-offset-black focus:border-white/30 transition-colors"
+          />
+        </div>
+
+        {/* Links */}
+        <div className="flex flex-col gap-2">
+          <label className="font-body text-sm text-white/70 uppercase tracking-wider">
+            Links
+          </label>
+
+          {links.length > 0 && (
+            <div className="flex flex-col gap-2 mb-2">
+              {links.map((link, i) => (
+                <div
+                  key={`${link.type}-${i}`}
+                  className="liquid-glass rounded-xl px-4 py-2.5 flex items-center justify-between gap-3"
+                >
+                  <div className="min-w-0">
+                    <span className="text-sm font-body text-white/85">{link.label}</span>
+                    <span className="block text-xs font-body text-white/40 truncate">{link.url}</span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => removeLink(i)}
+                    className="text-white/45 hover:text-white/85 transition-colors shrink-0"
+                    aria-label={`Remove ${link.label}`}
+                  >
+                    ×
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {links.length < MAX_LINKS_UI && (
+            <div className="flex flex-col sm:flex-row gap-2">
+              <select
+                value={linkType}
+                onChange={(e) => setLinkType(e.target.value as ProfileLinkType)}
+                className="bg-white/5 border border-white/10 rounded-xl px-3 py-3 text-white font-body text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus:border-white/30 transition-colors"
+              >
+                {PLATFORMS.map((p) => (
+                  <option key={p.type} value={p.type}>{p.label}</option>
+                ))}
+              </select>
+              <input
+                type="text"
+                value={linkUrl}
+                onChange={(e) => setLinkUrl(e.target.value)}
+                onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); addLink() } }}
+                placeholder={PLATFORMS.find((p) => p.type === linkType)?.placeholder ?? 'https://...'}
+                className="flex-1 min-w-0 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white font-body text-sm placeholder:text-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus:border-white/30 transition-colors"
+              />
+              {linkType === 'custom' && (
+                <input
+                  type="text"
+                  value={linkLabel}
+                  onChange={(e) => setLinkLabel(e.target.value)}
+                  placeholder="Label"
+                  className="sm:w-32 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white font-body text-sm placeholder:text-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus:border-white/30 transition-colors"
+                />
+              )}
+              <button
+                type="button"
+                onClick={addLink}
+                disabled={!linkUrl.trim()}
+                className="shrink-0 bg-white/10 hover:bg-white/15 border border-white/[0.12] rounded-xl px-4 py-3 text-sm font-body text-white transition-colors disabled:opacity-40 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400"
+              >
+                + Add
+              </button>
+            </div>
+          )}
         </div>
 
         {state?.error && (
