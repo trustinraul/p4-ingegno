@@ -179,7 +179,7 @@ export default function ProfileForm({ profile }: ProfileFormProps) {
         <input type="hidden" name="roles" value={roles.join(',')} />
         <input type="hidden" name="links" value={JSON.stringify(links)} />
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="flex flex-col gap-1.5">
             <label className="font-body text-sm text-white/70 uppercase tracking-wider">
               Full name

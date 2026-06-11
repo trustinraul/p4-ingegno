@@ -21,7 +21,7 @@ export default function DashboardShell({ username, isPublic, children }: Dashboa
         onToggle={() => setIsCollapsed((c) => !c)}
       />
       <main
-        className={`flex-1 p-8 min-h-screen transition-all duration-200 ml-16 ${
+        className={`flex-1 min-w-0 p-5 md:p-8 min-h-screen transition-all duration-200 ml-16 ${
           isCollapsed ? 'md:ml-16' : 'md:ml-64'
         }`}
       >

@@ -37,7 +37,7 @@ export default function ShareProfile({ username }: ShareProfileProps) {
   }
 
   return (
-    <div className="liquid-glass rounded-[1.25rem] p-6 flex items-center gap-5">
+    <div className="liquid-glass rounded-[1.25rem] p-6 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5">
       {qrDataUrl && (
         // eslint-disable-next-line @next/next/no-img-element
         <img src={qrDataUrl} alt="Profile QR code" className="w-20 h-20 rounded-lg bg-white p-1 shrink-0" />
