@@ -9,6 +9,7 @@ const makeProject = (i: number): Project => ({
   description: null,
   status: 'in_progress',
   url: null,
+  cover_image_url: null,
   display_order: i,
   created_at: new Date().toISOString(),
 })

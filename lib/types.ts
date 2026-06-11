@@ -1,3 +1,18 @@
+export type ProfileLinkType =
+  | 'github'
+  | 'x'
+  | 'linkedin'
+  | 'instagram'
+  | 'youtube'
+  | 'website'
+  | 'custom'
+
+export interface ProfileLink {
+  type: ProfileLinkType
+  label: string
+  url: string
+}
+
 export interface Profile {
   id: string
   username: string
@@ -6,6 +21,8 @@ export interface Profile {
   roles: string[]
   narrative: string | null
   avatar_url: string | null
+  links: ProfileLink[]
+  contact_email: string | null
   is_public: boolean
   plan: 'free' | 'pro'
   created_at: string
@@ -18,6 +35,7 @@ export interface Project {
   description: string | null
   status: 'in_progress' | 'launched'
   url: string | null
+  cover_image_url: string | null
   display_order: number
   created_at: string
 }
