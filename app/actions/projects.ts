@@ -4,6 +4,21 @@ import { createClient } from '@/lib/supabase/server'
 import { revalidatePath } from 'next/cache'
 import { validateImageUpload } from '@/lib/utils'
 
+function storagePathFromUrl(url: string, bucket: string): string | null {
+  const marker = `/${bucket}/`
+  const i = url.indexOf(marker)
+  return i === -1 ? null : url.slice(i + marker.length)
+}
+
+async function removeProjectImage(
+  supabase: Awaited<ReturnType<typeof createClient>>,
+  url: string | null
+) {
+  if (!url) return
+  const path = storagePathFromUrl(url, 'project-images')
+  if (path) await supabase.storage.from('project-images').remove([path])
+}
+
 export async function createProject(formData: FormData) {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
@@ -56,6 +71,15 @@ export async function updateProject(id: string, formData: FormData) {
     try { new URL(urlRaw) } catch { return { error: 'Project URL must be a valid URL' } }
   }
 
+  const { data: existing } = await supabase
+    .from('projects')
+    .select('cover_image_url')
+    .eq('id', id)
+    .eq('user_id', user.id)
+    .single()
+
+  const newCover = (formData.get('cover_image_url') as string) || null
+
   const { error } = await supabase
     .from('projects')
     .update({
@@ -63,12 +87,17 @@ export async function updateProject(id: string, formData: FormData) {
       description: (formData.get('description') as string) || null,
       status: formData.get('status') as string,
       url: urlRaw,
-      cover_image_url: (formData.get('cover_image_url') as string) || null,
+      cover_image_url: newCover,
     })
     .eq('id', id)
     .eq('user_id', user.id)
 
   if (error) return { error: error.message }
+
+  if (existing?.cover_image_url && existing.cover_image_url !== newCover) {
+    await removeProjectImage(supabase, existing.cover_image_url)
+  }
+
   revalidatePath('/dashboard/projects')
   return { success: true }
 }
@@ -77,7 +106,17 @@ export async function deleteProject(id: string) {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return
+
+  const { data: existing } = await supabase
+    .from('projects')
+    .select('cover_image_url')
+    .eq('id', id)
+    .eq('user_id', user.id)
+    .single()
+
   await supabase.from('projects').delete().eq('id', id).eq('user_id', user.id)
+  await removeProjectImage(supabase, existing?.cover_image_url ?? null)
+
   revalidatePath('/dashboard/projects')
 }
 
