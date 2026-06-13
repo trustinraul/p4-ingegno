@@ -6,6 +6,24 @@ import { redirect } from 'next/navigation'
 
 export type DeleteAccountState = { error?: string }
 
+const USER_BUCKETS = ['avatars', 'project-images', 'update-images']
+
+async function purgeUserStorage(
+  admin: ReturnType<typeof createAdminClient>,
+  userId: string
+) {
+  for (const bucket of USER_BUCKETS) {
+    try {
+      const { data: files } = await admin.storage.from(bucket).list(userId)
+      if (files && files.length > 0) {
+        await admin.storage.from(bucket).remove(files.map((f) => `${userId}/${f.name}`))
+      }
+    } catch {
+      // best-effort: storage cleanup failures must not block account deletion
+    }
+  }
+}
+
 export async function deleteAccount(
   _prevState: DeleteAccountState,
   formData: FormData
@@ -26,6 +44,7 @@ export async function deleteAccount(
   }
 
   const admin = createAdminClient()
+  await purgeUserStorage(admin, user.id)
   const { error } = await admin.auth.admin.deleteUser(user.id)
   if (error) return { error: error.message }
 
