@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ingegno — One URL. Everything you are.
 
-## Getting Started
+A multi-tenant SaaS that gives polymaths a single premium profile for their projects, writing, skills and story. One page at `ingegno.app/username` that holds everything you do — built for the people who can't be put in a box. Built as P4 of a freelance web development portfolio.
 
-First, run the development server:
+## Live Demo
+
+[p4-ingegno.vercel.app](https://p4-ingegno.vercel.app)
+
+## Stack
+
+- **Framework:** Next.js 16 (App Router)
+- **UI:** React + Tailwind CSS v4
+- **Auth & DB:** Supabase (PostgreSQL + Auth + Row Level Security)
+- **OAuth / Sync:** GitHub OAuth — automatic commit sync
+- **Animations:** Framer Motion
+- **Deploy:** Vercel
+- **Language:** TypeScript
+
+## Features
+
+- **Public profiles** at `/username` — multi-tenant, each user owns their own page
+- **Project, writing and skills sections** that combine into one coherent narrative
+- **GitHub commit sync** — connect your account and your activity stays live, not a static snapshot
+- **Manual activity updates** for non-code work
+- **Auth-protected editor** with Row Level Security — users only edit their own profile
+- **Free / Pro tiers** (unlimited projects, custom domain and badge removal on Pro)
+- Cinematic, editorial design — Renaissance-inspired typography
+- Responsive, mobile-first
+
+## Local Development
 
 ```bash
+# Install dependencies
+npm install
+
+# Set up environment variables
+cp .env.local.example .env.local   # then fill in the values below
+
+# Run the dev server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment Variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Variable | Description |
+|---|---|
+| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anon/public key |
+| `SUPABASE_SERVICE_ROLE_KEY` | Service role key (server-only, never exposed to the client) |
+| `NEXT_PUBLIC_SITE_URL` | Base URL of the deployment (used for auth + OAuth redirects) |
+| `NEXT_PUBLIC_GITHUB_CLIENT_ID` | GitHub OAuth app client ID (public) |
+| `GITHUB_CLIENT_ID` | GitHub OAuth app client ID |
+| `GITHUB_CLIENT_SECRET` | GitHub OAuth app client secret (server-only) |
 
-## Learn More
+## Notes
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This is a portfolio project. The product concept is real but data is illustrative.
