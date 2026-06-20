@@ -2,15 +2,15 @@
 ## Semanas 0 y 1
 
 **Timeline:**
-- **Sem 0 — Prep:** 20–27 jun 2026
-- **Sem 1 — Launch:** 27 jun – 4 jul 2026
+- **Sem 0 — Prep:** lun 22 – dom 28 jun 2026
+- **Sem 1 — Launch:** lun 29 jun – dom 5 jul 2026
 
 Todo el copy público está en inglés (producto global).  
 Los placeholders van entre corchetes: `[así]`.
 
 ---
 
-## SEMANA 0 (20–27 jun) — Preparación
+## SEMANA 0 (22–28 jun) — Preparación
 
 ---
 
@@ -55,9 +55,9 @@ Ingegno gives you one elegant public URL — `ingegno.app/[username]` — where 
 
 **Where it fits:**
 
-I've looked at every tool out there. Linktree is just links. Carrd screams amateur. Notion public pages are functional but ugly. Framer and Webflow are built for agencies, not solo founders. IndieLogs is close but aimed at indie hackers specifically, not multi-disciplinary people.
+I've looked at every tool out there. Linktree is just links. Carrd screams amateur. Notion public pages are functional but ugly. Framer and Webflow are built for agencies, not solo founders. IndieLogs is close but aimed at indie hackers specifically, not multi-disciplinary people. Signature helps you *write* a one-line description of yourself with AI — but there's no portfolio, no projects, no public page. It gives you the words; it doesn't give you the place.
 
-The gap I'm filling: visually premium, under €10/month, built specifically for the people who have multiple creative identities and want to present them coherently.
+The gap I'm filling: visually premium, under €10/month, built specifically for the people who have multiple creative identities and want to present them coherently — somewhere real, not just a bio.
 
 ---
 
@@ -69,7 +69,7 @@ The gap I'm filling: visually premium, under €10/month, built specifically for
 
 **Where we are:**
 
-This is a real beta. It's live, it works, auth is solid, mobile is tested. But it's early. The demo profile is at [ingegno.app/demo] — I'd love honest feedback on what's missing or broken.
+This is a real beta. It's live, it works, auth is solid, mobile is tested. But it's early. The demo profile is at ingegno.app/leonardo — I'd love honest feedback on what's missing or broken.
 
 If you're a multi-hyphenate founder, designer, developer, writer, or any combination of the above — this is for you. Go claim your username before someone else does.
 
@@ -221,7 +221,7 @@ If you hit any friction or anything feels broken, reply to this email. I read ev
 
 ---
 
-## SEMANA 1 (27 jun – 4 jul) — Launch
+## SEMANA 1 (29 jun – 5 jul) — Launch
 
 ---
 
@@ -294,6 +294,12 @@ If you hit any friction or anything feels broken, reply to this email. I read ev
 
 ---
 
+**Si alguien menciona Signature / herramientas de bio con IA:**
+
+*"Signature is great at one thing — giving you the words to describe yourself. But it stops at the sentence. Ingegno is the place that sentence points to: a public page with your actual projects, your updates, your work. They're complementary, honestly — write your line wherever, then give people somewhere real to land."*
+
+---
+
 **Si alguien pregunta por el pricing:**
 
 *"Free tier includes 2 visible projects + all the core features. Pro is €9/month for unlimited projects and no 'Made with Ingegno' badge. The goal right now is to get real people using it — so free is genuinely free, no time limit."*
@@ -324,14 +330,14 @@ If you hit any friction or anything feels broken, reply to this email. I read ev
 
 ## RESUMEN — Checklist de publicación
 
-### Sem 0 (20–27 jun)
+### Sem 0 (22–28 jun)
 - [ ] Post de lanzamiento: redactado y revisado ← ya está arriba
 - [ ] Templates de outreach: listos ← ya están arriba
 - [ ] Email de bienvenida: implementado en el flow de registro
 - [ ] Lista de 50 targets de outreach: preparada en Notion
 - [ ] Perfil de demo: publicado y revisado en móvil
 
-### Sem 1 (27 jun – 4 jul)
+### Sem 1 (29 jun – 5 jul)
 - [ ] **Lunes 29 jun, 9:00 CET:** publicar post en IH y Reddit r/SideProject
 - [ ] **Lunes 29 jun:** enviar primeros 20 outreaches
 - [ ] **Mar-mié 30 jun – 1 jul:** responder TODOS los comentarios

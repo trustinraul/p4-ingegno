@@ -15,22 +15,23 @@ de forma coherente.
 El nombre viene del italiano renacentista: la palabra que usaba Leonardo da Vinci
 para describir la inteligencia creativa que conecta disciplinas distintas.
 
-**URL pública:** `p4-ingegno.vercel.app/[username]` — dominio `ingegno.app` pendiente (aún no adquirido)  
-**Perfil de demo:** `p4-ingegno.vercel.app/leonardo` (Leonardo Bianchi)  
+**URL pública:** `ingegno.app/[username]` (dominio activo, sirviendo en producción) — deploy en `p4-ingegno.vercel.app`  
+**Perfil de demo:** `ingegno.app/leonardo` (Leonardo Bianchi)  
 **Tagline:** *"Your work, finally visible."*  
 **Repo:** [trustinraul/p4-ingegno](https://github.com/trustinraul/p4-ingegno)  
-**Deploy:** [p4-ingegno.vercel.app](https://p4-ingegno.vercel.app) (dominio `ingegno.app` se conectará cuando se adquiera)
+**Deploy:** [p4-ingegno.vercel.app](https://p4-ingegno.vercel.app) · dominio `ingegno.app` ya conectado y sirviendo en producción (verificado 20 jun 2026)
 
 ---
 
-## Estado actual — 10 junio 2026
+## Estado actual — 20 junio 2026
 
-**Fase activa:** Pendiente de lanzamiento → Marketing y validación (desde ~27 jun 2026)
+**Fase activa:** Pendiente de lanzamiento → Marketing y validación (Sem 0 prep desde lun 22 jun)
 
-**Timeline de lanzamiento:**
-- Pre-prep (10–19 jun): warm-up cuentas Reddit/IH (karma), construir lista de 50 targets
-- Sem 0 (prep): 20–27 jun → finalizar contenido, implementar email bienvenida, verificar demo (/leonardo)
-- Sem 1 (launch): 27 jun – 4 jul → **post lunes 29 jun 9:00 CET**, 50 outreaches, Reel 1
+**Timeline de lanzamiento (semanas ancladas en lunes):**
+- Pre-prep (10–21 jun): warm-up cuentas Reddit/IH (karma), construir lista de 50 targets
+- Sem 0 (prep): lun 22 – dom 28 jun → finalizar contenido, implementar email bienvenida, verificar demo (/leonardo)
+- Sem 1 (launch): lun 29 jun – dom 5 jul → **post lunes 29 jun 9:00 CET**, 50 outreaches, Reel 1
+- Sem 2: lun 6 – dom 12 jul · Sem 3: lun 13 – dom 19 jul · Sem 4: lun 20 – dom 26 jul
 
 ### Completado ✅
 - Build completo: auth, dashboard, perfil público, GitHub OAuth, freemium gate, og:image
