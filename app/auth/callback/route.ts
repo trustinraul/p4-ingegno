@@ -1,5 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
 import { NextResponse } from 'next/server'
+import { sendWelcomeEmailOnce } from '@/lib/email'
 
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url)
@@ -15,6 +16,7 @@ export async function GET(request: Request) {
         await supabase
           .from('profiles')
           .upsert({ id: data.user.id, username }, { onConflict: 'id', ignoreDuplicates: true })
+        await sendWelcomeEmailOnce(data.user.id, data.user.email!, username)
       }
       return NextResponse.redirect(`${origin}${next}`)
     }

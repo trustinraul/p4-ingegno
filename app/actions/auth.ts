@@ -2,6 +2,7 @@
 
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
+import { sendWelcomeEmailOnce } from '@/lib/email'
 
 export async function signUp(
   prevState: { error?: string; success?: boolean },
@@ -43,6 +44,7 @@ export async function signUp(
   if (data.session) {
     // Email confirmation disabled — session is active, create profile now
     await supabase.from('profiles').insert({ id: data.user.id, username })
+    await sendWelcomeEmailOnce(data.user.id, email, username)
     redirect('/dashboard/profile')
   }
 
