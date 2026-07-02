@@ -17,20 +17,32 @@ export default async function AppleIcon() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          // Sin borderRadius: iOS aplica su propia máscara
+          // El cuadrado exterior lo enmascara iOS; el círculo con borde va dentro
           background: '#000000',
         }}
       >
         <div
           style={{
             display: 'flex',
-            fontFamily: 'Instrument Serif',
-            fontSize: 128,
-            color: '#FFFFFF',
-            lineHeight: 1,
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: 150,
+            height: 150,
+            borderRadius: '50%',
+            border: '8px solid rgba(255,255,255,0.18)',
           }}
         >
-          i
+          <div
+            style={{
+              display: 'flex',
+              fontFamily: 'Instrument Serif',
+              fontSize: 74,
+              color: '#FFFFFF',
+              lineHeight: 1,
+            }}
+          >
+            i
+          </div>
         </div>
       </div>
     ),

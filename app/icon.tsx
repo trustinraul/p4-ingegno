@@ -18,14 +18,15 @@ export default async function Icon() {
           alignItems: 'center',
           justifyContent: 'center',
           background: '#000000',
-          borderRadius: 6,
+          borderRadius: '50%',
+          border: '2px solid rgba(255,255,255,0.3)',
         }}
       >
         <div
           style={{
             display: 'flex',
             fontFamily: 'Instrument Serif',
-            fontSize: 26,
+            fontSize: 15,
             color: '#FFFFFF',
             lineHeight: 1,
           }}
