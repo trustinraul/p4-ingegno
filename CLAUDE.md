@@ -16,7 +16,7 @@ El nombre viene del italiano renacentista: la palabra que usaba Leonardo da Vinc
 para describir la inteligencia creativa que conecta disciplinas distintas.
 
 **URL pública:** `ingegno.app/[username]` — dominio conectado a Vercel, SSL OK ✅ (verificado 2 jul)  
-**Perfil de demo:** `ingegno.app/leonardo` (Leonardo Bianchi) — ✅ creado en producción (seed idempotente, 2 jul): HTTP 200, contenido estructural verificado (6 roles, 3 proyectos con covers, 3 updates, plan pro sin badge). Pendiente checklist manual (visual 375px + envío real "Get in touch") — ver Task 2 en `docs/superpowers/plans/2026-07-02-prelaunch-demo-redesign-favicon.md`  
+**Perfil de demo:** `ingegno.app/leonardo` (Leonardo Bianchi) — ✅ creado en producción y verificado por completo (SQL, HTTP 200, contenido estructural, visual desktop + 375px, envío real por "Get in touch") (2 jul)  
 **Tagline:** *"Your work, finally visible."*  
 **Repo:** [trustinraul/p4-ingegno](https://github.com/trustinraul/p4-ingegno)  
 **Deploy:** [ingegno.app](https://ingegno.app) (vía Vercel; `p4-ingegno.vercel.app` sigue activo como dominio secundario)
@@ -50,15 +50,13 @@ para describir la inteligencia creativa que conecta disciplinas distintas.
 - Redesign anti-AI-slop ejecutado (audit Impeccable/Taste/ui-ux-pro-max): contraste, focus-visible, tipografía EB Garamond, eyebrows/BlurText/liquid-glass reducidos, onboarding checklist, CTAs unificados, layout
 - Wordmark "Ingegno" unificado y enlazado a landing (dashboard sidebar + navbar de perfil público)
 - Features S0 (table-stakes) enviadas y desplegadas: imágenes de portada en proyectos, links sociales + email de contacto ("Get in touch"), share link + QR del perfil, export de datos (JSON) + borrado de cuenta (GDPR), fix del input de roles en móvil, fix de overflow horizontal del dashboard en móvil (verificado a 375/400px)
-- Perfil demo `ingegno.app/leonardo` creado en producción vía seed idempotente (`scripts/seed-demo-profile.ts`), verificado por SQL + HTTP 200 + contenido estructural (2 jul)
+- Perfil demo `ingegno.app/leonardo` creado en producción vía seed idempotente (`scripts/seed-demo-profile.ts`), verificado por SQL + HTTP 200 + contenido estructural + visual desktop/375px + envío real por "Get in touch" (2 jul)
+- Verificación final del redesign sobre `ingegno.app`: fix de `metadataBase` (ya apunta a ingegno.app), contraste WCAG AA en texto de baja opacidad, auditoría de teclado (tab, foco visible, Esc en modales) OK, Lighthouse ≥94 en todas las categorías en las 5 páginas públicas — 2 hallazgos P1 (landmark `<main>` y links dependientes del color en login/signup) encontrados y arreglados. Doc: `docs/dev/verification-2026-07.md` (2 jul)
+- Favicon de marca: círculo con anillo fino + "i" minúscula centrada (Instrument Serif), reemplaza el default de Next.js (2 jul)
+- Test de borrado real de cuenta verificado en producción con cuenta desechable (2 jul)
 
 ### Pendiente antes del lanzamiento
-> Plan de implementación: `docs/superpowers/plans/2026-07-02-prelaunch-demo-redesign-favicon.md` (deadline dev: 3 jul)
-
-- [ ] QA manual del perfil demo `leonardo`: revisión visual desktop + 375px, prueba real de envío por "Get in touch" (Task 2 del plan)
-- [ ] Verificación final del redesign sobre `ingegno.app`: tab por teclado, contraste WCAG, Lighthouse (incluye fix de `metadataBase`, que aún apunta a p4-ingegno.vercel.app)
-- [ ] Favicon de marca (sigue el default de Next.js)
-- [ ] Test de borrado real de cuenta con cuenta desechable en producción
+Ninguno de los bloqueantes técnicos de `docs/superpowers/plans/2026-07-02-prelaunch-demo-redesign-favicon.md` sigue abierto. Restante: contenido/outreach de marketing (ver `docs/marketing/`) según el timeline de lanzamiento.
 
 ---
 
