@@ -15,38 +15,49 @@ de forma coherente.
 El nombre viene del italiano renacentista: la palabra que usaba Leonardo da Vinci
 para describir la inteligencia creativa que conecta disciplinas distintas.
 
-**URL pública:** `ingegno.app/[username]` (dominio activo, sirviendo en producción) — deploy en `p4-ingegno.vercel.app`  
-**Perfil de demo:** `ingegno.app/leonardo` (Leonardo Bianchi)  
+**URL pública:** `ingegno.app/[username]` — dominio conectado a Vercel, SSL OK ✅ (verificado 2 jul)  
+**Perfil de demo:** `ingegno.app/leonardo` (Leonardo Bianchi) — ✅ creado en producción (seed idempotente, 2 jul): HTTP 200, contenido estructural verificado (6 roles, 3 proyectos con covers, 3 updates, plan pro sin badge). Pendiente checklist manual (visual 375px + envío real "Get in touch") — ver Task 2 en `docs/superpowers/plans/2026-07-02-prelaunch-demo-redesign-favicon.md`  
 **Tagline:** *"Your work, finally visible."*  
 **Repo:** [trustinraul/p4-ingegno](https://github.com/trustinraul/p4-ingegno)  
-**Deploy:** [p4-ingegno.vercel.app](https://p4-ingegno.vercel.app) · dominio `ingegno.app` ya conectado y sirviendo en producción (verificado 20 jun 2026)
+**Deploy:** [ingegno.app](https://ingegno.app) (vía Vercel; `p4-ingegno.vercel.app` sigue activo como dominio secundario)
 
 ---
 
-## Estado actual — 20 junio 2026
+## Estado actual — 2 julio 2026
 
-**Fase activa:** Pendiente de lanzamiento → Marketing y validación (Sem 0 prep desde lun 22 jun)
+**Fase activa:** Pre-lanzamiento → prep en 3 fases por dispositivo. **Lanzamiento: miércoles 15 jul 2026, 9:00 CET.**
 
-**Timeline de lanzamiento (semanas ancladas en lunes):**
-- Pre-prep (10–21 jun): warm-up cuentas Reddit/IH (karma), construir lista de 50 targets
-- Sem 0 (prep): lun 22 – dom 28 jun → finalizar contenido, implementar email bienvenida, verificar demo (/leonardo)
-- Sem 1 (launch): lun 29 jun – dom 5 jul → **post lunes 29 jun 9:00 CET**, 50 outreaches, Reel 1
-- Sem 2: lun 6 – dom 12 jul · Sem 3: lun 13 – dom 19 jul · Sem 4: lun 20 – dom 26 jul
+**Timeline de lanzamiento:**
+- **Warm-up (22 jun – 14 jul · diario):** comentar a diario en Reddit/IH para karma. Continuo y tablet-friendly. Empezar HOY.
+- **Fase 1 — Dev (22 jun – 2 jul):** portátil + casa. Comprar/conectar dominio `ingegno.app`, implementar email de bienvenida, verificar demo + redesign, test de borrado de cuenta, poblar 50 targets, formatear post. TODO lo técnico antes del 3 jul.
+- **Fase 2 — Solo tablet (3 – 12 jul):** viaje 1, sin portátil. Solo warm-up + contenido opcional (Reel 1 en CapCut). Cero dev.
+- **Fase 3 — Buffer (13 – 14 jul):** 13 jul coche/tareas mecánicas; 14 jul descanso + revisión final de preparativos.
+- **🚀 Sem 1 — Launch (15 – 21 jul):** post mié 15 jul 9:00 CET (IH + Reddit r/SideProject), 50 outreaches, responder comentarios, Reel 1.
+- Sem 2 (22–28 jul) · Sem 3 (29 jul–4 ago) · Sem 4 (5–11 ago: review 60 users + decisión Stripe).
+
+> ⚠️ Restricción dura: **sin portátil del 3 al 12 jul** (solo tablet). Todo el dev va antes del 3.
 
 ### Completado ✅
+- Dominio `ingegno.app` comprado (22 jun), conectado a Vercel con SSL OK ✅
+- Email de bienvenida implementado en el flow de registro ✅
+- Migración de Supabase + bucket de Storage configurado ✅
 - Build completo: auth, dashboard, perfil público, GitHub OAuth, freemium gate, og:image
 - Security audit: API keys, sanitización de inputs, rate limiting, RLS verificado
 - UI/UX polish: tipografía, espaciado, animaciones, estados vacíos
 - Test móvil (375px): sin elementos rotos
-- Perfil de demo publicado
 - Repo público en GitHub con README
 - Imágenes con identidad visual real integradas (Da Vinci, dominio público)
 - Redesign anti-AI-slop ejecutado (audit Impeccable/Taste/ui-ux-pro-max): contraste, focus-visible, tipografía EB Garamond, eyebrows/BlurText/liquid-glass reducidos, onboarding checklist, CTAs unificados, layout
 - Wordmark "Ingegno" unificado y enlazado a landing (dashboard sidebar + navbar de perfil público)
 - Features S0 (table-stakes) enviadas y desplegadas: imágenes de portada en proyectos, links sociales + email de contacto ("Get in touch"), share link + QR del perfil, export de datos (JSON) + borrado de cuenta (GDPR), fix del input de roles en móvil, fix de overflow horizontal del dashboard en móvil (verificado a 375/400px)
+- Perfil demo `ingegno.app/leonardo` creado en producción vía seed idempotente (`scripts/seed-demo-profile.ts`), verificado por SQL + HTTP 200 + contenido estructural (2 jul)
 
 ### Pendiente antes del lanzamiento
-- [ ] Verificación final del redesign: tab por teclado, contraste en Lighthouse, deploy verificado en p4-ingegno.vercel.app
+> Plan de implementación: `docs/superpowers/plans/2026-07-02-prelaunch-demo-redesign-favicon.md` (deadline dev: 3 jul)
+
+- [ ] QA manual del perfil demo `leonardo`: revisión visual desktop + 375px, prueba real de envío por "Get in touch" (Task 2 del plan)
+- [ ] Verificación final del redesign sobre `ingegno.app`: tab por teclado, contraste WCAG, Lighthouse (incluye fix de `metadataBase`, que aún apunta a p4-ingegno.vercel.app)
+- [ ] Favicon de marca (sigue el default de Next.js)
 - [ ] Test de borrado real de cuenta con cuenta desechable en producción
 
 ---
