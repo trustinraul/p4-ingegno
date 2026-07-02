@@ -153,30 +153,42 @@ export default function Hero() {
           initial="initial"
           animate="animate"
           transition={{ duration: 0.6, ease: 'easeOut', delay: 1.1 }}
-          className="hidden lg:block liquid-glass rounded-[1.5rem] p-1 mt-6 w-full max-w-sm"
+          className="hidden lg:block mt-6 w-full max-w-sm"
         >
-          <div className="bg-white/[0.03] rounded-[1.25rem] p-6 flex flex-col items-center gap-3">
-            <div
-              className="w-14 h-14 rounded-full flex items-center justify-center"
-              style={{
-                background: 'linear-gradient(135deg, rgba(139,92,246,0.15) 0%, rgba(255,255,255,0.05) 100%)',
-                boxShadow: '0 0 0 1px rgba(139,92,246,0.3), inset 0 1px 1px rgba(255,255,255,0.15)',
-              }}
-            >
-              <span className="font-heading italic text-white text-2xl">L</span>
+          <Link
+            href="/leonardo"
+            aria-label="View Leonardo's profile — ingegno.app/leonardo"
+            className="liquid-glass rounded-[1.5rem] p-1 block cursor-pointer transition-transform duration-300 hover:scale-[1.02] focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60"
+          >
+            <div className="bg-white/[0.03] rounded-[1.25rem] p-6 flex flex-col items-center gap-3">
+              <div
+                className="relative w-14 h-14 rounded-full overflow-hidden"
+                style={{
+                  boxShadow: '0 0 0 1px rgba(139,92,246,0.3)',
+                }}
+              >
+                <Image
+                  src="/images/davinci_self_portrait.jpg"
+                  alt="Leonardo Bianchi"
+                  fill
+                  className="object-cover"
+                  style={{ objectPosition: '50% 10%' }}
+                  sizes="56px"
+                />
+              </div>
+              <span className="font-heading italic text-white text-2xl">Leonardo</span>
+              <div className="flex flex-wrap justify-center gap-2">
+                {['Painter', 'Engineer', 'Anatomist'].map((role) => (
+                  <span
+                    key={role}
+                    className="liquid-glass rounded-full px-3 py-1 text-xs font-body text-white/85"
+                  >
+                    {role}
+                  </span>
+                ))}
+              </div>
             </div>
-            <span className="font-heading italic text-white text-2xl">Leonardo</span>
-            <div className="flex flex-wrap justify-center gap-2">
-              {['Painter', 'Engineer', 'Anatomist'].map((role) => (
-                <span
-                  key={role}
-                  className="liquid-glass rounded-full px-3 py-1 text-xs font-body text-white/85"
-                >
-                  {role}
-                </span>
-              ))}
-            </div>
-          </div>
+          </Link>
         </motion.div>
 
         {/* Social proof strip */}
