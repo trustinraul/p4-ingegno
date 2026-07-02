@@ -55,7 +55,7 @@ export default function ProjectForm({ project, onClose }: ProjectFormProps) {
   }
 
   const inputClass =
-    'w-full bg-white/[0.06] border border-white/[0.1] rounded-[0.75rem] px-4 py-2.5 text-sm font-body text-white placeholder:text-white/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-1 focus-visible:ring-offset-black focus:border-white/30 transition-colors'
+    'w-full bg-white/[0.06] border border-white/[0.1] rounded-[0.75rem] px-4 py-2.5 text-sm font-body text-white placeholder:text-white/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-1 focus-visible:ring-offset-black focus:border-white/30 transition-colors'
 
   return (
     <form action={handleSubmit} className="liquid-glass rounded-[1.25rem] p-6 space-y-4">
@@ -71,7 +71,7 @@ export default function ProjectForm({ project, onClose }: ProjectFormProps) {
               // eslint-disable-next-line @next/next/no-img-element
               <img src={coverUrl} alt="Cover" className="w-full h-full object-cover" />
             ) : (
-              <span className="text-white/30 text-xs font-body">No image</span>
+              <span className="text-white/50 text-xs font-body">No image</span>
             )}
             {coverPending && (
               <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
@@ -91,12 +91,12 @@ export default function ProjectForm({ project, onClose }: ProjectFormProps) {
               <button
                 type="button"
                 onClick={() => setCoverUrl('')}
-                className="font-body text-xs text-white/40 hover:text-white/70 transition-colors text-left"
+                className="font-body text-xs text-white/50 hover:text-white/70 transition-colors text-left"
               >
                 Remove
               </button>
             )}
-            <p className="font-body text-xs text-white/40">JPG, PNG, WebP or GIF. Max 5 MB.</p>
+            <p className="font-body text-xs text-white/50">JPG, PNG, WebP or GIF. Max 5 MB.</p>
           </div>
         </div>
         <input

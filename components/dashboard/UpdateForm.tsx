@@ -31,7 +31,7 @@ export default function UpdateForm({ projects, onSuccess }: UpdateFormProps) {
   }
 
   const inputClass =
-    'w-full bg-white/[0.06] border border-white/[0.1] rounded-[0.75rem] px-4 py-2.5 text-sm font-body text-white placeholder:text-white/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-1 focus-visible:ring-offset-black focus:border-white/30 transition-colors'
+    'w-full bg-white/[0.06] border border-white/[0.1] rounded-[0.75rem] px-4 py-2.5 text-sm font-body text-white placeholder:text-white/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-1 focus-visible:ring-offset-black focus:border-white/30 transition-colors'
 
   return (
     <form ref={formRef} action={handleSubmit} className="liquid-glass rounded-[1.25rem] p-6 space-y-4">

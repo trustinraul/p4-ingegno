@@ -50,7 +50,7 @@ export default function ActivityFeed({ activity, profile }: ActivityFeedProps) {
                   <div className="flex items-center gap-3 mb-2">
                     <GitHubIcon className="text-white/55 flex-shrink-0 w-4 h-4" />
                     <span className="text-sm font-body text-white/55">{item.repo_name}</span>
-                    <span className="text-xs font-body text-white/45 ml-auto">
+                    <span className="text-xs font-body text-white/50 ml-auto">
                       {getRelativeTime(item.created_at)}
                     </span>
                   </div>
@@ -74,7 +74,7 @@ export default function ActivityFeed({ activity, profile }: ActivityFeedProps) {
                       </div>
                     )}
                     <span className="text-sm font-body text-white/55">Posted an update</span>
-                    <span className="text-xs font-body text-white/45 ml-auto">
+                    <span className="text-xs font-body text-white/50 ml-auto">
                       {getRelativeTime(item.created_at)}
                     </span>
                   </div>

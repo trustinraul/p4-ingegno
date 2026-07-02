@@ -68,7 +68,7 @@ export default async function UpdatesPage() {
                         {update.projects.name}
                       </span>
                     )}
-                    <span className="text-xs font-body text-white/45">
+                    <span className="text-xs font-body text-white/50">
                       {timeAgo(update.created_at)}
                     </span>
                   </div>

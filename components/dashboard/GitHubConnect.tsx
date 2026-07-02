@@ -82,11 +82,11 @@ export default function GitHubConnect({ connection }: GitHubConnectProps) {
             @{connection.github_username}
           </p>
           {connection.last_synced_at ? (
-            <p className="text-xs font-body text-white/45">
+            <p className="text-xs font-body text-white/50">
               Last synced {timeAgo(connection.last_synced_at)}
             </p>
           ) : (
-            <p className="text-xs font-body text-white/45">Never synced</p>
+            <p className="text-xs font-body text-white/50">Never synced</p>
           )}
         </div>
         <div className="flex items-center gap-3">
@@ -116,12 +116,12 @@ export default function GitHubConnect({ connection }: GitHubConnectProps) {
                 <button
                   onClick={() => setConfirmingDisconnect(false)}
                   disabled={isPendingDisconnect}
-                  className="px-4 py-2 text-sm font-body text-white/45 hover:text-white/85 transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                  className="px-4 py-2 text-sm font-body text-white/50 hover:text-white/85 transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                 >
                   Cancel
                 </button>
               </div>
-              <p className="text-xs font-body text-white/45">
+              <p className="text-xs font-body text-white/50">
                 This will also delete your synced activity.
               </p>
             </div>
@@ -129,7 +129,7 @@ export default function GitHubConnect({ connection }: GitHubConnectProps) {
             <button
               onClick={() => setConfirmingDisconnect(true)}
               disabled={isPendingDisconnect}
-              className="px-4 py-2 text-sm font-body text-white/45 hover:text-white/75 transition-colors disabled:opacity-50"
+              className="px-4 py-2 text-sm font-body text-white/50 hover:text-white/75 transition-colors disabled:opacity-50"
             >
               Disconnect
             </button>
@@ -137,7 +137,7 @@ export default function GitHubConnect({ connection }: GitHubConnectProps) {
         </div>
       </div>
 
-      <p className="text-xs font-body text-white/45 leading-relaxed">
+      <p className="text-xs font-body text-white/50 leading-relaxed">
         Syncing pulls your most recent commits from the repositories you select below into your profile&apos;s activity feed. Run it whenever you want your profile to reflect new work.
       </p>
 

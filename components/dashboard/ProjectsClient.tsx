@@ -142,7 +142,7 @@ export default function ProjectsClient({ projects, lockedIds, collageProjectIds 
                       {project.status === 'launched' ? 'Launched' : 'In Progress'}
                     </span>
                     {isLocked && (
-                      <span className="text-xs font-body text-white/45 border border-white/10 px-2.5 py-0.5 rounded-full">
+                      <span className="text-xs font-body text-white/50 border border-white/10 px-2.5 py-0.5 rounded-full">
                         Not visible (free plan)
                       </span>
                     )}
@@ -157,7 +157,7 @@ export default function ProjectsClient({ projects, lockedIds, collageProjectIds 
                       href={project.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs font-body text-white/45 hover:text-white/75 transition-colors mt-1 inline-block truncate max-w-xs"
+                      className="text-xs font-body text-white/50 hover:text-white/75 transition-colors mt-1 inline-block truncate max-w-xs"
                     >
                       {project.url}
                     </a>
@@ -201,7 +201,7 @@ export default function ProjectsClient({ projects, lockedIds, collageProjectIds 
                   </form>
                   <button
                     onClick={() => setEditingId(project.id)}
-                    className="p-2 text-white/45 hover:text-white/85 transition-colors text-sm font-body cursor-pointer"
+                    className="p-2 text-white/50 hover:text-white/85 transition-colors text-sm font-body cursor-pointer"
                   >
                     Edit
                   </button>
@@ -222,7 +222,7 @@ export default function ProjectsClient({ projects, lockedIds, collageProjectIds 
                       <button
                         onClick={() => setConfirmingDeleteId(null)}
                         disabled={isDeleting}
-                        className="p-2 text-white/45 hover:text-white/85 transition-colors text-sm font-body cursor-pointer disabled:opacity-50"
+                        className="p-2 text-white/50 hover:text-white/85 transition-colors text-sm font-body cursor-pointer disabled:opacity-50"
                       >
                         Cancel
                       </button>
@@ -230,7 +230,7 @@ export default function ProjectsClient({ projects, lockedIds, collageProjectIds 
                   ) : (
                     <button
                       onClick={() => setConfirmingDeleteId(project.id)}
-                      className="p-2 text-white/45 hover:text-red-400/70 transition-colors text-sm font-body cursor-pointer"
+                      className="p-2 text-white/50 hover:text-red-400/70 transition-colors text-sm font-body cursor-pointer"
                     >
                       Delete
                     </button>

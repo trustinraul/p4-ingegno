@@ -46,11 +46,11 @@ export default function RepoSelector({ selectedRepos }: RepoSelectorProps) {
   }
 
   if (loading) {
-    return <p className="text-sm font-body text-white/45">Loading repos…</p>
+    return <p className="text-sm font-body text-white/50">Loading repos…</p>
   }
 
   if (allRepos.length === 0) {
-    return <p className="text-sm font-body text-white/45">No repositories found.</p>
+    return <p className="text-sm font-body text-white/50">No repositories found.</p>
   }
 
   return (

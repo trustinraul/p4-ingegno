@@ -160,7 +160,7 @@ export default function ProfileForm({ profile }: ProfileFormProps) {
           >
             Upload photo
           </button>
-          <p className="font-body text-xs text-white/45">JPG, PNG or WebP. Max 2 MB.</p>
+          <p className="font-body text-xs text-white/50">JPG, PNG or WebP. Max 2 MB.</p>
           {avatarError && (
             <p className="font-body text-xs text-red-400/80">{avatarError}</p>
           )}
@@ -275,7 +275,7 @@ export default function ProfileForm({ profile }: ProfileFormProps) {
             <span
               className={cn(
                 'font-body text-xs transition-colors',
-                wordCount > 250 ? 'text-red-400/80' : 'text-white/45'
+                wordCount > 250 ? 'text-red-400/80' : 'text-white/50'
               )}
             >
               {wordCount}/250 words
@@ -321,7 +321,7 @@ export default function ProfileForm({ profile }: ProfileFormProps) {
                 >
                   <div className="min-w-0">
                     <span className="text-sm font-body text-white/85">{link.label}</span>
-                    <span className="block text-xs font-body text-white/40 truncate">{link.url}</span>
+                    <span className="block text-xs font-body text-white/50 truncate">{link.url}</span>
                   </div>
                   <button
                     type="button"

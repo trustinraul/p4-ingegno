@@ -83,7 +83,7 @@ export default function CollagePublisher({
                   ↓
                 </button>
               </div>
-              <span className="text-xs font-body text-white/45">
+              <span className="text-xs font-body text-white/50">
                 {i + 1} / {images.length}
               </span>
             </div>

@@ -10,13 +10,13 @@ export default function PrivacyPage() {
       <div className="w-full max-w-2xl">
         <Link
           href="/"
-          className="text-xs font-body text-white/40 hover:text-white/70 transition-colors mb-12 inline-block"
+          className="text-xs font-body text-white/50 hover:text-white/70 transition-colors mb-12 inline-block"
         >
           ← Back to Ingegno
         </Link>
 
         <h1 className="font-heading italic text-white text-4xl mb-4">Privacy Policy</h1>
-        <p className="font-body text-sm text-white/45 mb-12">Last updated: June 2026</p>
+        <p className="font-body text-sm text-white/50 mb-12">Last updated: June 2026</p>
 
         <div className="space-y-6 font-body text-sm text-white/65 leading-relaxed">
           <p>

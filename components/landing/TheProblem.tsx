@@ -26,7 +26,7 @@ export default function TheProblem() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6 }}
-          className="text-xs tracking-widest uppercase text-white/45 font-body mb-8 text-center"
+          className="text-xs tracking-widest uppercase text-white/50 font-body mb-8 text-center"
         >
           // The problem
         </motion.p>

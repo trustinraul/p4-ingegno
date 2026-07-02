@@ -188,7 +188,7 @@ export default function Hero() {
           className="hidden sm:flex items-center gap-4 mt-4"
         >
           <div className="liquid-glass rounded-full px-4 py-2 flex items-center gap-3">
-            <span className="text-xs font-body text-white/45">Profiles already live</span>
+            <span className="text-xs font-body text-white/50">Profiles already live</span>
             <div className="flex gap-3">
               {['Khalid', 'Valeria', 'Søren', 'Zara', 'Ren'].map((name) => (
                 <span key={name} className="text-xs font-heading italic text-white/65">

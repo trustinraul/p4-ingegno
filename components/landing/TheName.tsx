@@ -31,7 +31,7 @@ export default function TheName() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-sm font-body text-white/45 mb-12"
+            className="text-sm font-body text-white/50 mb-12"
           >
             /in·ˈjen·yo/ · Italian, Renaissance
           </motion.p>

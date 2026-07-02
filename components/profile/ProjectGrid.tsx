@@ -19,7 +19,7 @@ export default function ProjectGrid({ projects, plan, isOwner }: ProjectGridProp
   return (
     <section className="py-24 px-8 md:px-20 bg-black">
       {projects.length === 0 ? (
-        <div className="border border-white/[0.08] rounded-[1.25rem] p-12 text-center text-sm text-white/45 font-body flex flex-col items-center gap-3">
+        <div className="border border-white/[0.08] rounded-[1.25rem] p-12 text-center text-sm text-white/50 font-body flex flex-col items-center gap-3">
           <span>No projects yet.</span>
           {isOwner && (
             <a href="/dashboard/profile" className="text-white/60 hover:text-white transition-colors">
@@ -56,7 +56,7 @@ export default function ProjectGrid({ projects, plan, isOwner }: ProjectGridProp
                         project.status === 'launched' ? 'bg-green-400' : 'bg-yellow-400'
                       )}
                     />
-                    <span className="text-xs font-body text-white/45 capitalize">
+                    <span className="text-xs font-body text-white/50 capitalize">
                       {project.status === 'in_progress' ? 'In progress' : 'Launched'}
                     </span>
                   </div>
@@ -115,7 +115,7 @@ export default function ProjectGrid({ projects, plan, isOwner }: ProjectGridProp
                   <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
                   <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                 </svg>
-                <p className="text-xs font-body text-white/45 text-center px-4">
+                <p className="text-xs font-body text-white/50 text-center px-4">
                   Upgrade to Pro to unlock
                 </p>
               </div>

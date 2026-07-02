@@ -103,7 +103,7 @@ export default function DashboardNav({ username, isPublic, isCollapsed, onToggle
           <Link
             href={`/${username}`}
             target="_blank"
-            className="hidden md:flex px-3 py-2 text-xs font-body text-white/45 hover:text-white/75 transition-colors items-center gap-1"
+            className="hidden md:flex px-3 py-2 text-xs font-body text-white/50 hover:text-white/75 transition-colors items-center gap-1"
           >
             View profile →
           </Link>
@@ -114,7 +114,7 @@ export default function DashboardNav({ username, isPublic, isCollapsed, onToggle
             type="submit"
             title="Sign out"
             aria-label="Sign out"
-            className="px-3 py-2 text-xs font-body text-white/45 hover:text-white/75 transition-colors w-full text-center md:text-left"
+            className="px-3 py-2 text-xs font-body text-white/50 hover:text-white/75 transition-colors w-full text-center md:text-left"
           >
             {/* Mobile: icon + tiny label stacked */}
             <span className="md:hidden flex flex-col items-center gap-0.5">

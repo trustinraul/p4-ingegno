@@ -63,7 +63,7 @@ export default function OnboardingChecklist({ hasName, hasProjects, isPublic, us
             localStorage.setItem('ingegno:onboarding-celebrated', '1')
             setDismissed(true)
           }}
-          className="absolute top-4 right-5 text-white/30 hover:text-white/60 transition-colors text-lg leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-1 focus-visible:ring-offset-black rounded"
+          className="absolute top-4 right-5 text-white/40 hover:text-white/60 transition-colors text-lg leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-1 focus-visible:ring-offset-black rounded"
         >
           ×
         </button>
@@ -108,7 +108,7 @@ export default function OnboardingChecklist({ hasName, hasProjects, isPublic, us
     >
       <div className="flex items-center justify-between mb-5">
         <p className="font-heading italic text-white text-xl">Get your profile live</p>
-        <span className="text-sm font-body text-white/40">{count} / 3</span>
+        <span className="text-sm font-body text-white/50">{count} / 3</span>
       </div>
 
       {/* Progress bar */}
@@ -147,7 +147,7 @@ export default function OnboardingChecklist({ hasName, hasProjects, isPublic, us
               </div>
 
               <p className={`flex-1 text-sm font-body leading-snug transition-colors ${
-                isDone ? 'text-white/35 line-through decoration-white/20' : 'text-white/80'
+                isDone ? 'text-white/50 line-through decoration-white/20' : 'text-white/80'
               }`}>
                 {step.label}
               </p>

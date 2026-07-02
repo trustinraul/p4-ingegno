@@ -88,7 +88,7 @@ export default function LoginPage() {
           </form>
         </div>
 
-        <p className="text-center font-body text-sm text-white/45 mt-6">
+        <p className="text-center font-body text-sm text-white/50 mt-6">
           Don&apos;t have an account?{' '}
           <Link href="/signup" className="text-white/75 hover:text-white transition-colors">
             Create one
