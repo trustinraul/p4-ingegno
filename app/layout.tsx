@@ -18,7 +18,7 @@ const barlow = Barlow({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://p4-ingegno.vercel.app'),
+  metadataBase: new URL('https://ingegno.app'),
   title: 'Ingegno',
   description: 'Premium public profiles for modern polymaths.',
   openGraph: {
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     description:
       "Your life's work. One URL. Premium public profiles for the people who can't be put in a box.",
     type: 'website',
-    url: 'https://p4-ingegno.vercel.app',
+    url: 'https://ingegno.app',
   },
 }
 

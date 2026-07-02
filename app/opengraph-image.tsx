@@ -48,7 +48,7 @@ export default function Image() {
           </div>
         </div>
         <div style={{ fontSize: 24, letterSpacing: 4, color: '#8a8478' }}>
-          p4-ingegno.vercel.app
+          ingegno.app
         </div>
       </div>
     ),
