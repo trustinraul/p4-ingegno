@@ -6,7 +6,7 @@ export const size = { width: 32, height: 32 }
 export const contentType = 'image/png'
 
 export default async function Icon() {
-  const font = await readFile(join(process.cwd(), 'app/fonts/InstrumentSerif-Italic.ttf'))
+  const font = await readFile(join(process.cwd(), 'app/fonts/InstrumentSerif-Regular.ttf'))
 
   return new ImageResponse(
     (
@@ -17,27 +17,26 @@ export default async function Icon() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: '#0A0A0A',
+          background: '#000000',
           borderRadius: 6,
         }}
       >
         <div
           style={{
+            display: 'flex',
             fontFamily: 'Instrument Serif',
-            fontStyle: 'italic',
-            fontSize: 27,
-            color: '#8B5CF6',
+            fontSize: 26,
+            color: '#FFFFFF',
             lineHeight: 1,
-            marginTop: -3,
           }}
         >
-          I
+          i
         </div>
       </div>
     ),
     {
       ...size,
-      fonts: [{ name: 'Instrument Serif', data: font, style: 'italic' as const }],
+      fonts: [{ name: 'Instrument Serif', data: font, style: 'normal' as const }],
     }
   )
 }

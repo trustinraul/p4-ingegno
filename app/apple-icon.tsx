@@ -6,7 +6,7 @@ export const size = { width: 180, height: 180 }
 export const contentType = 'image/png'
 
 export default async function AppleIcon() {
-  const font = await readFile(join(process.cwd(), 'app/fonts/InstrumentSerif-Italic.ttf'))
+  const font = await readFile(join(process.cwd(), 'app/fonts/InstrumentSerif-Regular.ttf'))
 
   return new ImageResponse(
     (
@@ -18,26 +18,25 @@ export default async function AppleIcon() {
           alignItems: 'center',
           justifyContent: 'center',
           // Sin borderRadius: iOS aplica su propia máscara
-          background: '#0A0A0A',
+          background: '#000000',
         }}
       >
         <div
           style={{
+            display: 'flex',
             fontFamily: 'Instrument Serif',
-            fontStyle: 'italic',
-            fontSize: 132,
-            color: '#8B5CF6',
+            fontSize: 128,
+            color: '#FFFFFF',
             lineHeight: 1,
-            marginTop: -10,
           }}
         >
-          I
+          i
         </div>
       </div>
     ),
     {
       ...size,
-      fonts: [{ name: 'Instrument Serif', data: font, style: 'italic' as const }],
+      fonts: [{ name: 'Instrument Serif', data: font, style: 'normal' as const }],
     }
   )
 }
