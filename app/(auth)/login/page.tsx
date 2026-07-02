@@ -22,7 +22,7 @@ export default function LoginPage() {
   const emailError = emailTouched ? validateEmail(email) : null
 
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center px-4">
+    <main className="min-h-screen bg-black flex items-center justify-center px-4">
       <div className="w-full max-w-md">
         <div className="mb-10 text-center">
           <span className="font-heading italic text-white text-3xl">Ingegno</span>
@@ -90,11 +90,11 @@ export default function LoginPage() {
 
         <p className="text-center font-body text-sm text-white/50 mt-6">
           Don&apos;t have an account?{' '}
-          <Link href="/signup" className="text-white/75 hover:text-white transition-colors">
+          <Link href="/signup" className="text-white/75 hover:text-white underline underline-offset-2 transition-colors">
             Create one
           </Link>
         </p>
       </div>
-    </div>
+    </main>
   )
 }
