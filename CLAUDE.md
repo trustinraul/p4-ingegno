@@ -52,7 +52,7 @@ para describir la inteligencia creativa que conecta disciplinas distintas.
 - Features S0 (table-stakes) enviadas y desplegadas: imágenes de portada en proyectos, links sociales + email de contacto ("Get in touch"), share link + QR del perfil, export de datos (JSON) + borrado de cuenta (GDPR), fix del input de roles en móvil, fix de overflow horizontal del dashboard en móvil (verificado a 375/400px)
 - Perfil demo `ingegno.app/leonardo` creado en producción vía seed idempotente (`scripts/seed-demo-profile.ts`), verificado por SQL + HTTP 200 + contenido estructural + visual desktop/375px + envío real por "Get in touch" (2 jul)
 - Verificación final del redesign sobre `ingegno.app`: fix de `metadataBase` (ya apunta a ingegno.app), contraste WCAG AA en texto de baja opacidad, auditoría de teclado (tab, foco visible, Esc en modales) OK, Lighthouse ≥94 en todas las categorías en las 5 páginas públicas — 2 hallazgos P1 (landmark `<main>` y links dependientes del color en login/signup) encontrados y arreglados. Doc: `docs/dev/verification-2026-07.md` (2 jul)
-- Favicon de marca: círculo con anillo fino + "i" minúscula centrada (Instrument Serif), reemplaza el default de Next.js (2 jul)
+- Favicon de marca: círculo gris oscuro (#1F1F1F, sin anillo) + "i" minúscula itálica en EB Garamond — misma letra que el wordmark del sitio (2 jul)
 - Test de borrado real de cuenta verificado en producción con cuenta desechable (2 jul)
 
 ### Pendiente antes del lanzamiento

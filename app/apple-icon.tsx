@@ -6,7 +6,7 @@ export const size = { width: 180, height: 180 }
 export const contentType = 'image/png'
 
 export default async function AppleIcon() {
-  const font = await readFile(join(process.cwd(), 'app/fonts/InstrumentSerif-Regular.ttf'))
+  const font = await readFile(join(process.cwd(), 'app/fonts/EBGaramond-Italic.woff'))
 
   return new ImageResponse(
     (
@@ -17,38 +17,29 @@ export default async function AppleIcon() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          // El cuadrado exterior lo enmascara iOS; el círculo con borde va dentro
-          background: '#000000',
+          // Sin borderRadius: iOS aplica su propia máscara
+          background: '#1F1F1F',
         }}
       >
         <div
           style={{
             display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: 150,
-            height: 150,
-            borderRadius: '50%',
-            border: '8px solid rgba(255,255,255,0.18)',
+            fontFamily: 'EB Garamond',
+            fontStyle: 'italic',
+            fontSize: 125,
+            color: '#FFFFFF',
+            lineHeight: 1,
+            marginTop: -14,
+            marginLeft: 10,
           }}
         >
-          <div
-            style={{
-              display: 'flex',
-              fontFamily: 'Instrument Serif',
-              fontSize: 74,
-              color: '#FFFFFF',
-              lineHeight: 1,
-            }}
-          >
-            i
-          </div>
+          i
         </div>
       </div>
     ),
     {
       ...size,
-      fonts: [{ name: 'Instrument Serif', data: font, style: 'normal' as const }],
+      fonts: [{ name: 'EB Garamond', data: font, style: 'italic' as const }],
     }
   )
 }
