@@ -55,9 +55,9 @@ export default async function DashboardPage() {
   const hasProjects = (projects?.length ?? 0) > 0
 
   return (
-    <div className="-m-8">
+    <div className="-m-5 md:-m-8">
       <OnboardingChecklist variant="banner" hasName={true} hasProjects={hasProjects} isPublic={profile.is_public} username={profile.username} />
-      <div className="sticky top-4 z-30 flex justify-end px-8 pointer-events-none">
+      <div className="sticky top-4 z-50 flex justify-end px-8 pointer-events-none">
         <div className="pointer-events-auto">
           <AddUpdateButton projects={projects ?? []} />
         </div>
