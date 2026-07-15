@@ -64,7 +64,7 @@ actual activity instead of a static snapshot.
 **Privacy & account control**
 - Full data export (JSON) and one-click account deletion (GDPR)
 - Row Level Security on every table — users can only touch their own data
-- Rate limiting and input sanitization on all public-facing surfaces
+- Input validation on every write path, rate-limited GitHub sync
 
 ## Pricing
 
