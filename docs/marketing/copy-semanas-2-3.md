@@ -2,21 +2,21 @@
 ## Semanas 2 y 3
 
 **Timeline:**
-- **Sem 2:** lun 6 – dom 12 jul 2026 (update IH + post r/Entrepreneur + Reel 2)
-- **Sem 3:** lun 13 – dom 19 jul 2026 (post IH storytelling + carrusel IG)
+- **Sem 2:** 22 – 28 jul 2026 (update IH + post r/Entrepreneur + Reel 2)
+- **Sem 3:** 29 jul – 4 ago 2026 (post IH storytelling + carrusel IG)
 
 Todo el copy público en inglés. Placeholders entre corchetes: `[así]`.
 Rellenar los `[X]` con números reales antes de publicar — la honestidad de las métricas es el activo.
 
 ---
 
-## SEMANA 2 (6–12 jul)
+## SEMANA 2 (22–28 jul)
 
 ---
 
 ### 1. Update de progreso — Indie Hackers ("Week 1")
 
-> Publicar **lunes 6 o martes 7 jul** (≈1 semana tras el lanzamiento). Es el post que más confianza genera: números reales, sin maquillar.
+> Publicar **martes 22 o miércoles 23 jul** (≈1 semana tras el lanzamiento). Es el post que más confianza genera: números reales, sin maquillar.
 > Responde a comentarios igual que en el post de lanzamiento.
 
 ---
@@ -144,7 +144,7 @@ Genuinely trying to understand how people handle this, not selling anything.
 
 ---
 
-## SEMANA 3 (13–19 jul)
+## SEMANA 3 (29 jul–4 ago)
 
 ---
 
@@ -249,13 +249,13 @@ None of them were built for you."**
 
 ## RESUMEN — Checklist de publicación
 
-### Sem 2 (6–12 jul)
+### Sem 2 (22–28 jul)
 - [ ] Update IH "Week 1" — con números reales rellenados
 - [ ] Post r/Entrepreneur — sin mención de producto en el body
 - [ ] Reel 2 — demo visual grabado y publicado
 - [ ] Responder TODOS los comentarios en 2h
 
-### Sem 3 (13–19 jul)
+### Sem 3 (29 jul–4 ago)
 - [ ] Post IH "The gap" — storytelling del research
 - [ ] Carrusel IG "5 tools" — diseñado y publicado
 - [ ] Recopilar testimonios de usuarios activos (para PH prep)

@@ -1,7 +1,7 @@
 # Ingegno — Launch Campaign Brief
 **Fecha:** junio 2026 (rev. 20 jun)  
-**Horizonte:** 8 semanas activas, ancladas en lunes (22 jun → 23 ago 2026)  
-**Día de lanzamiento:** lunes 29 jun 2026, 9:00 CET (post en IH + Reddit)  
+**Horizonte:** prep (22 jun–14 jul) + 8 semanas activas (15 jul → 8 sep 2026)  
+**Día de lanzamiento:** miércoles 15 jul 2026, 9:00 CET (post en IH + Reddit)  
 **Budget:** €0 orgánico (activar Stripe solo si hay señal de WTP)
 
 ---
@@ -12,7 +12,7 @@
 
 **Resumen:** Campaña de lanzamiento orgánico para conseguir los primeros 60 usuarios registrados y 30 perfiles públicos activos en el mes 1, usando comunidades de indie hackers/founders, outreach directo a multi-hyphenates y contenido propio en Instagram.
 
-**Objetivo primario:** 60 usuarios registrados antes del 27 de julio de 2026 (4 semanas tras el lanzamiento del 29 jun).
+**Objetivo primario:** 60 usuarios registrados antes del 12 de agosto de 2026 (4 semanas tras el lanzamiento del 15 jul).
 
 **Objetivos secundarios:**
 - 30 perfiles públicos activos (con al menos 1 proyecto visible)
@@ -133,24 +133,26 @@ Ataca exactamente el mismo pain ("Finally explain what you do") y el mismo ICP (
 
 | Semana | Acción | Canal | Notas |
 |---|---|---|---|
-| **Pre-prep** (10-21 jun) | Warm-up de cuentas: comentar en r/SideProject, r/Entrepreneur e IH para ganar karma/antigüedad | Reddit + IH | ⚠️ Crítico: cuentas nuevas con karma bajo se filtran/banean al publicar. Empezar ya. |
-| **Pre-prep** (10-21 jun) | Construir lista de 50 targets de outreach | Research | Ver `docs/marketing/outreach-targets.md` |
-| **Sem 0** (22-28 jun) | Finalizar post de lanzamiento + 3 templates de outreach | Content | Honesto, storytelling, beta |
-| **Sem 0** (22-28 jun) | Implementar email de bienvenida en el flow de registro | Dev | Bloqueante para activación >50% |
-| **Sem 0** (22-28 jun) | Verificar perfil de demo (`ingegno.app/leonardo`) en móvil | Setup | Confirmar que está público y carga rico |
-| **🚀 Sem 1** (29 jun-5 jul) | **LAUNCH — Post en IH + Reddit r/SideProject, lunes 29 jun 9:00 CET** | IH + Reddit | Hora pico de tráfico europeo/US este |
+| **Warm-up** (22 jun-14 jul · diario) | Comentar a diario en r/SideProject, r/Entrepreneur e IH (karma/antigüedad) | Reddit + IH | ⚠️ Crítico y continuo. Tablet-friendly (sigue en viaje). Empezar HOY. |
+| **Fase 1 — Dev** (22 jun-2 jul) | Comprar y conectar dominio `ingegno.app` | Setup | ⚠️ Bloqueante: todo el copy apunta aquí. Hacer ya. |
+| **Fase 1 — Dev** (22 jun-2 jul) | Implementar email de bienvenida en el flow de registro | Dev | Bloqueante activación >50%. Necesita portátil → antes del 3 jul. |
+| **Fase 1 — Dev** (22 jun-2 jul) | Verificar demo + redesign (Lighthouse/tab) + test de borrado de cuenta | Setup/Dev | Cerrar TODO lo técnico antes del 3 jul |
+| **Fase 1 — Dev** (22 jun-2 jul) | Poblar lista de 50 targets de outreach | Research | Ver `docs/marketing/outreach-targets.md` |
+| **Fase 2 — Solo tablet** (3-12 jul) | Mantener warm-up + contenido opcional (Reel 1 en CapCut). Cero dev. | Reddit/IH/IG | Viaje 1, sin portátil |
+| **Fase 3 — Buffer** (13-14 jul) | 13: coche/tareas mecánicas · 14: descanso + revisión final de preparativos | Interno | Sin trabajo de variables el 13 (8h coche) |
+| **🚀 Sem 1** (15-21 jul) | **LAUNCH — Post en IH + Reddit r/SideProject, miércoles 15 jul 9:00 CET** | IH + Reddit | Hora pico de tráfico europeo/US este |
 | **Sem 1** | Enviar 50 outreaches directos | DM/Email | Personalizado, referencia su trabajo |
 | **Sem 1** | Responder TODOS los comentarios del post de IH/Reddit (primeras 2h) | IH + Reddit | Crítico para visibilidad |
 | **Sem 1** | Primer Reel de Instagram — concepto Da Vinci | Instagram | Hook: "You're not one thing." |
-| **Sem 2** (6-12 jul) | Update de progreso en IH: "Week 1 — X users, lo que aprendí" | IH | Transparente sobre números |
+| **Sem 2** (22-28 jul) | Update de progreso en IH: "Week 1 — X users, lo que aprendí" | IH | Transparente sobre números |
 | **Sem 2** | Post en r/Entrepreneur: el problema de identidad dispersa | Reddit | No vender, hablar del pain |
 | **Sem 2** | Segundo Reel — demo visual del producto | Instagram | Mostrar perfil de demo |
-| **Sem 3** (13-19 jul) | Outreach ronda 2 (50 más) | DM/Email | Ajustado con aprendizajes de ronda 1 |
+| **Sem 3** (29 jul-4 ago) | Outreach ronda 2 (50 más) | DM/Email | Ajustado con aprendizajes de ronda 1 |
 | **Sem 3** | Post en IH: "The gap in the market I couldn't stop thinking about" | IH | Storytelling del research |
 | **Sem 3** | Carrusel IG: "The 5 tools that weren't built for you" | Instagram | Educacional, comparativa |
-| **Sem 4** (20-26 jul) | Review de semana 4: ¿llegamos a 60 usuarios? | Interno | Decisión: activar Stripe o no |
+| **Sem 4** (5-11 ago) | Review: ¿llegamos a 60 usuarios? | Interno | Decisión: activar Stripe o no |
 | **Sem 4** | Testimonios: pedir a usuarios activos una frase | Email/DM | Para Product Hunt prep |
-| **Sem 5-8** (27 jul-23 ago) | Evaluar WTP signals → decisión de Stripe | Interno | |
+| **Sem 5-8** (12 ago-8 sep) | Evaluar WTP signals → decisión de Stripe | Interno | |
 | **Sem 5-8** | Si 40+ usuarios + testimonios → preparar Product Hunt | PH prep | |
 | **Sem 5-8** | Continuar build-in-public en IH + updates de producto | IH | |
 
@@ -160,13 +162,13 @@ Ataca exactamente el mismo pain ("Finally explain what you do") y el mismo ICP (
 
 | Asset | Descripción | Prioridad | Timeline |
 |---|---|---|---|
-| Post de lanzamiento IH/Reddit | Honesto, storytelling, por qué construí esto, estado beta. 400-600 palabras. | Must-have | Listo ✅ (Sem 0) |
-| 3 templates de outreach | Variantes para: indie hackers, diseñadores multi-disciplinares, student entrepreneurs | Must-have | Listo ✅ (Sem 0) |
+| Post de lanzamiento IH/Reddit | Honesto, storytelling, por qué construí esto, estado beta. 400-600 palabras. | Must-have | Listo ✅ (Prep) |
+| 3 templates de outreach | Variantes para: indie hackers, diseñadores multi-disciplinares, student entrepreneurs | Must-have | Listo ✅ (Prep) |
 | Reel 1 — Concepto Da Vinci | Hook: pain de identidad dispersa. 15-30s. No mencionar el producto hasta el final. | Must-have | Semana 1 |
 | Reel 2 — Demo visual | Mostrar el perfil de demo de Leonardo. Énfasis en estética premium. | Should-have | Semana 2 |
 | Post de seguimiento IH semana 2 | Update honesto de métricas. Lo que funcionó y no funcionó en la primera semana. | Must-have | Semana 2 |
 | Carrusel Instagram — "The 5 tools that weren't built for you" | Comparativa de Carrd/Linktree/Notion vs. Ingegno. Educacional. | Should-have | Semana 3 |
-| Email de bienvenida | Enviado tras el registro. Presenta el concepto, explica el free tier, invita a publicar perfil. | Must-have | Antes del 29 jun (launch) |
+| Email de bienvenida | Enviado tras el registro. Presenta el concepto, explica el free tier, invita a publicar perfil. | Must-have | Antes del 2 jul (Fase 1, necesita portátil) |
 | Página de demo pública | perfil `ingegno.app/leonardo` (Leonardo Bianchi, contenido de ejemplo rico) | Must-have | Ya disponible |
 | Founder Pack — gancho de lanzamiento | Mensaje opt-in "first 50 lock founder pricing" para capturar señal de WTP sin activar Stripe | Should-have | Semana 1 |
 
@@ -206,16 +208,16 @@ Si hay señal de WTP con ≥5 usuarios: activar Stripe y evaluar si destinar €
 
 ---
 
-## 10. Next Steps (Sem 0 — semana del 22 jun)
+## 10. Next Steps (Fase 1 dev — 22 jun a 2 jul)
 
-1. **Ya:** Warm-up de cuentas Reddit/IH — comentar para ganar karma antes del lanzamiento (riesgo de baneo si no)
-2. **Sem 0 (22-28 jun):** Poblar lista de 50 targets de outreach (`docs/marketing/outreach-targets.md`)
-3. **Antes del 29 jun:** Implementar email de bienvenida automático en el flow
-4. **Antes del 29 jun:** Verificar que el perfil de demo (`ingegno.app/leonardo`) carga rico en móvil
-5. **Lunes 29 jun, 9:00 CET:** Publicar en IH + Reddit r/SideProject
-6. **29 jun:** Lanzar outreach ronda 1 (primeros 20)
+1. **Hoy:** Comprar y conectar el dominio `ingegno.app` (bloquea todo el copy)
+2. **Hoy + a diario:** Arrancar warm-up de cuentas Reddit/IH (corre hasta el 14 jul; tablet-friendly)
+3. **Antes del 2 jul:** Implementar email de bienvenida automático en el flow (necesita portátil)
+4. **Antes del 2 jul:** Verificar demo + redesign + test de borrado de cuenta; poblar 50 targets
+5. **Miércoles 15 jul, 9:00 CET:** Publicar en IH + Reddit r/SideProject
+6. **15 jul:** Lanzar outreach ronda 1 (primeros 20)
 
 ---
 
-*Siguiente decisión clave: Sem 4 (20-26 jul) — ¿activar Stripe?*  
+*Siguiente decisión clave: Sem 4 (5-11 ago) — ¿activar Stripe?*  
 *Condición: ≥5 usuarios expresan interés en pagar + ≥40 usuarios registrados.*

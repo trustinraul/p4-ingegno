@@ -1,7 +1,7 @@
 # Ingegno — Sistema de Outreach (50 targets)
 
 **Objetivo:** 50 outreaches en semana 1 → 10-15 registros.
-**Por qué importa:** los primeros 20-30 usuarios no vienen solos. Este es el canal de mayor conversión del lanzamiento y su cuello de botella. Sin la lista construida antes del 29 jun, el lanzamiento no tiene combustible.
+**Por qué importa:** los primeros 20-30 usuarios no vienen solos. Este es el canal de mayor conversión del lanzamiento y su cuello de botella. Sin la lista construida antes del lanzamiento (15 jul), el lanzamiento no tiene combustible. Objetivo: cerrarla en Fase 1 (antes del 3 jul, mientras hay portátil).
 
 > **Nota honesta:** este documento es el *sistema* para construir la lista rápido y bien — dónde buscar, qué queries usar, cómo cualificar y dónde registrar. No incluye 50 handles inventados (te daría perfiles falsos o muertos). Para poblarlo con personas reales: o lo haces tú en 60-90 min con las queries de abajo, o me pides que navegue (Twitter/IH/Reddit) y te devuelva una tanda de handles reales cualificados.
 
@@ -99,7 +99,7 @@ Filtrar por: estudiantes con "building X" en el headline y 2+ proyectos en "Expe
 
 ## 5. Tracker (Notion-ready)
 
-Copia esta tabla a Notion como base de datos. Una fila por target. (También disponible como `outreach-tracker.xlsx`.)
+Vive en Notion como base de datos (workspace ya conectado). Una fila por target.
 
 | # | Nombre | Segmento (A/B/C) | Plataforma | Handle / URL | Gancho de personalización | Estado | Fecha envío | Respuesta | ¿Se registró? | Notas |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -125,4 +125,4 @@ Copia esta tabla a Notion como base de datos. Una fila por target. (También dis
 
 ---
 
-*Siguiente paso: poblar el tracker con 50 targets reales durante la Sem 0 (22-28 jun), listos antes del lanzamiento del 29 jun. Pídeme que navegue y te traiga una primera tanda cualificada si quieres acelerar.*
+*Siguiente paso: poblar el tracker con 50 targets reales en Fase 1 (22 jun-2 jul), listos antes del lanzamiento del 15 jul. Pídeme que navegue y te traiga una primera tanda cualificada si quieres acelerar.*

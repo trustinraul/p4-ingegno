@@ -2,21 +2,21 @@
 ## Semanas 0 y 1
 
 **Timeline:**
-- **Sem 0 — Prep:** lun 22 – dom 28 jun 2026
-- **Sem 1 — Launch:** lun 29 jun – dom 5 jul 2026
+- **Prep:** 22 jun – 14 jul 2026 (3 fases por dispositivo — ver `launch-campaign.md`)
+- **Sem 1 — Launch:** 15 – 21 jul 2026 · disparo **miércoles 15 jul, 9:00 CET**
 
 Todo el copy público está en inglés (producto global).  
 Los placeholders van entre corchetes: `[así]`.
 
 ---
 
-## SEMANA 0 (22–28 jun) — Preparación
+## PREP (22 jun – 14 jul) — Contenido y setup
 
 ---
 
 ### 1. Post de lanzamiento — Indie Hackers + Reddit r/SideProject
 
-> Publicar el **lunes 29 de junio** a las 9:00 CET.  
+> Publicar el **miércoles 15 de julio** a las 9:00 CET.  
 > Usar en IH con título tal cual. En Reddit, mismo texto pero sin el "Show IH:" del título.
 
 ---
@@ -221,7 +221,7 @@ If you hit any friction or anything feels broken, reply to this email. I read ev
 
 ---
 
-## SEMANA 1 (29 jun – 5 jul) — Launch
+## SEMANA 1 (15 – 21 jul) — Launch
 
 ---
 
@@ -330,19 +330,19 @@ If you hit any friction or anything feels broken, reply to this email. I read ev
 
 ## RESUMEN — Checklist de publicación
 
-### Sem 0 (22–28 jun)
+### Prep (cerrar antes del 15 jul)
 - [ ] Post de lanzamiento: redactado y revisado ← ya está arriba
 - [ ] Templates de outreach: listos ← ya están arriba
 - [ ] Email de bienvenida: implementado en el flow de registro
 - [ ] Lista de 50 targets de outreach: preparada en Notion
 - [ ] Perfil de demo: publicado y revisado en móvil
 
-### Sem 1 (29 jun – 5 jul)
-- [ ] **Lunes 29 jun, 9:00 CET:** publicar post en IH y Reddit r/SideProject
-- [ ] **Lunes 29 jun:** enviar primeros 20 outreaches
-- [ ] **Mar-mié 30 jun – 1 jul:** responder TODOS los comentarios
-- [ ] **Mié-jue 1-2 jul:** enviar siguiente tanda de outreaches (30 restantes)
-- [ ] **Vie 3 jul:** grabar y publicar Reel 1
+### Sem 1 (15 – 21 jul)
+- [ ] **Miércoles 15 jul, 9:00 CET:** publicar post en IH y Reddit r/SideProject
+- [ ] **Miércoles 15 jul:** enviar primeros 20 outreaches
+- [ ] **Jue-vie 16-17 jul:** responder TODOS los comentarios
+- [ ] **Vie-sáb 17-18 jul:** enviar siguiente tanda de outreaches (30 restantes)
+- [ ] **Dom 19 jul:** grabar y publicar Reel 1
 - [ ] Tracking diario: registros, perfiles publicados, respuestas de outreach
 
 ---
