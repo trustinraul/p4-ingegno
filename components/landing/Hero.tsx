@@ -190,26 +190,6 @@ export default function Hero() {
             </div>
           </Link>
         </motion.div>
-
-        {/* Social proof strip */}
-        <motion.div
-          variants={fadeUp}
-          initial="initial"
-          animate="animate"
-          transition={{ duration: 0.6, ease: 'easeOut', delay: 1.3 }}
-          className="hidden sm:flex items-center gap-4 mt-4"
-        >
-          <div className="liquid-glass rounded-full px-4 py-2 flex items-center gap-3">
-            <span className="text-xs font-body text-white/50">Profiles already live</span>
-            <div className="flex gap-3">
-              {['Khalid', 'Valeria', 'Søren', 'Zara', 'Ren'].map((name) => (
-                <span key={name} className="text-xs font-heading italic text-white/65">
-                  {name}
-                </span>
-              ))}
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   )

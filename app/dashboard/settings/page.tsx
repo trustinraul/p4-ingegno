@@ -41,6 +41,17 @@ export default async function SettingsPage() {
             Edit profile →
           </Link>
         </div>
+        {/* View public profile — desktop keeps this in the sidebar, so it's mobile-only here */}
+        {profile?.username && (
+          <Link
+            href={`/${profile.username}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="md:hidden mt-3 inline-block text-sm font-body text-white/55 hover:text-white/85 transition-colors"
+          >
+            View public profile →
+          </Link>
+        )}
       </section>
 
       {/* GitHub section */}

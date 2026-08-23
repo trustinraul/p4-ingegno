@@ -117,16 +117,18 @@ export default function ProjectsClient({ projects, lockedIds, collageProjectIds 
                 isLocked && 'opacity-60'
               )}
             >
-              <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-3">
-                {project.cover_image_url && (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={project.cover_image_url}
-                    alt=""
-                    className="w-20 h-14 rounded-[0.6rem] object-cover border border-white/[0.08] shrink-0"
-                  />
-                )}
-                <div className="flex-1 min-w-0">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                {/* Media + text — full width on mobile so nothing gets squeezed */}
+                <div className="flex items-start gap-4 min-w-0 sm:flex-1">
+                  {project.cover_image_url && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={project.cover_image_url}
+                      alt=""
+                      className="w-20 h-14 rounded-[0.6rem] object-cover border border-white/[0.08] shrink-0"
+                    />
+                  )}
+                  <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-3 flex-wrap">
                     <span className="font-heading italic text-white text-lg leading-tight">
                       {project.name}
@@ -176,9 +178,11 @@ export default function ProjectsClient({ projects, lockedIds, collageProjectIds 
                         : 'Publish collage →'}
                     </button>
                   )}
+                  </div>
                 </div>
 
-                <div className="flex items-center gap-1 shrink-0">
+                {/* Actions — own right-aligned row on mobile, inline on sm+ */}
+                <div className="flex items-center gap-1 shrink-0 self-end sm:self-auto">
                   <form action={moveProjectUp.bind(null, project.id)}>
                     <button
                       type="submit"

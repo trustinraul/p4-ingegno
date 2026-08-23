@@ -1,5 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
 import Navbar from '@/components/landing/Navbar'
+import DashboardShell from '@/components/dashboard/DashboardShell'
 import DiscoverCard from '@/components/discover/DiscoverCard'
 import ProjectCollageCard from '@/components/discover/ProjectCollageCard'
 
@@ -24,6 +25,7 @@ type DiscoverItem =
 
 export default async function DiscoverPage() {
   const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
 
   const [{ data: updates }, { data: collages }] = await Promise.all([
     supabase
@@ -72,42 +74,64 @@ export default async function DiscoverPage() {
 
   items.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
 
+  const feed = (
+    <>
+      <div className="mb-12">
+        <h1 className="font-heading italic text-white text-5xl md:text-6xl mb-3">Discover.</h1>
+        <p className="font-body text-white/55 text-lg">
+          Modern polymaths building in public.
+        </p>
+      </div>
+
+      {items.length === 0 ? (
+        <div className="border border-white/[0.08] rounded-[1.25rem] p-12 text-center">
+          <p className="font-body text-white/55">
+            No visual updates yet. Be the first to post one.
+          </p>
+        </div>
+      ) : (
+        <div className="columns-2 md:columns-3 lg:columns-4 gap-3">
+          {items.map((item) => (
+            <div key={item.id} className="break-inside-avoid mb-3">
+              {item.type === 'update' ? (
+                <DiscoverCard update={item.update} author={item.author} />
+              ) : (
+                <ProjectCollageCard
+                  collage={item.collage}
+                  project={item.project}
+                  author={item.author}
+                />
+              )}
+            </div>
+          ))}
+        </div>
+      )}
+    </>
+  )
+
+  // Logged-in visitors keep the dashboard nav so they can navigate back;
+  // logged-out visitors get the public landing chrome.
+  if (user) {
+    const { data: profile } = await supabase
+      .from('profiles')
+      .select('username, is_public')
+      .eq('id', user.id)
+      .single()
+
+    return (
+      <DashboardShell
+        username={profile?.username ?? ''}
+        isPublic={profile?.is_public ?? false}
+      >
+        {feed}
+      </DashboardShell>
+    )
+  }
+
   return (
     <main className="bg-black min-h-screen">
       <Navbar />
-
-      <div className="max-w-7xl mx-auto px-6 pt-36 pb-24">
-        <div className="mb-12">
-          <h1 className="font-heading italic text-white text-5xl md:text-6xl mb-3">Discover.</h1>
-          <p className="font-body text-white/55 text-lg">
-            Modern polymaths building in public.
-          </p>
-        </div>
-
-        {items.length === 0 ? (
-          <div className="border border-white/[0.08] rounded-[1.25rem] p-12 text-center">
-            <p className="font-body text-white/55">
-              No visual updates yet. Be the first to post one.
-            </p>
-          </div>
-        ) : (
-          <div className="columns-2 md:columns-3 lg:columns-4 gap-3">
-            {items.map((item) => (
-              <div key={item.id} className="break-inside-avoid mb-3">
-                {item.type === 'update' ? (
-                  <DiscoverCard update={item.update} author={item.author} />
-                ) : (
-                  <ProjectCollageCard
-                    collage={item.collage}
-                    project={item.project}
-                    author={item.author}
-                  />
-                )}
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
+      <div className="max-w-7xl mx-auto px-6 pt-36 pb-24">{feed}</div>
     </main>
   )
 }
