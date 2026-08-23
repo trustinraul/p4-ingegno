@@ -31,15 +31,27 @@ export default function ProjectGrid({ projects, plan, isOwner }: ProjectGridProp
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {visible.map((project, i) => {
             const domain = project.url ? getDomainFromUrl(project.url) : null
-            return (
-              <motion.div
-                key={project.id}
-                initial={{ filter: 'blur(10px)', opacity: 0, y: 20 }}
-                whileInView={{ filter: 'blur(0px)', opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.1 }}
-                transition={{ duration: 0.6, ease: 'easeOut', delay: i * 0.1 }}
-                className="border border-white/[0.08] rounded-[1.25rem] p-7 min-h-[240px] flex flex-col justify-between"
-              >
+            const isLinked = Boolean(project.url && domain)
+
+            // Entry animation is shared; only the wrapping element changes.
+            const motionProps = {
+              initial: { filter: 'blur(10px)', opacity: 0, y: 20 },
+              whileInView: { filter: 'blur(0px)', opacity: 1, y: 0 },
+              viewport: { once: true, amount: 0.1 },
+              transition: { duration: 0.6, ease: 'easeOut', delay: i * 0.1 },
+            } as const
+
+            const cardClass = cn(
+              'group border border-white/[0.08] rounded-[1.25rem] p-7 min-h-[240px] flex flex-col justify-between',
+              isLinked && [
+                'cursor-pointer transition-[border-color,background-color,box-shadow] duration-200',
+                'hover:border-white/25 hover:bg-white/[0.02] hover:shadow-[0_10px_40px_-15px_rgba(0,0,0,0.6)]',
+                'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-black',
+              ]
+            )
+
+            const inner = (
+              <>
                 {project.cover_image_url && (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
@@ -72,17 +84,30 @@ export default function ProjectGrid({ projects, plan, isOwner }: ProjectGridProp
                   )}
                 </div>
 
-                {project.url && domain && (
-                  <a
-                    href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm font-body text-white/55 hover:text-white/85 transition-colors mt-5 cursor-pointer"
-                  >
+                {/* Destination hint — plain text inside the wrapping link, never a nested <a> */}
+                {isLinked && (
+                  <span className="flex items-center gap-2 text-sm font-body text-white/55 group-hover:text-white/85 transition-colors mt-5">
                     <ArrowUpRight />
                     {domain}
-                  </a>
+                  </span>
                 )}
+              </>
+            )
+
+            return isLinked ? (
+              <motion.a
+                key={project.id}
+                href={project.url!}
+                target="_blank"
+                rel="noopener noreferrer"
+                {...motionProps}
+                className={cardClass}
+              >
+                {inner}
+              </motion.a>
+            ) : (
+              <motion.div key={project.id} {...motionProps} className={cardClass}>
+                {inner}
               </motion.div>
             )
           })}
